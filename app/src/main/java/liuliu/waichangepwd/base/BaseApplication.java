@@ -8,7 +8,6 @@ import cn.bmob.v3.Bmob;
 
 public class BaseApplication extends Application {
     private static Context context;
-    public Vibrator mVibrator;
 
     @Override
     public void onCreate() {
@@ -19,11 +18,5 @@ public class BaseApplication extends Application {
 
     public static Context getContext() {
         return context;
-    }
-
-    //系统处于资源匮乏的状态
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
     }
 }
