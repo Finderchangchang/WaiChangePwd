@@ -2,6 +2,7 @@ package liuliu.waichangepwd.method;
 
 import java.util.Map;
 
+import liuliu.waichangepwd.model.MessageModel;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 import rx.Observable;
@@ -15,7 +16,7 @@ public interface GitHubAPI {
      *  发送短信操作
      */
     @GET("sendMessageCode.do")
-    Observable<String> sendMsg(@QueryMap Map<String, String> map);
+    Observable<MessageModel> sendMsg(@QueryMap Map<String, String> map);
 
     /*
      *  修改密码操作
@@ -29,5 +30,5 @@ public interface GitHubAPI {
      *  messageCode=5853
      */
     @GET("safetyOp.do")
-    Observable<String> changePwd(@QueryMap Map map);
+    Observable<MessageModel> changePwd(@QueryMap Map<String, String> map);
 }

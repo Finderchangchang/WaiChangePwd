@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import liuliu.waichangepwd.base.BaseApplication;
 import liuliu.waichangepwd.method.HttpUtil;
 import liuliu.waichangepwd.method.Utils;
 import rx.android.schedulers.AndroidSchedulers;
@@ -36,20 +38,22 @@ public class SmsReciver extends BroadcastReceiver {
                     while (m.find()) {
                         Map<String, String> map = new HashMap<>();
                         map.put("type", "findp");
-                        map.put("nickName", Utils.getCache("nickName"));//昵称
+                        map.put("nickName", "拜师快递");//昵称
+//                        map.put("nickName", Utils.getCache("nickName"));//昵称
                         map.put("password", Utils.MD5("123aaa"));
                         map.put("confirmPassword", Utils.MD5("123aaa"));
-                        map.put("openid", "ovPbFs9GEQidN3Wod");//ovPbFs9GEQidN3Wod-vQjNOawHxU
+                        map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");//ovPbFs9GEQidN3Wod-vQjNOawHxU
                         map.put("identityCard", "");//空
-                        map.put("bindPhone", Utils.getCache("bindPhone"));
+//                        map.put("bindPhone", Utils.getCache("bindPhone"));
+                        map.put("bindPhone", "17093215800");
                         map.put("messageCode", m.group());
                         HttpUtil.load().changePwd(map)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(model -> {
-                                    String s="";
+                                    Toast.makeText(BaseApplication.getContext(), "", Toast.LENGTH_SHORT).show();
                                 },error->{
-                                    String s="";
+                                    Toast.makeText(BaseApplication.getContext(), "请检查网络是否正常", Toast.LENGTH_SHORT).show();
                                 });
                     }
                 }

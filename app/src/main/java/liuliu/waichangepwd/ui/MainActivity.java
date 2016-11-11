@@ -23,7 +23,6 @@ import rx.schedulers.Schedulers;
  */
 
 public class MainActivity extends BaseActivity {
-    String url = "&nickName=拜师快递&openid=ovPbFs9GEQidN3Wod-vQjNOawHxU&bindPhone=17093215800";
     @CodeNote(id = R.id.start_change_btn)
     Button start_change_btn;
     private SmsReciver mSmsReceiver;
@@ -50,13 +49,13 @@ public class MainActivity extends BaseActivity {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(val -> {
+                        if(val.getMsg().contains("达到上限")){
+                            ToastShort(val.getMsg());
+                        }else{
 
+                        }
                     }, error -> {
-                        Map maps=new HashMap();
-                        maps.put("orderid",getOrderID());
-                        maps.put("nickName","拜师快递");
-                        maps.put("bindPhone","17093215800");
-                        Utils.putCache(maps);
+
                     });
         });
     }
