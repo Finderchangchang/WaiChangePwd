@@ -19,6 +19,14 @@ public interface GitHubAPI {
 
     /*
      *  修改密码操作
+     *  type=findp
+     *  nickName=%E6%8B%9C%E5%B8%88%E5%BF%AB%E9%80%92
+     *  password=e0c10f451217b93f76c2654b2b729b85
+     *  confirmPassword=e0c10f451217b93f76c2654b2b729b85
+     *  openid=ovPbFs9GEQidN3Wod-vQjNOawHxU
+     *  identityCard=
+     *  bindPhone=17093215800
+     *  messageCode=5853
      */
     @GET("safetyOp.do")
     Observable<String> changePwd(@QueryMap Map map);

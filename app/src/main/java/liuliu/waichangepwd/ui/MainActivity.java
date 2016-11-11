@@ -5,12 +5,15 @@ import android.widget.Button;
 
 import net.tsz.afinal.annotation.view.CodeNote;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
 import liuliu.waichangepwd.method.HttpUtil;
+import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.service.SmsReciver;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -24,6 +27,7 @@ public class MainActivity extends BaseActivity {
     @CodeNote(id = R.id.start_change_btn)
     Button start_change_btn;
     private SmsReciver mSmsReceiver;
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_main);
@@ -41,16 +45,28 @@ public class MainActivity extends BaseActivity {
             map.put("nickName", "拜师快递");
             map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");
             map.put("bindPhone", "17093215800");
-            HttpUtil.load().sendMsg(map)
+            HttpUtil.load()
+                    .sendMsg(map)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(val -> {
-                        ToastShort(val);
-                    }, error -> {
-                        SmsReciver re=new SmsReciver();
 
+                    }, error -> {
+                        Map maps=new HashMap();
+                        maps.put("orderid",getOrderID());
+                        maps.put("nickName","拜师快递");
+                        maps.put("bindPhone","17093215800");
+                        Utils.putCache(maps);
                     });
         });
     }
 
+    /**
+     * 获得订单编号
+     *
+     * @return
+     */
+    private String getOrderID() {
+        return new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+    }
 }
