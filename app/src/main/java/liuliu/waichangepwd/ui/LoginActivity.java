@@ -19,14 +19,11 @@ import liuliu.waichangepwd.view.ILoginView;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends BaseActivity implements ILoginView {
+    public static LoginActivity mIntails;
     @CodeNote(id = R.id.usr_name_tv)
     private AutoCompleteTextView usr_name_tv;
     @CodeNote(id = R.id.pwd_et)
     private EditText pwd_et;
-    @CodeNote(id = R.id.login_progress)
-    private View mProgressView;
-    @CodeNote(id = R.id.login_form)
-    private View mLoginFormView;
     private LoginListener mListener;
     @CodeNote(id = R.id.reg_user_btn)
     private Button reg_user_btn;
@@ -39,6 +36,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void initViews() {
         setContentView(R.layout.activity_login);
         mListener = new LoginListener(this);
+        mIntails = this;
     }
 
     @Override
@@ -46,6 +44,10 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         login_btn.setOnClickListener(view -> attemptLogin());//登录操作
         reg_user_btn.setOnClickListener(view -> Utils.IntentPost(RegUserActivity.class));//跳转到注册页面
         forget_pwd_tv.setOnClickListener(view -> ToastShort("敬请期待~~"));
+        if (!("").equals(Utils.getCache("key"))) {
+            Utils.IntentPost(MainActivity.class);
+            finish();
+        }
     }
 
     /**
@@ -56,7 +58,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         pwd_et.setError(null);
         String user_name = usr_name_tv.getText().toString();
         String password = pwd_et.getText().toString();
-
         if (TextUtils.isEmpty(user_name)) {
             usr_name_tv.setError(getString(R.string.error_field_required));
         } else if (TextUtils.isEmpty(password)) {

@@ -13,6 +13,7 @@ public class MessageModel {
 
     private String msg;
     private String type;
+    private String ret;
 
     public String getMsg() {
         return msg;
@@ -28,5 +29,13 @@ public class MessageModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getRet() {
+        return ret;
+    }
+
+    public void setRet(String ret) {
+        this.ret = ret;
     }
 }

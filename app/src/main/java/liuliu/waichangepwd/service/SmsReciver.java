@@ -40,8 +40,8 @@ public class SmsReciver extends BroadcastReceiver {
                         map.put("type", "findp");
                         map.put("nickName", "拜师快递");//昵称
 //                        map.put("nickName", Utils.getCache("nickName"));//昵称
-                        map.put("password", Utils.MD5("123aaa"));
-                        map.put("confirmPassword", Utils.MD5("123aaa"));
+                        map.put("password", Utils.MD5("aaa111"));
+                        map.put("confirmPassword", Utils.MD5("aaa111"));
                         map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");//ovPbFs9GEQidN3Wod-vQjNOawHxU
                         map.put("identityCard", "");//空
 //                        map.put("bindPhone", Utils.getCache("bindPhone"));
@@ -51,8 +51,12 @@ public class SmsReciver extends BroadcastReceiver {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(model -> {
-                                    Toast.makeText(BaseApplication.getContext(), "", Toast.LENGTH_SHORT).show();
-                                },error->{
+                                    if (("s").equals(model.getRet())) {
+                                        Toast.makeText(BaseApplication.getContext(), "修改成功", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        Toast.makeText(BaseApplication.getContext(), model.getMsg(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }, error -> {
                                     Toast.makeText(BaseApplication.getContext(), "请检查网络是否正常", Toast.LENGTH_SHORT).show();
                                 });
                     }

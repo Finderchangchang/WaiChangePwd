@@ -57,6 +57,9 @@ public class RegUserActivity extends BaseActivity implements IRegUserView {
         if (result) {
             Utils.IntentPost(MainActivity.class);
             finish();//关闭当前页面
+            if (LoginActivity.mIntails != null) {
+                LoginActivity.mIntails.finish();
+            }
         } else {
             ToastShort("用户名已存在，请重新输入~~");
         }

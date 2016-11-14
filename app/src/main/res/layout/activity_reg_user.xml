@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
@@ -12,6 +14,7 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
@@ -22,7 +25,7 @@
                     android:id="@+id/usr_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="账号"
+                    android:hint="请输入11位手机号"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -37,7 +40,7 @@
                     android:id="@+id/pwd_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="密码"
+                    android:hint="请输入密码"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -55,7 +58,7 @@
                     android:id="@+id/confirm_pwd_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="确认密码"
+                    android:hint="请再次输入密码"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -68,11 +71,14 @@
             <Button
                 android:id="@+id/reg_user_btn"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="注册"
-                android:textStyle="bold" />
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/reg_btn"
+                android:text="立即注册"
+                android:textColor="#fff"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>

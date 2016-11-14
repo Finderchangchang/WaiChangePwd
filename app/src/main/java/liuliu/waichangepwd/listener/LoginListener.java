@@ -1,10 +1,13 @@
 package liuliu.waichangepwd.listener;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.view.ILoginView;
 
@@ -28,7 +31,16 @@ public class LoginListener implements ILoginMView {
             @Override
             public void done(List<UserModel> list, BmobException e) {
                 if (e == null) {
-                    mView.loginResult(true);
+                    if (list != null) {
+                        if (list.size() > 0) {
+                            Utils.putCache("key", list.get(0).getObjectId());
+                            mView.loginResult(true);
+                        } else {
+                            mView.loginResult(false);
+                        }
+                    } else {
+                        mView.loginResult(false);
+                    }
                 } else {
                     mView.loginResult(false);
                 }
