@@ -30,14 +30,10 @@ public class LoginListener implements ILoginMView {
         list.findObjects(new FindListener<UserModel>() {
             @Override
             public void done(List<UserModel> list, BmobException e) {
-                if (e == null) {
-                    if (list != null) {
-                        if (list.size() > 0) {
-                            Utils.putCache("key", list.get(0).getObjectId());
-                            mView.loginResult(true);
-                        } else {
-                            mView.loginResult(false);
-                        }
+                if (list != null) {
+                    if (list.size() > 0) {
+                        Utils.putCache("key", list.get(0).getObjectId());
+                        mView.loginResult(true);
                     } else {
                         mView.loginResult(false);
                     }

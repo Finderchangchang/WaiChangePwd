@@ -9,7 +9,15 @@ import cn.bmob.v3.BmobObject;
 public class UserModel extends BmobObject {
     private String username;
     private String password;
-    private String tel;
+    private String yue;
+
+    public String getYue() {
+        return yue;
+    }
+
+    public void setYue(String yue) {
+        this.yue = yue;
+    }
 
     public String getUsername() {
         return username;
@@ -25,13 +33,5 @@ public class UserModel extends BmobObject {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
     }
 }

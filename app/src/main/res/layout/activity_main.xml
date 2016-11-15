@@ -1,49 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_line_tv"
+        android:layout_above="@+id/bottom_ll"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/start_change_btn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="开始修改" />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/main_lv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            </ListView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@mipmap/main_guanggao" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="30dp"
+                android:background="#000"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-8dp"
+                    android:paddingBottom="7dp"
+                    android:paddingTop="7dp"
+                    android:src="@mipmap/main_laba" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="当前无数据"/>
+                    android:layout_marginLeft="-10dp"
+                    android:text="自动充值系统已经上线。。。"
+                    android:textColor="#fff" />
             </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/main_icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/gonggao_bg"
+                    android:padding="5dp"
+                    android:text="温馨提示：\n为保障您的账号安全和不必要的误会，请您在电脑或其他设备上进行解绑换绑操作，操作前请先修改密码，谢谢合作！"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="-8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/main_bottom"
+                        android:text="等待添加"
+                        android:textColor="#fff"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/main_bottom"
+                        android:text="等待添加"
+                        android:textColor="#fff"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/wx_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/wx_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="and13585"
+                        android:textColor="#fff"
+                        android:textSize="22sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/bd_openid1_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3"
+                    android:background="@mipmap/bang_left" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="80dp"
+                    android:src="@mipmap/bang_right" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="4"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/main_manage"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginTop="3dp"
+                            android:src="@mipmap/main_tel" />
+
+                        <TextView
+                            android:id="@+id/add_tel1_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="添加手机号码"
+                            android:textColor="#fff" />
+
+                        <TextView
+                            android:layout_width="3dp"
+                            android:layout_height="match_parent"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/add_tel1_btn"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="进入"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/main_manage"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginTop="3dp"
+                            android:src="@mipmap/main_tel" />
+
+                        <TextView
+                            android:id="@+id/add_tel2_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="添加手机号码"
+                            android:textColor="#fff" />
+
+                        <TextView
+                            android:layout_width="3dp"
+                            android:layout_height="match_parent"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/add_tel2_btn"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="进入"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/bottom_ll"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
+        android:background="@mipmap/main_bottom"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -52,33 +244,32 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="ID："
-            android:textSize="18sp"/>
+            android:textColor="#fff"
+            android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/user_id_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="17093215800" />
+            android:text="17093215800"
+            android:textColor="#fff" />
 
         <TextView
+            android:id="@+id/yue_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="余额：17.5"
+            android:textColor="#fff"
             android:textSize="14sp" />
 
-        <Button
+        <ImageView
+            android:id="@+id/setting_iv"
             android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:text="管理" />
+            android:background="@mipmap/main_manage"
+            android:padding="12dp"
+            android:src="@mipmap/main_manage_center" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/bottom_line_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_above="@+id/bottom_ll"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="#333" />
 </RelativeLayout>

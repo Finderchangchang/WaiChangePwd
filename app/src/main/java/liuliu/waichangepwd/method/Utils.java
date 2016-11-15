@@ -122,10 +122,13 @@ public class Utils {
         SharedPreferences sp = BaseApplication.getContext().getSharedPreferences("waichangepwd", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         Observable.from(map.keySet())
-                .subscribe(val -> {
-                    editor.putString(val, map.get(val));
+                .map(maa -> {
+                    editor.putString(maa, map.get(maa));
+                    return null;
+                })
+                .subscribe(nv -> {
+                    editor.commit();
                 });
-        editor.commit();
     }
 
     public static final void putCache(String key, String val) {
@@ -135,7 +138,7 @@ public class Utils {
     }
 
     public static final String getCache(String key) {
-        SharedPreferences sharedPreferences = BaseApplication.getContext().getSharedPreferences("deliver", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = BaseApplication.getContext().getSharedPreferences("waichangepwd", MODE_PRIVATE);
         return sharedPreferences.getString(key, "");
     }
 

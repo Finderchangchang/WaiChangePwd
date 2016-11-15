@@ -40,18 +40,17 @@ public class SmsReciver extends BroadcastReceiver {
                         map.put("type", "findp");
                         map.put("nickName", "拜师快递");//昵称
 //                        map.put("nickName", Utils.getCache("nickName"));//昵称
-                        map.put("password", Utils.MD5("aaa111"));
-                        map.put("confirmPassword", Utils.MD5("aaa111"));
+                        map.put("password", Utils.MD5("a11111"));
+                        map.put("confirmPassword", Utils.MD5("a11111"));
                         map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");//ovPbFs9GEQidN3Wod-vQjNOawHxU
                         map.put("identityCard", "");//空
-//                        map.put("bindPhone", Utils.getCache("bindPhone"));
                         map.put("bindPhone", "17093215800");
                         map.put("messageCode", m.group());
                         HttpUtil.load().changePwd(map)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(model -> {
-                                    if (("s").equals(model.getRet())) {
+                                    if (("s").equals(model.getRet())||("S").equals(model.getRet())) {
                                         Toast.makeText(BaseApplication.getContext(), "修改成功", Toast.LENGTH_SHORT).show();
                                     }else {
                                         Toast.makeText(BaseApplication.getContext(), model.getMsg(), Toast.LENGTH_SHORT).show();
