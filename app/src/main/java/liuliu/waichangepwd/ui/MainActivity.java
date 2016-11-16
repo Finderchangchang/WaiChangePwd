@@ -1,6 +1,7 @@
 package liuliu.waichangepwd.ui;
 
 import android.content.IntentFilter;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.OpenIdModel;
 import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.service.SmsReciver;
+import liuliu.waichangepwd.view.MyDialog;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -34,24 +36,25 @@ import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
     //    @CodeNote(id = R.id.start_change_btn)
-    Button start_change_btn;
+    private Button start_change_btn;
     private SmsReciver mSmsReceiver;
     @CodeNote(id = R.id.bd_openid1_iv)
-    ImageView bd_openid1_iv;
+    private ImageView bd_openid1_iv;
     @CodeNote(id = R.id.add_tel1_tv)
-    TextView add_tel1_tv;
+    private TextView add_tel1_tv;
     @CodeNote(id = R.id.add_tel1_btn)
-    TextView add_tel1_btn;
+    private TextView add_tel1_btn;
     @CodeNote(id = R.id.add_tel2_tv)
-    TextView add_tel2_tv;
+    private TextView add_tel2_tv;
     @CodeNote(id = R.id.add_tel2_btn)
-    TextView add_tel2_btn;
+    private TextView add_tel2_btn;
     @CodeNote(id = R.id.user_id_tv)
-    TextView user_id_tv;
+    private TextView user_id_tv;
     @CodeNote(id = R.id.yue_tv)
-    TextView yue_tv;
+    private TextView yue_tv;
     @CodeNote(id = R.id.setting_iv)
-    ImageView setting_iv;
+    private ImageView setting_iv;
+    private MyDialog myDialog;
 
     @Override
     public void initViews() {
@@ -64,7 +67,9 @@ public class MainActivity extends BaseActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("sms_received");
         registerReceiver(mSmsReceiver, intentFilter);
+        myDialog = new MyDialog(this);
         loadData();
+
 //        start_change_btn.setOnClickListener(v -> {
 //            Map<String, String> map = new HashMap<String, String>();
 //            map.put("type", "findp");
@@ -85,6 +90,22 @@ public class MainActivity extends BaseActivity {
 //                        ToastShort(error.toString());
 //                    });
 //        });
+        bd_openid1_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.setMiddleMessage("OPENID");
+                myDialog.setMiddleMessage("请输入OPPENID，进行保存绑定");
+                myDialog.setOnPositiveListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //确定按钮 保存到数据库
+
+
+                    }
+                });
+                myDialog.show();
+            }
+        });
     }
 
     /**
@@ -107,9 +128,9 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
-        UserModel model=BmobUser.getCurrentUser(UserModel.class);
+        UserModel model = BmobUser.getCurrentUser(UserModel.class);
         BmobQuery<OpenIdModel> qu = new BmobQuery<OpenIdModel>();
-        qu.addWhereEqualTo("userid",model);
+        qu.addWhereEqualTo("userid", model);
         qu.include("userid");
 //        qu.addWhereEqualTo("userid", Utils.getCache("key"));
         qu.findObjects(new FindListener<OpenIdModel>() {

@@ -35,6 +35,5 @@ public class RegUserListener implements IRegUserMView {
 }
 
 interface IRegUserMView {
-
     void regUser(String user, String pwd);
 }
