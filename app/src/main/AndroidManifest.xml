@@ -38,9 +38,8 @@
             android:name=".ui.RegUserActivity"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.ManageListActivity" />
 
         <receiver android:name=".service.SmsReciver">
             <intent-filter android:priority="999">

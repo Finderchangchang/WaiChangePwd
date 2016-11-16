@@ -6,4 +6,5 @@ package liuliu.waichangepwd.config;
 
 public class ConfigModel {
     public static final String NORMAL_URL = "http://lobby.bydrqp.gamehao.com/wx/sendMessageCode.do?type=findp";
+    public static final String KEY_Now_Tel = "Now_Tel";
 }
