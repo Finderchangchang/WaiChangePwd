@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             public void onClick(View v) {
                 myDialog.setMiddleMessage("请输入手机号，保存并绑定");
                 myDialog.setTitle("手机号");
-                if(!tvphone1.getText().equals("添加手机号")){
+                if(!tvphone1.getText().equals("添加手机号码")){
                     myDialog.setMiddleVal(tvphone1.getText().toString());
                 }
                 myDialog.setOnPositiveListener(new View.OnClickListener() {
@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             public void onClick(View v) {
                 myDialog.setMiddleMessage("请输入手机号，保存并绑定");
                 myDialog.setTitle("手机号");
-                if(!tvphone2.getText().equals("添加手机号")){
+                if(!tvphone2.getText().equals("添加手机号码")){
                     myDialog.setMiddleVal(tvphone2.getText().toString());
                 }
                 myDialog.setOnPositiveListener(new View.OnClickListener() {
