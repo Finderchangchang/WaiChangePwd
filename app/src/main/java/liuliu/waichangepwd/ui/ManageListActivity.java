@@ -1,7 +1,9 @@
 package liuliu.waichangepwd.ui;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -27,6 +29,7 @@ import liuliu.waichangepwd.method.HttpUtil;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.model.PhoneNumberManager;
+import liuliu.waichangepwd.view.MyDialog;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -41,8 +44,6 @@ public class ManageListActivity extends BaseActivity {
     LinearLayout bottom_ll;
     @CodeNote(id = R.id.no_data_tv)
     TextView no_data_tv;
-    @CodeNote(id = R.id.add_tel_btn)
-    Button add_tel_btn;
     @CodeNote(id = R.id.no_data_rl)
     RelativeLayout no_data_rl;
     @CodeNote(id = R.id.add_nick_name_tv)
@@ -54,19 +55,20 @@ public class ManageListActivity extends BaseActivity {
     String tel;
     CommonAdapter<GameAccount> mAdapter;
     List<GameAccount> mList;
-
+    @CodeNote(id = R.id.title_iv_left)
+    ImageView ivLeft;
+    private MyDialog myDialog;
+private     List<GameAccount> checkList;
+@CodeNote(id=R.id.delete_nick_name_tv)TextView tvDelete;
     @Override
     public void initViews() {
         setContentView(R.layout.activity_manage_list);
         mList = new ArrayList<>();
         tel = getIntent().getStringExtra(ConfigModel.KEY_Now_Tel);
-        if (("添加手机号码").compareTo(tel) == 0) {
-            tel = null;
-            add_tel_btn.setVisibility(View.VISIBLE);
-        } else {
-            no_data_tv.setText("当前无数据~~");
-            add_tel_btn.setVisibility(View.GONE);
-        }
+        checkList = new ArrayList<>();
+
+        no_data_tv.setText("当前无数据~~");
+
         mAdapter = new CommonAdapter<GameAccount>(this, mList, R.layout.item_game_name) {
             @Override
             public void convert(CommonViewHolder holder, GameAccount gameAccount, int position) {
@@ -79,6 +81,23 @@ public class ManageListActivity extends BaseActivity {
                     holder.setText(R.id.pwd_tv, "无");
                     holder.setText(R.id.pwd_change_tv, "密码未修改过");
                 }
+                if (gameAccount.isCheced) {
+                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
+                } else {
+                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
+                }
+                holder.setOnClickListener(R.id.item_game_ivCheck, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (gameAccount.isCheced) {
+                            checkList.add(mList.get(position));
+                            holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
+                        } else {
+                            checkList.remove(mList.get(position));
+                            holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
+                        }
+                    }
+                });
             }
         };
         list_lv.setAdapter(mAdapter);
@@ -89,43 +108,42 @@ public class ManageListActivity extends BaseActivity {
         if (tel != null) {
             load();
         }
-        add_tel_btn.setOnClickListener(v -> {
-            PhoneNumberManager model = new PhoneNumberManager();
-            model.setPhonenumber("17093215800");
-            model.setOpenid(Utils.getCache("key"));
-            model.save(new SaveListener<String>() {
-                @Override
-                public void done(String s, BmobException e) {
-                    if (e.getErrorCode() == 401) {
-                        ToastShort("当前手机号已存在，如有疑问请联系客服人员");
-                    } else {
-                        no_data_tv.setText("当前无数据~~");
-                        add_tel_btn.setVisibility(View.GONE);
-                    }
-                }
-            });
+        ivLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
         });
         add_nick_name_tv.setOnClickListener(v -> {//添加昵称
-            if (tel != null) {
-                GameAccount game = new GameAccount();
-                game.setPhone(tel);
-                game.setAccountNumber("哇哈哈");
-                game.save(new SaveListener<String>() {
-                    @Override
-                    public void done(String s, BmobException e) {
-                        ToastShort(s);
-                        load();
-                    }
-                });
-            } else {
-                ToastShort("请先填写绑定的手机号码~~");
-            }
+            Intent intent = new Intent(ManageListActivity.this, AddGameActivity.class);
+            intent.putExtra("PhoneNumber", tel);
+            startActivityForResult(intent, 11);
+
         });
         start_change_tv.setOnClickListener(v -> {//批量操作修改密码
 
         });
+
         share_tv.setOnClickListener(v -> {//分享
 
+        });
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkList.size()>0){
+                    myDialog=new MyDialog(ManageListActivity.this);
+                    myDialog.setTitle("提示");
+                    myDialog.setMiddleMessage("确定要删除选择的信息吗？");
+                    myDialog.setOnPositiveListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //执行删除操作
+                        }
+                    });
+                }else{
+                    ToastShort("请选择要删除的信息");
+                }
+            }
         });
     }
 
@@ -171,5 +189,13 @@ public class ManageListActivity extends BaseActivity {
                 }, error -> {
                     ToastShort(error.toString());
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 11 && resultCode == 121) {
+            load();
+        }
     }
 }

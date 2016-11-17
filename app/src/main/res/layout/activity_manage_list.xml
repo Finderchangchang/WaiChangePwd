@@ -4,11 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <RelativeLayout
         android:id="@+id/top_tb"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary" />
+        android:layout_height="50dp"
+        android:background="@color/colorhei"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/title_iv_left"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/left_back_write" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="账号管理"
+            android:textColor="@color/colorwrite"
+            android:textSize="20dp" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,14 +46,7 @@
                 android:layout_centerInParent="true"
                 android:text="请先设置当前手机号" />
 
-            <Button
-                android:id="@+id/add_tel_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/no_data_tv"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="5dp"
-                android:text="点击添加手机号" />
+
         </RelativeLayout>
 
         <ListView
@@ -65,7 +76,19 @@
             android:text="添加账号"
             android:textColor="#333"
             android:textSize="18sp" />
-
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#fff" />
+        <TextView
+            android:id="@+id/delete_nick_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="#333"
+            android:textSize="18sp" />
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"

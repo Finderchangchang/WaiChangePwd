@@ -1,5 +1,6 @@
 package liuliu.waichangepwd.ui;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
 import android.widget.Button;
@@ -87,16 +88,31 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         registerReceiver(mSmsReceiver, intentFilter);
         myDialog = new MyDialog(this);
         loadData();
-        add_tel1_ll.setOnClickListener(v ->
-                Utils.IntentPost(ManageListActivity.class, intent -> {
-//                    intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel1_tv.getText().toString());
-                    intent.putExtra(ConfigModel.KEY_Now_Tel, "17093215800");
-                }));
-        add_tel2_ll.setOnClickListener(v ->
-                Utils.IntentPost(ManageListActivity.class, intent -> {
-                            intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel2_tv.getText().toString());
-                        }
-                ));
+
+        add_tel1_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tvphone1.getText().toString().equals("添加手机号码")) {
+                    ToastShort("请先绑定手机号");
+                }else{
+                    Intent intent=new Intent(MainActivity.this,ManageListActivity.class);
+                    intent.putExtra(ConfigModel.KEY_Now_Tel, tvphone1.getText().toString().trim());
+                    startActivity(intent);
+                }
+            }
+        });
+        add_tel2_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tvphone2.getText().toString().equals("添加手机号码")) {
+                    ToastShort("请先绑定手机号");
+                }else{
+                    Intent intent=new Intent(MainActivity.this,ManageListActivity.class);
+                    intent.putExtra(ConfigModel.KEY_Now_Tel, tvphone2.getText().toString().trim());
+                    startActivity(intent);
+                }
+            }
+        });
         bd_openid1_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,6 +247,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     public void result(boolean isTrue, OpenIdModel model) {
         if (isTrue) {
             //切换图片为已绑定状态
+            bd_openid1_iv.setImageResource(R.mipmap.yibangding);
             //?
             openIdModel = model;
             //获取Openid下的两个手机号
@@ -247,13 +264,13 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             if (isTrue) {
                 tvphone1.setText(myDialog.getMiddleVal());//输入的openid值
             } else {
-                tvphone1.setText("失败");
+                ToastShort(mes);
             }
         } else {
             if (isTrue) {
                 tvphone2.setText(myDialog.getMiddleVal());//输入的openid值
             } else {
-                tvphone2.setText("失败");
+                ToastShort(mes);
             }
         }
     }
