@@ -1,6 +1,7 @@
 package liuliu.waichangepwd.ui;
 
 import android.content.IntentFilter;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +25,9 @@ import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.OpenIdModel;
 import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.service.SmsReciver;
+import liuliu.waichangepwd.view.MyDialog;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/8.
@@ -67,16 +71,25 @@ public class MainActivity extends BaseActivity {
         registerReceiver(mSmsReceiver, intentFilter);
         myDialog = new MyDialog(this);
         loadData();
-        add_tel1_ll.setOnClickListener(v ->
-                Utils.IntentPost(ManageListActivity.class, intent -> {
-//                    intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel1_tv.getText().toString());
-                    intent.putExtra(ConfigModel.KEY_Now_Tel, "17093215800");
-                }));
-        add_tel2_ll.setOnClickListener(v ->
-                Utils.IntentPost(ManageListActivity.class, intent -> {
-                            intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel2_tv.getText().toString());
-                        }
-                ));
+//        add_tel1_ll.setOnClickListener(v ->
+//                Utils.IntentPost(ManageListActivity.class, intent -> {
+////                    intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel1_tv.getText().toString());
+//                    intent.putExtra(ConfigModel.KEY_Now_Tel, "17093215800");
+//                }));
+//        add_tel2_ll.setOnClickListener(v ->
+//                Utils.IntentPost(ManageListActivity.class, intent -> {
+//                            intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel2_tv.getText().toString());
+//                        }
+//                ));
+    }
+
+    /**
+     * 获得订单编号
+     *
+     * @return
+     */
+    private String getOrderID() {
+        return new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
     }
 
     private void loadData() {
