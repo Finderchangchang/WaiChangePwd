@@ -1,18 +1,16 @@
 package liuliu.waichangepwd.ui;
 
 import android.content.IntentFilter;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.tsz.afinal.annotation.view.CodeNote;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
@@ -21,14 +19,11 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
-import liuliu.waichangepwd.method.HttpUtil;
+import liuliu.waichangepwd.config.ConfigModel;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.OpenIdModel;
 import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.service.SmsReciver;
-import liuliu.waichangepwd.view.MyDialog;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/8.
@@ -55,7 +50,10 @@ public class MainActivity extends BaseActivity {
     @CodeNote(id = R.id.setting_iv)
     private ImageView setting_iv;
     private MyDialog myDialog;
-
+    @CodeNote(id = R.id.add_tel1_ll)
+    LinearLayout add_tel1_ll;
+    @CodeNote(id = R.id.add_tel2_ll)
+    LinearLayout add_tel2_ll;
     @Override
     public void initViews() {
         setContentView(R.layout.activity_main);
@@ -69,52 +67,16 @@ public class MainActivity extends BaseActivity {
         registerReceiver(mSmsReceiver, intentFilter);
         myDialog = new MyDialog(this);
         loadData();
-
-//        start_change_btn.setOnClickListener(v -> {
-//            Map<String, String> map = new HashMap<String, String>();
-//            map.put("type", "findp");
-//            map.put("nickName", "拜师快递");
-//            map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");
-//            map.put("bindPhone", "17093215800");
-//            HttpUtil.load()
-//                    .sendMsg(map)
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(val -> {
-//                        if (val.getMsg().contains("达到上限")) {
-//                            ToastShort(val.getMsg());
-//                        } else {
-//                            ToastShort(val.getMsg());
-//                        }
-//                    }, error -> {
-//                        ToastShort(error.toString());
-//                    });
-//        });
-        bd_openid1_iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.setMiddleMessage("OPENID");
-                myDialog.setMiddleMessage("请输入OPPENID，进行保存绑定");
-                myDialog.setOnPositiveListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //确定按钮 保存到数据库
-
-
-                    }
-                });
-                myDialog.show();
-            }
-        });
-    }
-
-    /**
-     * 获得订单编号
-     *
-     * @return
-     */
-    private String getOrderID() {
-        return new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        add_tel1_ll.setOnClickListener(v ->
+                Utils.IntentPost(ManageListActivity.class, intent -> {
+//                    intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel1_tv.getText().toString());
+                    intent.putExtra(ConfigModel.KEY_Now_Tel, "17093215800");
+                }));
+        add_tel2_ll.setOnClickListener(v ->
+                Utils.IntentPost(ManageListActivity.class, intent -> {
+                            intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel2_tv.getText().toString());
+                        }
+                ));
     }
 
     private void loadData() {
