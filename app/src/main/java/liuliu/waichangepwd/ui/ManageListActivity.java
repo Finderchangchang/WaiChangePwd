@@ -23,6 +23,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
+import liuliu.waichangepwd.base.BaseApplication;
 import liuliu.waichangepwd.config.ConfigModel;
 import liuliu.waichangepwd.listener.ManagerListListener;
 import liuliu.waichangepwd.method.CommonAdapter;
@@ -31,6 +32,7 @@ import liuliu.waichangepwd.method.HttpUtil;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.model.PhoneNumberManager;
+import liuliu.waichangepwd.service.SendCodeService;
 import liuliu.waichangepwd.view.ManagerListView;
 import liuliu.waichangepwd.view.MyDialog;
 import rx.android.schedulers.AndroidSchedulers;
@@ -66,6 +68,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     @CodeNote(id = R.id.delete_nick_name_tv)
     TextView tvDelete;
     private ManagerListListener listListener;
+    String open_id;
 
     @Override
     public void initViews() {
@@ -73,6 +76,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         mList = new ArrayList<>();
         listListener = new ManagerListListener(ManageListActivity.this);
         tel = getIntent().getStringExtra(ConfigModel.KEY_Now_Tel);
+        open_id = getIntent().getStringExtra(ConfigModel.KEY_OpenId);
         checkList = new ArrayList<>();
         progressDialog = new ProgressDialog(this);
         no_data_tv.setText("当前无数据~~");
@@ -94,20 +98,18 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                 } else {
                     holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
                 }
-                holder.setOnClickListener(R.id.item_game_ivCheck, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (gameAccount.isCheced) {
-                            gameAccount.isCheced = false;
-                            checkList.remove(gameAccount);
-                            holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
-                        } else {
-                            checkList.add(gameAccount);
-                            gameAccount.isCheced = true;
-                            holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
-                        }
-                    }
-                });
+                holder.setOnClickListener(R.id.item_game_ivCheck,
+                        v -> {
+                            if (gameAccount.isCheced) {
+                                gameAccount.isCheced = false;
+                                checkList.remove(gameAccount);
+                                holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
+                            } else {
+                                checkList.add(gameAccount);
+                                gameAccount.isCheced = true;
+                                holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
+                            }
+                        });
             }
         };
         list_lv.setAdapter(mAdapter);
@@ -118,49 +120,45 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         if (tel != null) {
             load();
         }
-        ivLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ivLeft.setOnClickListener(v -> finish());
         add_nick_name_tv.setOnClickListener(v -> {//添加昵称
             Intent intent = new Intent(ManageListActivity.this, AddGameActivity.class);
             intent.putExtra("PhoneNumber", tel);
             startActivityForResult(intent, 11);
 
         });
+        Intent intent = new Intent(ManageListActivity.this, SendCodeService.class);
+        intent.putExtra("key", open_id);
+        intent.setAction(SendCodeService.ACTION);
         start_change_tv.setOnClickListener(v -> {//批量操作修改密码
-
+            if (checkList.size() > 0) {
+                BaseApplication.setmOrder(checkList);
+                startService(intent);
+            } else {
+                ToastShort("请至少选择一个游戏账号进行修改~~");
+            }
         });
 
         share_tv.setOnClickListener(v -> {//分享
 
         });
-        tvDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkList.size() > 0) {
-                    myDialog = new MyDialog(ManageListActivity.this);
-                    myDialog.setTitle("提示");
-                    myDialog.setMiddleMessage("确定要删除选择的信息吗？");
-                    myDialog.visibileEdit();
-                    myDialog.setLeftButtonVal("确定");
-                    myDialog.show();
-                    myDialog.setOnPositiveListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //执行删除操作
-                           myDialog.dismiss();
-                            progressDialog = ProgressDialog.show(ManageListActivity.this, "", "正在删除...", true, false);
-                            progressDialog.show();
-                            listListener.DeleteGame(checkList);
-                        }
-                    });
-
-                } else {
-                    ToastShort("请选择要删除的信息");
-                }
+        tvDelete.setOnClickListener(v -> {
+            if (checkList.size() > 0) {
+                myDialog = new MyDialog(ManageListActivity.this);
+                myDialog.setTitle("提示");
+                myDialog.setMiddleMessage("确定要删除选择的信息吗？");
+                myDialog.visibileEdit();
+                myDialog.setLeftButtonVal("确定");
+                myDialog.show();
+                myDialog.setOnPositiveListener(v1 -> {
+                    //执行删除操作
+                    myDialog.dismiss();
+                    progressDialog = ProgressDialog.show(ManageListActivity.this, "", "正在删除...", true, false);
+                    progressDialog.show();
+                    listListener.DeleteGame(checkList);
+                });
+            } else {
+                ToastShort("请选择要删除的信息");
             }
         });
     }
@@ -175,8 +173,6 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                 if (list != null) {
                     if (list.size() > 0) {
                         is_null = false;
-                        //mList.addAll(list);
-                        //mAdapter.notifyDataSetChanged();
                         mAdapter.refresh(list);
                     } else {
                         is_null = true;
@@ -190,27 +186,6 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         });
     }
 
-    private void sendCode() {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("type", "findp");
-        map.put("nickName", "拜师快递");
-        map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");
-        map.put("bindPhone", "17093215800");
-        HttpUtil.load()
-                .sendMsg(map)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(val -> {
-                    if (val.getMsg().contains("达到上限")) {
-                        ToastShort(val.getMsg());
-                    } else {
-                        ToastShort(val.getMsg());
-                    }
-                }, error -> {
-                    ToastShort(error.toString());
-                });
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -222,9 +197,8 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     @Override
     public void resultDelete(boolean isTrue, String mes) {
         if (isTrue) {
-
             progressDialog.dismiss();
-
+            load();
         }
         ToastShort(mes);
     }

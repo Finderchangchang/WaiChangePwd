@@ -50,7 +50,6 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by Administrator on 2016/5/19.
  */
 public class Utils {
-
     public static Dialog setDialog(String cont, final setSure sure, final setCancle cancle) {
         return setDialog("提示", cont, "确定", "取消", sure, cancle);
     }

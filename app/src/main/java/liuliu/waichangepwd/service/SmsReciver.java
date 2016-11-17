@@ -8,6 +8,7 @@ import android.telephony.SmsMessage;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 import liuliu.waichangepwd.base.BaseApplication;
 import liuliu.waichangepwd.method.HttpUtil;
 import liuliu.waichangepwd.method.Utils;
+import liuliu.waichangepwd.model.GameAccount;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -36,6 +38,8 @@ public class SmsReciver extends BroadcastReceiver {
                     Pattern p = Pattern.compile("\\d{2,}");// 这个2是指连续数字的最少个数
                     Matcher m = p.matcher(msg.getMessageBody());
                     while (m.find()) {
+                        List<GameAccount> list = BaseApplication.getmOrder();
+                        list.remove(0);
                         Map<String, String> map = new HashMap<>();
                         map.put("type", "findp");
                         map.put("nickName", "拜师快递");//昵称
@@ -50,9 +54,10 @@ public class SmsReciver extends BroadcastReceiver {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(model -> {
-                                    if (("s").equals(model.getRet())||("S").equals(model.getRet())) {
+                                    if (("s").equals(model.getRet()) || ("S").equals(model.getRet())) {
                                         Toast.makeText(BaseApplication.getContext(), "修改成功", Toast.LENGTH_SHORT).show();
-                                    }else {
+
+                                    } else {
                                         Toast.makeText(BaseApplication.getContext(), model.getMsg(), Toast.LENGTH_SHORT).show();
                                     }
                                 }, error -> {

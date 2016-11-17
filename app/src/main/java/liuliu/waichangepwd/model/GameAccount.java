@@ -10,7 +10,7 @@ public class GameAccount extends BmobObject {
     private String phone;//手机号
     private String password;//密码
     private String AccountNumber;//游戏账号
-    public boolean isCheced=false;
+    public boolean isCheced = false;
 
     public String getPhone() {
         return phone;

@@ -138,13 +138,15 @@
                     android:background="@mipmap/bang_left" />
 
                 <ImageView
-                    android:layout_width="20dp"
+                    android:layout_width="24dp"
                     android:layout_height="80dp"
-                    android:src="@mipmap/bang_right" />
+                    android:layout_marginLeft="-5.1dp"
+                    android:src="@mipmap/lj_center" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="80dp"
+                    android:layout_marginLeft="-5.1dp"
                     android:layout_weight="4"
                     android:orientation="vertical">
 
@@ -228,6 +230,24 @@
                             android:textColor="#fff" />
                     </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/open_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="打开" />
+
+                <Button
+                    android:id="@+id/close_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关闭" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
