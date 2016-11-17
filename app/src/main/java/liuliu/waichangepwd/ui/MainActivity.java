@@ -1,5 +1,6 @@
 package liuliu.waichangepwd.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
@@ -72,12 +73,14 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     private OpenIdModel openIdModel;
     private List<PhoneNumberManager> phoneList;
 
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_main);
         loadlistener = new getOpenIDListener(this);
         openIdModel = new OpenIdModel();
         phoneList = new ArrayList<>();
+
     }
 
     @Override
@@ -191,6 +194,13 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             }
         });
         loadlistener.getOpenid(Utils.getCache("key"));
+        setting_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,SettingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**

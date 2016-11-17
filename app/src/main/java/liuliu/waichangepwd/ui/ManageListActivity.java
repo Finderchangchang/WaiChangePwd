@@ -1,5 +1,6 @@
 package liuliu.waichangepwd.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -23,12 +24,14 @@ import cn.bmob.v3.listener.SaveListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
 import liuliu.waichangepwd.config.ConfigModel;
+import liuliu.waichangepwd.listener.ManagerListListener;
 import liuliu.waichangepwd.method.CommonAdapter;
 import liuliu.waichangepwd.method.CommonViewHolder;
 import liuliu.waichangepwd.method.HttpUtil;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.model.PhoneNumberManager;
+import liuliu.waichangepwd.view.ManagerListView;
 import liuliu.waichangepwd.view.MyDialog;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -37,7 +40,7 @@ import rx.schedulers.Schedulers;
  * Created by Administrator on 2016/11/16.
  */
 
-public class ManageListActivity extends BaseActivity {
+public class ManageListActivity extends BaseActivity implements ManagerListView {
     @CodeNote(id = R.id.list_lv)
     ListView list_lv;
     @CodeNote(id = R.id.bottom_ll)
@@ -58,15 +61,20 @@ public class ManageListActivity extends BaseActivity {
     @CodeNote(id = R.id.title_iv_left)
     ImageView ivLeft;
     private MyDialog myDialog;
-private     List<GameAccount> checkList;
-@CodeNote(id=R.id.delete_nick_name_tv)TextView tvDelete;
+    private List<GameAccount> checkList;
+    private ProgressDialog progressDialog;
+    @CodeNote(id = R.id.delete_nick_name_tv)
+    TextView tvDelete;
+    private ManagerListListener listListener;
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_manage_list);
         mList = new ArrayList<>();
+        listListener = new ManagerListListener(ManageListActivity.this);
         tel = getIntent().getStringExtra(ConfigModel.KEY_Now_Tel);
         checkList = new ArrayList<>();
-
+        progressDialog = new ProgressDialog(this);
         no_data_tv.setText("当前无数据~~");
 
         mAdapter = new CommonAdapter<GameAccount>(this, mList, R.layout.item_game_name) {
@@ -90,10 +98,12 @@ private     List<GameAccount> checkList;
                     @Override
                     public void onClick(View v) {
                         if (gameAccount.isCheced) {
-                            checkList.add(mList.get(position));
+                            gameAccount.isCheced = false;
+                            checkList.remove(gameAccount);
                             holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
                         } else {
-                            checkList.remove(mList.get(position));
+                            checkList.add(gameAccount);
+                            gameAccount.isCheced = true;
                             holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
                         }
                     }
@@ -130,17 +140,25 @@ private     List<GameAccount> checkList;
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkList.size()>0){
-                    myDialog=new MyDialog(ManageListActivity.this);
+                if (checkList.size() > 0) {
+                    myDialog = new MyDialog(ManageListActivity.this);
                     myDialog.setTitle("提示");
                     myDialog.setMiddleMessage("确定要删除选择的信息吗？");
+                    myDialog.visibileEdit();
+                    myDialog.setLeftButtonVal("确定");
+                    myDialog.show();
                     myDialog.setOnPositiveListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             //执行删除操作
+                           myDialog.dismiss();
+                            progressDialog = ProgressDialog.show(ManageListActivity.this, "", "正在删除...", true, false);
+                            progressDialog.show();
+                            listListener.DeleteGame(checkList);
                         }
                     });
-                }else{
+
+                } else {
                     ToastShort("请选择要删除的信息");
                 }
             }
@@ -157,6 +175,8 @@ private     List<GameAccount> checkList;
                 if (list != null) {
                     if (list.size() > 0) {
                         is_null = false;
+                        //mList.addAll(list);
+                        //mAdapter.notifyDataSetChanged();
                         mAdapter.refresh(list);
                     } else {
                         is_null = true;
@@ -197,5 +217,15 @@ private     List<GameAccount> checkList;
         if (requestCode == 11 && resultCode == 121) {
             load();
         }
+    }
+
+    @Override
+    public void resultDelete(boolean isTrue, String mes) {
+        if (isTrue) {
+
+            progressDialog.dismiss();
+
+        }
+        ToastShort(mes);
     }
 }

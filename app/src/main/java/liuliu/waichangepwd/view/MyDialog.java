@@ -19,6 +19,7 @@ public class MyDialog extends Dialog {
     Button ensure_btn, cancel_btn;
     EditText middle_et;
     TextView mes;
+
     public MyDialog(Context context) {
         super(context, R.style.Base_Theme_AppCompat_Light_Dialog);
         View mView = LayoutInflater.from(getContext()).inflate(R.layout.my_dialog, null);
@@ -35,6 +36,7 @@ public class MyDialog extends Dialog {
         mes = (TextView) mView.findViewById(R.id.middle_et_ll_dialog_mes);
         super.setContentView(mView);
     }
+
     /*设置顶部文字*/
     public void setTitle(String tit) {
         title.setText(tit);
@@ -71,6 +73,10 @@ public class MyDialog extends Dialog {
     /*获得文本框的文字内容*/
     public String getMiddleVal() {
         return middle_et.getText().toString();
+    }
+
+    public void visibileEdit() {
+        middle_et.setVisibility(View.GONE);
     }
 
     /**
