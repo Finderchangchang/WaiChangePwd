@@ -10,6 +10,7 @@ import android.widget.TextView;
 import net.tsz.afinal.annotation.view.CodeNote;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,14 +19,18 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.SaveListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
 import liuliu.waichangepwd.config.ConfigModel;
+import liuliu.waichangepwd.listener.getOpenIDListener;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.OpenIdModel;
+import liuliu.waichangepwd.model.PhoneNumberManager;
 import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.service.SmsReciver;
 import liuliu.waichangepwd.view.MyDialog;
+import liuliu.waichangepwd.view.getOpenidView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -33,7 +38,7 @@ import rx.schedulers.Schedulers;
  * Created by Administrator on 2016/11/8.
  */
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements getOpenidView {
     //    @CodeNote(id = R.id.start_change_btn)
     private Button start_change_btn;
     private SmsReciver mSmsReceiver;
@@ -58,9 +63,20 @@ public class MainActivity extends BaseActivity {
     LinearLayout add_tel1_ll;
     @CodeNote(id = R.id.add_tel2_ll)
     LinearLayout add_tel2_ll;
+    @CodeNote(id = R.id.add_tel1_tv)
+    TextView tvphone1;
+    @CodeNote(id = R.id.add_tel2_tv)
+    TextView tvphone2;
+    private getOpenIDListener loadlistener;
+    private OpenIdModel openIdModel;
+    private List<PhoneNumberManager> phoneList;
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_main);
+        loadlistener = new getOpenIDListener(this);
+        openIdModel = new OpenIdModel();
+        phoneList = new ArrayList<>();
     }
 
     @Override
@@ -71,16 +87,94 @@ public class MainActivity extends BaseActivity {
         registerReceiver(mSmsReceiver, intentFilter);
         myDialog = new MyDialog(this);
         loadData();
-//        add_tel1_ll.setOnClickListener(v ->
-//                Utils.IntentPost(ManageListActivity.class, intent -> {
-////                    intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel1_tv.getText().toString());
-//                    intent.putExtra(ConfigModel.KEY_Now_Tel, "17093215800");
-//                }));
-//        add_tel2_ll.setOnClickListener(v ->
-//                Utils.IntentPost(ManageListActivity.class, intent -> {
-//                            intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel2_tv.getText().toString());
-//                        }
-//                ));
+        add_tel1_ll.setOnClickListener(v ->
+                Utils.IntentPost(ManageListActivity.class, intent -> {
+//                    intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel1_tv.getText().toString());
+                    intent.putExtra(ConfigModel.KEY_Now_Tel, "17093215800");
+                }));
+        add_tel2_ll.setOnClickListener(v ->
+                Utils.IntentPost(ManageListActivity.class, intent -> {
+                            intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel2_tv.getText().toString());
+                        }
+                ));
+        bd_openid1_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.setMiddleMessage("请输入OPENID，保存并绑定");
+                myDialog.setTitle("OPENID");
+                if(openIdModel.getOpenid().equals("")) {
+                    //myDialog.setMiddleVal(openIdModel.getOpenid());
+                    myDialog.setOnPositiveListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            System.out.println("-----------------openid");
+                            //保存到数据库
+                            String openid = myDialog.getMiddleVal();//输入的openid值
+                            if (openIdModel.getOpenid().equals("")) {
+                                //添加
+                                loadlistener.addOpenid(openid, "");
+                            } else {
+                                if (!openIdModel.getOpenid().equals(openid)) {
+                                    loadlistener.addOpenid(openid, openIdModel.getObjectId());
+                                }
+                            }
+                        }
+                    });
+
+                    myDialog.show();
+                }else{
+                    ToastShort("已经绑定OPENID");
+                }
+            }
+        });
+        tvphone1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.setMiddleMessage("请输入手机号，保存并绑定");
+                myDialog.setTitle("手机号");
+                if(!tvphone1.getText().equals("添加手机号")){
+                    myDialog.setMiddleVal(tvphone1.getText().toString());
+                }
+                myDialog.setOnPositiveListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.out.println("-----------------openid");
+                        //保存到数据库
+
+                        if (phoneList.size() > 0) {
+                            loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
+                        }else{
+                            loadlistener.addPhone(1, myDialog.getMiddleVal(), openIdModel.getOpenid(),"");
+                        }
+                    }
+                });
+                myDialog.show();
+            }
+        });
+        tvphone2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.setMiddleMessage("请输入手机号，保存并绑定");
+                myDialog.setTitle("手机号");
+                if(!tvphone2.getText().equals("添加手机号")){
+                    myDialog.setMiddleVal(tvphone2.getText().toString());
+                }
+                myDialog.setOnPositiveListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.out.println("-----------------openid");
+                        //保存到数据库
+                        if (phoneList.size() > 1) {
+                            loadlistener.addPhone(2, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
+                        }else{
+                            loadlistener.addPhone(2, myDialog.getMiddleVal(), openIdModel.getOpenid(),"");
+                        }
+                    }
+                });
+                myDialog.show();
+            }
+        });
+        loadlistener.getOpenid(Utils.getCache("key"));
     }
 
     /**
@@ -89,6 +183,7 @@ public class MainActivity extends BaseActivity {
      * @return
      */
     private String getOrderID() {
+
         return new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
     }
 
@@ -114,5 +209,58 @@ public class MainActivity extends BaseActivity {
                 String s = "";
             }
         });
+    }
+
+    @Override
+    public void resultPhone(boolean isTrue, List<PhoneNumberManager> list) {
+        if (isTrue) {
+            phoneList = list;
+            if (list.size() > 0) {
+                tvphone1.setText(list.get(0).getPhonenumber());
+            }
+            if (list.size() > 1) {
+                tvphone2.setText(list.get(1).getPhonenumber());
+            }
+
+        } else {
+            ToastShort("加载数据失败");
+        }
+    }
+
+    @Override
+    public void result(boolean isTrue, OpenIdModel model) {
+        if (isTrue) {
+            //切换图片为已绑定状态
+            //?
+            openIdModel = model;
+            //获取Openid下的两个手机号
+            loadlistener.getPhones(model.getOpenid());
+        } else {
+            ToastShort("加载数据失败");
+        }
+    }
+
+    @Override
+    public void addPhoneResult(int type, boolean isTrue, String mes) {
+        myDialog.dismiss();
+        if (type == 1) {
+            if (isTrue) {
+                tvphone1.setText(myDialog.getMiddleVal());//输入的openid值
+            } else {
+                tvphone1.setText("失败");
+            }
+        } else {
+            if (isTrue) {
+                tvphone2.setText(myDialog.getMiddleVal());//输入的openid值
+            } else {
+                tvphone2.setText("失败");
+            }
+        }
+    }
+
+    @Override
+    public void addOpenidResult(boolean isTrue, String mes) {
+        myDialog.dismiss();
+        ToastShort(mes);
     }
 }

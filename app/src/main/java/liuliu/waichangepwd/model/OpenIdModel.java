@@ -9,22 +9,25 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class OpenIdModel extends BmobObject {
-    private UserModel userid;
-    private String tel;
 
-    public UserModel getUserid() {
+    private String userid;
+    private String openid;
+
+
+
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(UserModel userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 
-    public String getTel() {
-        return tel;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }

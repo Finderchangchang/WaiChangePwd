@@ -22,7 +22,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="10dp">
 
@@ -35,11 +35,11 @@
         <EditText
             android:id="@+id/middle_et_ll_dialog"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/middle_et_ll_dialog_mes"
             android:layout_marginTop="5dp"
             android:background="@drawable/text_bg"
-            android:layout_alignParentBottom="true"
+            android:minLines="2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
     </RelativeLayout>

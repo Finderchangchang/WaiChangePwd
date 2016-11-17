@@ -7,8 +7,10 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class PhoneNumberManager extends BmobObject {
+
     private String phonenumber;
     private String openid;
+
 
     public String getPhonenumber() {
         return phonenumber;
