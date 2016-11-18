@@ -43,10 +43,9 @@ public class SmsReciver extends BroadcastReceiver {
                         String pwd = getPwd();
                         map.put("type", "findp");
                         map.put("nickName", list.getAccountNumber());//昵称
-//                        map.put("nickName", Utils.getCache("nickName"));//昵称
                         map.put("password", Utils.MD5(pwd));
                         map.put("confirmPassword", Utils.MD5(pwd));
-                        map.put("openid", list.getOpenId());//ovPbFs9GEQidN3Wod-vQjNOawHxU
+                        map.put("openid", list.getOpenId());
                         map.put("identityCard", "");//空
                         map.put("bindPhone", list.getPhone());
                         map.put("messageCode", m.group());
@@ -82,7 +81,6 @@ public class SmsReciver extends BroadcastReceiver {
                     sb.append(String.valueOf((char) result));
                     break;
             }
-
         }
         return sb.toString();
     }

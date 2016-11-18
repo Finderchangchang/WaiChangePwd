@@ -59,11 +59,9 @@ public class getOpenIDListener {
     public void addOpenid(String oid, String objectid) {
         OpenIdModel openIdModel = new OpenIdModel();
         openIdModel.setOpenid(oid);
-        if (objectid.equals("")) {
+        if (("").equals(objectid)) {
             //添加
-
             openIdModel.setUserid(Utils.getCache("key"));
-
             openIdModel.save(new SaveListener<String>() {
                 @Override
                 public void done(String s, BmobException e) {
@@ -96,10 +94,8 @@ public class getOpenIDListener {
         query.findObjects(new FindListener<OpenIdModel>() {
             @Override
             public void done(List<OpenIdModel> list, BmobException e) {
-
                 if (e == null) {
                     if (list.size() > 0) {
-
                         openView.result(true, list.get(0));
                     } else {
                         openView.result(false, null);

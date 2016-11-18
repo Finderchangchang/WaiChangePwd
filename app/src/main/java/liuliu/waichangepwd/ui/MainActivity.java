@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import net.tsz.afinal.annotation.view.CodeNote;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -123,25 +121,19 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         bd_openid1_iv.setOnClickListener(v -> {
             myDialog.setMiddleMessage("请输入OPENID，保存并绑定");
             myDialog.setTitle("OPENID");
-            if (openIdModel.getOpenid().equals("")) {
+            if (("").equals(openIdModel.getOpenid()) || openIdModel.getOpenid() == null) {
                 //myDialog.setMiddleVal(openIdModel.getOpenid());
-                myDialog.setOnPositiveListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        System.out.println("-----------------openid");
-                        //保存到数据库
-                        String openid = myDialog.getMiddleVal();//输入的openid值
-                        if (openIdModel.getOpenid().equals("")) {
-                            //添加
-                            loadlistener.addOpenid(openid, "");
-                        } else {
-                            if (!openIdModel.getOpenid().equals(openid)) {
-                                loadlistener.addOpenid(openid, openIdModel.getObjectId());
-                            }
-                        }
+                myDialog.setOnPositiveListener(v12 -> {
+                    System.out.println("-----------------openid");
+                    //保存到数据库
+                    String openid = myDialog.getMiddleVal();//输入的openid值
+                    if (openIdModel.getOpenid() == null) {
+                        //添加
+                        loadlistener.addOpenid(openid, "");
+                    } else {
+                        loadlistener.addOpenid(openid, openIdModel.getObjectId());
                     }
                 });
-
                 myDialog.show();
             } else {
                 ToastShort("已经绑定OPENID");
@@ -154,6 +146,8 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                 myDialog.setTitle("手机号");
                 if (!tvphone1.getText().equals("添加手机号码")) {
                     myDialog.setMiddleVal(tvphone1.getText().toString());
+                } else {
+                    myDialog.setMiddleVal("");
                 }
                 myDialog.setOnPositiveListener(new View.OnClickListener() {
                     @Override
@@ -176,6 +170,8 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             myDialog.setTitle("手机号");
             if (!tvphone2.getText().equals("添加手机号码")) {
                 myDialog.setMiddleVal(tvphone2.getText().toString());
+            } else {
+                myDialog.setMiddleVal("");
             }
             myDialog.setOnPositiveListener(v1 -> {
                 System.out.println("-----------------openid");
@@ -193,16 +189,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             Intent intent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(intent);
         });
-    }
-
-    /**
-     * 获得订单编号
-     *
-     * @return
-     */
-    private String getOrderID() {
-
-        return new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
     }
 
     private void loadData() {
@@ -239,7 +225,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             if (list.size() > 1) {
                 tvphone2.setText(list.get(1).getPhonenumber());
             }
-
         } else {
             ToastShort("加载数据失败");
         }
@@ -254,8 +239,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             openIdModel = model;
             //获取Openid下的两个手机号
             loadlistener.getPhones(model.getOpenid());
-        } else {
-            ToastShort("加载数据失败");
         }
     }
 
@@ -265,6 +248,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         if (type == 1) {
             if (isTrue) {
                 tvphone1.setText(myDialog.getMiddleVal());//输入的openid值
+                bd_openid1_iv.setImageResource(R.mipmap.yibangding);
             } else {
                 ToastShort(mes);
             }
