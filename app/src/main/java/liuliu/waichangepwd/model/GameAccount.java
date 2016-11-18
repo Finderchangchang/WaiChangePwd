@@ -10,6 +10,7 @@ public class GameAccount extends BmobObject {
     private String phone;//手机号
     private String password;//密码
     private String AccountNumber;//游戏账号
+    private String OpenId;//
     public boolean isCheced = false;
 
     public String getPhone() {
@@ -34,5 +35,13 @@ public class GameAccount extends BmobObject {
 
     public void setAccountNumber(String accountNumber) {
         AccountNumber = accountNumber;
+    }
+
+    public String getOpenId() {
+        return OpenId;
+    }
+
+    public void setOpenId(String openId) {
+        OpenId = openId;
     }
 }

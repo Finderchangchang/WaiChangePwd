@@ -3,11 +3,9 @@ package liuliu.waichangepwd.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import liuliu.waichangepwd.base.BaseApplication;
@@ -36,15 +34,12 @@ public class SendCodeService extends Service {
 
     @Override
     public void onStart(Intent intent, int startId) {
-        String openId = intent.getStringExtra("openId");
-//        sendCode();
         super.onStart(intent, startId);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String openId = intent.getStringExtra("openId");
-        Toast.makeText(this, "onStartCommand", Toast.LENGTH_SHORT).show();
+        sendCode();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -56,7 +51,7 @@ public class SendCodeService extends Service {
 //        map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");
 //        map.put("bindPhone", "17093215800");
         map.put("nickName", game.getAccountNumber());
-        map.put("openid", "");
+        map.put("openid", game.getOpenId());
         map.put("bindPhone", game.getPhone());
         HttpUtil.load()
                 .sendMsg(map)
@@ -65,9 +60,8 @@ public class SendCodeService extends Service {
                 .subscribe(val -> {
                     if (val.getMsg().contains("达到上限")) {
                         Toast.makeText(this, val.getMsg(), Toast.LENGTH_SHORT).show();
-                    } else {
+                    } else {//1.ret="E",请求参数有误
                         Toast.makeText(this, val.getMsg(), Toast.LENGTH_SHORT).show();
-                        BaseApplication.getmOrder().remove(0);
                     }
                 }, error -> {
                     Toast.makeText(this, "错误~~", Toast.LENGTH_SHORT).show();

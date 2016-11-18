@@ -1,11 +1,7 @@
 package liuliu.waichangepwd.ui;
 
-import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,7 +20,6 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
 import liuliu.waichangepwd.config.ConfigModel;
@@ -37,8 +32,6 @@ import liuliu.waichangepwd.service.SendCodeService;
 import liuliu.waichangepwd.service.SmsReciver;
 import liuliu.waichangepwd.view.MyDialog;
 import liuliu.waichangepwd.view.getOpenidView;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/8.
@@ -81,6 +74,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     @CodeNote(id = R.id.close_btn)
     Button close_btn;
 
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_main);
@@ -92,6 +86,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         open_btn.setOnClickListener(v ->
                 startService(intent)
         );
+
         close_btn.setOnClickListener(v ->
                 stopService(intent)
         );

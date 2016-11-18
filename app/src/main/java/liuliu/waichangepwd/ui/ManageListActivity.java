@@ -3,7 +3,6 @@ package liuliu.waichangepwd.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -13,14 +12,11 @@ import android.widget.TextView;
 import net.tsz.afinal.annotation.view.CodeNote;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
 import liuliu.waichangepwd.base.BaseApplication;
@@ -28,15 +24,10 @@ import liuliu.waichangepwd.config.ConfigModel;
 import liuliu.waichangepwd.listener.ManagerListListener;
 import liuliu.waichangepwd.method.CommonAdapter;
 import liuliu.waichangepwd.method.CommonViewHolder;
-import liuliu.waichangepwd.method.HttpUtil;
-import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.GameAccount;
-import liuliu.waichangepwd.model.PhoneNumberManager;
 import liuliu.waichangepwd.service.SendCodeService;
 import liuliu.waichangepwd.view.ManagerListView;
 import liuliu.waichangepwd.view.MyDialog;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/16.
@@ -105,6 +96,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                                 checkList.remove(gameAccount);
                                 holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
                             } else {
+                                gameAccount.setOpenId(open_id);
                                 checkList.add(gameAccount);
                                 gameAccount.isCheced = true;
                                 holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
@@ -128,7 +120,6 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
 
         });
         Intent intent = new Intent(ManageListActivity.this, SendCodeService.class);
-        intent.putExtra("key", open_id);
         intent.setAction(SendCodeService.ACTION);
         start_change_tv.setOnClickListener(v -> {//批量操作修改密码
             if (checkList.size() > 0) {
