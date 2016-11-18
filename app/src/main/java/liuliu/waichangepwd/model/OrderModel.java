@@ -1,5 +1,7 @@
 package liuliu.waichangepwd.model;
 
+import java.util.List;
+
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -7,6 +9,22 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class OrderModel extends BmobObject {
-    private String userid;
-    private String phonenumberIDString;
+    private GameAccount gameid;
+    private Boolean state;
+
+    public GameAccount getGameid() {
+        return gameid;
+    }
+
+    public void setGameid(GameAccount gameid) {
+        this.gameid = gameid;
+    }
+
+    public Boolean getState() {
+        return state;
+    }
+
+    public void setState(Boolean state) {
+        this.state = state;
+    }
 }
