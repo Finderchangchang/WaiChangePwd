@@ -255,7 +255,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             loadlistener.getPhones(model.getOpenid());
         }
     }
-
     @Override
     public void addPhoneResult(int type, boolean isTrue, String mes) {
         myDialog.dismiss();
@@ -263,6 +262,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             if (isTrue) {
                 tvphone1.setText(myDialog.getMiddleVal());//输入的openid值
                 bd_openid1_iv.setImageResource(R.mipmap.yibangding);
+                loadlistener.getOpenid(Utils.getCache("key"));
             } else {
                 ToastShort(mes);
             }
@@ -280,5 +280,10 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         myDialog.dismiss();
         bd_openid1_iv.setImageResource(R.mipmap.yibangding);
         ToastShort(mes);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
