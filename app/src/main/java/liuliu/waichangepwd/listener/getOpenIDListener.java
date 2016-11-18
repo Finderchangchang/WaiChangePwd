@@ -66,7 +66,7 @@ public class getOpenIDListener {
                 @Override
                 public void done(String s, BmobException e) {
                     if (e == null) {
-                        openView.addOpenidResult(true, "绑定OPENID成功！");
+                        openView.addOpenidResult(true, s+","+oid);
                     } else {
                         openView.addOpenidResult(false, "绑定OPENID失败:" + e.getMessage());
                     }

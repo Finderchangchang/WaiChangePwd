@@ -127,7 +127,9 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                     System.out.println("-----------------openid");
                     //保存到数据库
                     String openid = myDialog.getMiddleVal();//输入的openid值
+                   ;
                     if (openIdModel.getOpenid() == null) {
+
                         //添加
                         loadlistener.addOpenid(openid, "");
                     } else {
@@ -157,7 +159,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                         public void onClick(View v) {
                             System.out.println("-----------------openid");
                             //保存到数据库
-
                             if (phoneList.size() > 0) {
                                 loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
                             } else {
@@ -172,7 +173,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             }
         });
         tvphone2.setOnClickListener(v -> {
-            if (openIdModel.getOpenid()!=null) {
+            if (openIdModel!=null) {
                 myDialog.setMiddleMessage("请输入手机号，保存并绑定");
                 myDialog.setTitle("手机号");
                 if (!tvphone2.getText().equals("添加手机号码")) {
@@ -278,7 +279,13 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     @Override
     public void addOpenidResult(boolean isTrue, String mes) {
         myDialog.dismiss();
-        bd_openid1_iv.setImageResource(R.mipmap.yibangding);
+
+        if(isTrue) {
+            String [] str=mes.split(",");
+            openIdModel.setObjectId(str[0]);
+            openIdModel.setOpenid(str[1]);
+            bd_openid1_iv.setImageResource(R.mipmap.yibangding);
+        }
         ToastShort(mes);
     }
 
