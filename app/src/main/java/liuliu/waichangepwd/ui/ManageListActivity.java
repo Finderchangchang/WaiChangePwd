@@ -117,7 +117,6 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
             Intent intent = new Intent(ManageListActivity.this, AddGameActivity.class);
             intent.putExtra("PhoneNumber", tel);
             startActivityForResult(intent, 11);
-
         });
         Intent intent = new Intent(ManageListActivity.this, SendCodeService.class);
         intent.setAction(SendCodeService.ACTION);
