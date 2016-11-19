@@ -2,6 +2,7 @@ package liuliu.waichangepwd.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +27,7 @@ import liuliu.waichangepwd.method.CommonAdapter;
 import liuliu.waichangepwd.method.CommonViewHolder;
 import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.service.SendCodeService;
+import liuliu.waichangepwd.service.SmsReciver;
 import liuliu.waichangepwd.view.ManagerListView;
 import liuliu.waichangepwd.view.MyDialog;
 
@@ -60,10 +62,15 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     TextView tvDelete;
     private ManagerListListener listListener;
     String open_id;
+    SmsReciver mSmsReceiver;
+    IntentFilter intentFilter;
 
     @Override
     public void initViews() {
         setContentView(R.layout.activity_manage_list);
+        mSmsReceiver = new SmsReciver();
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("sms_received");
         mList = new ArrayList<>();
         listListener = new ManagerListListener(ManageListActivity.this);
         tel = getIntent().getStringExtra(ConfigModel.KEY_Now_Tel);
@@ -123,6 +130,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         start_change_tv.setOnClickListener(v -> {//批量操作修改密码
             if (checkList.size() > 0) {
                 BaseApplication.setmOrder(checkList);
+                registerReceiver(mSmsReceiver, intentFilter);
                 startService(intent);
             } else {
                 ToastShort("请至少选择一个游戏账号进行修改~~");

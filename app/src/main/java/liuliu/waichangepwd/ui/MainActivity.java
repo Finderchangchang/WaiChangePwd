@@ -38,7 +38,6 @@ import liuliu.waichangepwd.view.getOpenidView;
 public class MainActivity extends BaseActivity implements getOpenidView {
     //    @CodeNote(id = R.id.start_change_btn)
     private Button start_change_btn;
-    private SmsReciver mSmsReceiver;
     @CodeNote(id = R.id.bd_openid1_iv)
     private ImageView bd_openid1_iv;
     @CodeNote(id = R.id.add_tel1_tv)
@@ -71,7 +70,8 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     Button open_btn;
     @CodeNote(id = R.id.close_btn)
     Button close_btn;
-
+    SmsReciver mSmsReceiver;
+    IntentFilter intentFilter;
 
     @Override
     public void initViews() {
@@ -81,8 +81,11 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         phoneList = new ArrayList<>();
         Intent intent = new Intent(MainActivity.this, SendCodeService.class);
         intent.setAction(SendCodeService.ACTION);
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("sms_received");
         open_btn.setOnClickListener(v ->
-                startService(intent)
+//                startService(intent)
+                registerReceiver(mSmsReceiver, intentFilter)
         );
 
         close_btn.setOnClickListener(v ->
@@ -92,10 +95,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
 
     @Override
     public void initEvents() {
-        mSmsReceiver = new SmsReciver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("sms_received");
-        registerReceiver(mSmsReceiver, intentFilter);
         myDialog = new MyDialog(this);
         loadData();
         add_tel1_ll.setOnClickListener(v -> {
@@ -124,7 +123,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             if (("").equals(openIdModel.getOpenid()) || openIdModel.getOpenid() == null) {
                 //myDialog.setMiddleVal(openIdModel.getOpenid());
                 myDialog.setOnPositiveListener(v12 -> {
-                    System.out.println("-----------------openid");
                     //保存到数据库
                     String openid = myDialog.getMiddleVal();//输入的openid值
                     if (openIdModel.getOpenid() == null) {
@@ -139,40 +137,30 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                 ToastShort("已经绑定OPENID");
             }
         });
-        tvphone1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (openIdModel.getOpenid()!=null) {
-
-                    myDialog.setMiddleMessage("请输入手机号，保存并绑定");
-                    myDialog.setTitle("手机号");
-                    if (!tvphone1.getText().equals("添加手机号码")) {
-                        myDialog.setMiddleVal(tvphone1.getText().toString());
-                    } else {
-                        myDialog.setMiddleVal("");
-                    }
-                    myDialog.setOnPositiveListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            System.out.println("-----------------openid");
-                            //保存到数据库
-
-                            if (phoneList.size() > 0) {
-                                loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
-                            } else {
-                                loadlistener.addPhone(1, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
-                            }
-                        }
-                    });
-                    myDialog.show();
+        tvphone1.setOnClickListener(v -> {
+            if (openIdModel.getOpenid() != null) {
+                myDialog.setMiddleMessage("请输入手机号，保存并绑定");
+                myDialog.setTitle("手机号");
+                if (!tvphone1.getText().equals("添加手机号码")) {
+                    myDialog.setMiddleVal(tvphone1.getText().toString());
                 } else {
-                    ToastShort("请先绑定OPENID");
+                    myDialog.setMiddleVal("");
                 }
+                myDialog.setOnPositiveListener(v1 -> {
+                    //保存到数据库
+                    if (phoneList.size() > 0) {
+                        loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
+                    } else {
+                        loadlistener.addPhone(1, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
+                    }
+                });
+                myDialog.show();
+            } else {
+                ToastShort("请先绑定OPENID");
             }
         });
         tvphone2.setOnClickListener(v -> {
-            if (openIdModel.getOpenid()!=null) {
+            if (openIdModel != null) {
                 myDialog.setMiddleMessage("请输入手机号，保存并绑定");
                 myDialog.setTitle("手机号");
                 if (!tvphone2.getText().equals("添加手机号码")) {
@@ -181,7 +169,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                     myDialog.setMiddleVal("");
                 }
                 myDialog.setOnPositiveListener(v1 -> {
-                    System.out.println("-----------------openid");
                     //保存到数据库
                     if (phoneList.size() > 1) {
                         loadlistener.addPhone(2, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
@@ -254,6 +241,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             loadlistener.getPhones(model.getOpenid());
         }
     }
+
     @Override
     public void addPhoneResult(int type, boolean isTrue, String mes) {
         myDialog.dismiss();
@@ -277,8 +265,15 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     @Override
     public void addOpenidResult(boolean isTrue, String mes) {
         myDialog.dismiss();
-        bd_openid1_iv.setImageResource(R.mipmap.yibangding);
-        ToastShort(mes);
+        if (isTrue) {
+            String[] str = mes.split(",");
+            openIdModel.setObjectId(str[0]);
+            openIdModel.setOpenid(str[1]);
+            bd_openid1_iv.setImageResource(R.mipmap.yibangding);
+        } else {
+            ToastShort(mes);
+        }
+
     }
 
     @Override

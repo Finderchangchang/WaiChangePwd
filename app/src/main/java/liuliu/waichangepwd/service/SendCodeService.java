@@ -29,23 +29,25 @@ public class SendCodeService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Toast.makeText(this, "执行...", Toast.LENGTH_SHORT).show();
         sendCode();
         return super.onStartCommand(intent, flags, startId);
     }
 
     private void sendCode() {
         GameAccount game = BaseApplication.getmOrder().get(0);//获得当前最新的一个账号名
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         map.put("type", "findp");
 //        map.put("nickName", "拜师快递");
 //        map.put("openid", "ovPbFs9GEQidN3Wod-vQjNOawHxU");
