@@ -66,12 +66,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     private getOpenIDListener loadlistener;
     private OpenIdModel openIdModel;
     private List<PhoneNumberManager> phoneList;
-    @CodeNote(id = R.id.open_btn)
-    Button open_btn;
-    @CodeNote(id = R.id.close_btn)
-    Button close_btn;
-    SmsReciver mSmsReceiver;
-    IntentFilter intentFilter;
 
     @Override
     public void initViews() {
@@ -81,16 +75,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         phoneList = new ArrayList<>();
         Intent intent = new Intent(MainActivity.this, SendCodeService.class);
         intent.setAction(SendCodeService.ACTION);
-        intentFilter = new IntentFilter();
-        intentFilter.addAction("sms_received");
-        open_btn.setOnClickListener(v ->
-//                startService(intent)
-                registerReceiver(mSmsReceiver, intentFilter)
-        );
-
-        close_btn.setOnClickListener(v ->
-                stopService(intent)
-        );
     }
 
     @Override

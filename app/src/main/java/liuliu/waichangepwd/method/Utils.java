@@ -61,21 +61,13 @@ public class Utils {
     public static Dialog setDialog(String title, String cont, String sure_str, String cancle_str, final setSure sure, final setCancle cancle) {
         AlertDialog.Builder localBuilder1 = new AlertDialog.Builder(BaseApplication.getContext())
                 .setTitle(title).setMessage(cont);
-        return localBuilder1.setPositiveButton(cancle_str, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (cancle != null) {
-                    cancle.click(null);
-                }
-            }
-        })
-                .setNegativeButton(sure_str, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface,
-                                        int paramInt) {
-                        sure.click(null);
+        return localBuilder1.setPositiveButton(cancle_str,
+                (dialog, which) -> {
+                    if (cancle != null) {
+                        cancle.click(null);
                     }
-                }).create();
+                }).setNegativeButton(sure_str, (paramDialogInterface, paramInt) ->
+                sure.click(null)).create();
     }
 
     public interface setSure {

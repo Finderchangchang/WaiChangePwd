@@ -115,10 +115,9 @@ public class SmsReciver extends BroadcastReceiver {
     }
 
     public static String getPwd() {
-        Random random = new Random();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < 6; i++) {
-            long result = 0;
+            long result;
             switch (i) {
                 case 5:
                     sb.append(new Random().nextInt(10));

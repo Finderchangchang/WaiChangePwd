@@ -1,8 +1,11 @@
 package liuliu.waichangepwd.ui;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -112,6 +115,26 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
             }
         };
         list_lv.setAdapter(mAdapter);
+        //注册广播接收器
+        receiver = new MyReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.ljq.activity.CountService");
+        ManageListActivity.this.registerReceiver(receiver, filter);
+    }
+
+    private MyReceiver receiver = null;
+
+    /**
+     * 获取广播数据
+     *
+     * @author jiqinlin
+     */
+    public class MyReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle bundle = intent.getExtras();
+            int count = bundle.getInt("count");
+        }
     }
 
     @Override
@@ -128,12 +151,16 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         Intent intent = new Intent(ManageListActivity.this, SendCodeService.class);
         intent.setAction(SendCodeService.ACTION);
         start_change_tv.setOnClickListener(v -> {//批量操作修改密码
-            if (checkList.size() > 0) {
-                BaseApplication.setmOrder(checkList);
-                registerReceiver(mSmsReceiver, intentFilter);
-                startService(intent);
+            if (BaseApplication.getmOrder().size() > 0) {
+                ToastShort("当前任务已存在，请等待任务完成以后再操作~~");
             } else {
-                ToastShort("请至少选择一个游戏账号进行修改~~");
+                if (checkList.size() > 0) {
+                    BaseApplication.setmOrder(checkList);
+                    registerReceiver(mSmsReceiver, intentFilter);
+                    startService(intent);
+                } else {
+                    ToastShort("请至少选择一个游戏账号进行修改~~");
+                }
             }
         });
 
