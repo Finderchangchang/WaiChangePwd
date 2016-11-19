@@ -116,10 +116,10 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         };
         list_lv.setAdapter(mAdapter);
         //注册广播接收器
-        receiver = new MyReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("com.ljq.activity.CountService");
-        ManageListActivity.this.registerReceiver(receiver, filter);
+//        receiver = new MyReceiver();
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction("com.ljq.activity.CountService");
+//        ManageListActivity.this.registerReceiver(receiver, filter);
     }
 
     private MyReceiver receiver = null;

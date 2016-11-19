@@ -106,7 +106,7 @@ public class SmsReciver extends BroadcastReceiver {
                                     }
 //                                    BaseApplication.getContext().startService(intent);
                                 }, error -> {
-                                    Toast.makeText(BaseApplication.getContext(), "请检查网络是否正常", Toast.LENGTH_SHORT).show();
+                                    String s="";
                                 });
                     }
                 }

@@ -63,14 +63,15 @@ public class SendCodeService extends Service {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(val -> {
-                                Toast.makeText(this, val.getMsg(), Toast.LENGTH_SHORT).show();
-                                List<GameAccount> list = BaseApplication.getmOrder();
-                                list.remove(0);
-                                BaseApplication.setmOrder(list);
-                            }
-                            , error -> {
+                        if (!("S").equals(val.getRet())) {
+                            Toast.makeText(this, val.getMsg(), Toast.LENGTH_SHORT).show();
+                            List<GameAccount> list = BaseApplication.getmOrder();
+                            list.remove(0);
+                            BaseApplication.setmOrder(list);
+                        }
+                    }, error -> {
 
-                            });
+                    });
         } else {
             Toast.makeText(this, "请检查网络连接是否正常~~", Toast.LENGTH_SHORT).show();
         }
