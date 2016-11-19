@@ -249,7 +249,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         if (isTrue) {
             //切换图片为已绑定状态
             bd_openid1_iv.setImageResource(R.mipmap.yibangding);
-            //?
             openIdModel = model;
             //获取Openid下的两个手机号
             loadlistener.getPhones(model.getOpenid());
