@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#000"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="账号管理"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@mipmap/login_bg">
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            android:background="@mipmap/login_normal" />
+
+        <EditText
+            android:id="@+id/user_et"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/pwd_et"
+            android:layout_alignLeft="@+id/pwd_et"
+            android:layout_alignStart="@+id/pwd_et"
+            android:layout_marginBottom="4dp"
+            android:background="@mipmap/login_user"
+            android:paddingLeft="35dp"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/pwd_et"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/login_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"
+            android:background="@mipmap/login_pwd"
+            android:inputType="textPassword"
+            android:paddingLeft="35dp"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@mipmap/bottom_line"
+        android:gravity="center"
+        android:text="www.bokebuyu.com"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+</LinearLayout>
