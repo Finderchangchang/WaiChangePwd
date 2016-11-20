@@ -102,19 +102,19 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             }
         });
         bd_openid1_iv.setOnClickListener(v -> {
-            myDialog.setMiddleMessage("请输入OPENID，保存并绑定");
+            //myDialog.setMiddleMessage("请输入OPENID，保存并绑定");
             myDialog.setTitle("OPENID");
             if (("").equals(openIdModel.getOpenid()) || openIdModel.getOpenid() == null) {
                 //myDialog.setMiddleVal(openIdModel.getOpenid());
                 myDialog.setOnPositiveListener(v12 -> {
                     //保存到数据库
-                    String openid = myDialog.getMiddleVal();//输入的openid值
-                    if (openIdModel.getOpenid() == null) {
-                        //添加
-                        loadlistener.addOpenid(openid, "");
-                    } else {
-                        loadlistener.addOpenid(openid, openIdModel.getObjectId());
-                    }
+                    //String openid = myDialog.getMiddleVal();//输入的openid值
+//                    if (openIdModel.getOpenid() == null) {
+//                        //添加
+//                        loadlistener.addOpenid(openid, "");
+//                    } else {
+//                        loadlistener.addOpenid(openid, openIdModel.getObjectId());
+//                    }
                 });
                 myDialog.show();
             } else {
@@ -123,21 +123,21 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         });
         tvphone1.setOnClickListener(v -> {
             if (openIdModel.getOpenid() != null) {
-                myDialog.setMiddleMessage("请输入手机号，保存并绑定");
-                myDialog.setTitle("手机号");
-                if (!tvphone1.getText().equals("添加手机号码")) {
-                    myDialog.setMiddleVal(tvphone1.getText().toString());
-                } else {
-                    myDialog.setMiddleVal("");
-                }
-                myDialog.setOnPositiveListener(v1 -> {
-                    //保存到数据库
-                    if (phoneList.size() > 0) {
-                        loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
-                    } else {
-                        loadlistener.addPhone(1, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
-                    }
-                });
+//                myDialog.setMiddleMessage("请输入手机号，保存并绑定");
+//                myDialog.setTitle("手机号");
+//                if (!tvphone1.getText().equals("添加手机号码")) {
+//                    myDialog.setMiddleVal(tvphone1.getText().toString());
+//                } else {
+//                    myDialog.setMiddleVal("");
+//                }
+//                myDialog.setOnPositiveListener(v1 -> {
+//                    //保存到数据库
+//                    if (phoneList.size() > 0) {
+//                        loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
+//                    } else {
+//                        loadlistener.addPhone(1, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
+//                    }
+//                });
                 myDialog.show();
             } else {
                 ToastShort("请先绑定OPENID");
@@ -145,22 +145,22 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         });
         tvphone2.setOnClickListener(v -> {
             if (openIdModel != null) {
-                myDialog.setMiddleMessage("请输入手机号，保存并绑定");
-                myDialog.setTitle("手机号");
-                if (!tvphone2.getText().equals("添加手机号码")) {
-                    myDialog.setMiddleVal(tvphone2.getText().toString());
-                } else {
-                    myDialog.setMiddleVal("");
-                }
-                myDialog.setOnPositiveListener(v1 -> {
-                    //保存到数据库
-                    if (phoneList.size() > 1) {
-                        loadlistener.addPhone(2, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
-                    } else {
-                        loadlistener.addPhone(2, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
-                    }
-                });
-                myDialog.show();
+//                myDialog.setMiddleMessage("请输入手机号，保存并绑定");
+//                myDialog.setTitle("手机号");
+//                if (!tvphone2.getText().equals("添加手机号码")) {
+//                    myDialog.setMiddleVal(tvphone2.getText().toString());
+//                } else {
+//                    myDialog.setMiddleVal("");
+//                }
+//                myDialog.setOnPositiveListener(v1 -> {
+//                    //保存到数据库
+//                    if (phoneList.size() > 1) {
+//                        loadlistener.addPhone(2, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
+//                    } else {
+//                        loadlistener.addPhone(2, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
+//                    }
+//                });
+//                myDialog.show();
             } else {
                 ToastShort("请先绑定OPENID");
             }
@@ -231,7 +231,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         myDialog.dismiss();
         if (type == 1) {
             if (isTrue) {
-                tvphone1.setText(myDialog.getMiddleVal());//输入的openid值
+                //tvphone1.setText(myDialog.getMiddleVal());//输入的openid值
                 bd_openid1_iv.setImageResource(R.mipmap.yibangding);
                 loadlistener.getOpenid(Utils.getCache("key"));
             } else {
@@ -239,7 +239,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             }
         } else {
             if (isTrue) {
-                tvphone2.setText(myDialog.getMiddleVal());//输入的openid值
+                //tvphone2.setText(myDialog.getMiddleVal());//输入的openid值
             } else {
                 ToastShort(mes);
             }
@@ -257,7 +257,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         } else {
             ToastShort(mes);
         }
-
     }
 
     @Override

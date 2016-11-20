@@ -169,19 +169,19 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         });
         tvDelete.setOnClickListener(v -> {
             if (checkList.size() > 0) {
-                myDialog = new MyDialog(ManageListActivity.this);
-                myDialog.setTitle("提示");
-                myDialog.setMiddleMessage("确定要删除选择的信息吗？");
-                myDialog.visibileEdit();
-                myDialog.setLeftButtonVal("确定");
-                myDialog.show();
-                myDialog.setOnPositiveListener(v1 -> {
-                    //执行删除操作
-                    myDialog.dismiss();
-                    progressDialog = ProgressDialog.show(ManageListActivity.this, "", "正在删除...", true, false);
-                    progressDialog.show();
-                    listListener.DeleteGame(checkList);
-                });
+//                myDialog = new MyDialog(ManageListActivity.this);
+//                myDialog.setTitle("提示");
+//                myDialog.setMiddleMessage("确定要删除选择的信息吗？");
+//                myDialog.visibileEdit();
+//                myDialog.setLeftButtonVal("确定");
+//                myDialog.show();
+//                myDialog.setOnPositiveListener(v1 -> {
+//                    //执行删除操作
+//                    myDialog.dismiss();
+//                    progressDialog = ProgressDialog.show(ManageListActivity.this, "", "正在删除...", true, false);
+//                    progressDialog.show();
+//                    listListener.DeleteGame(checkList);
+//                });
             } else {
                 ToastShort("请选择要删除的信息");
             }

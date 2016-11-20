@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import liuliu.waichangepwd.R;
@@ -15,31 +17,26 @@ import liuliu.waichangepwd.R;
  */
 
 public class MyDialog extends Dialog {
-    TextView title;
-    Button ensure_btn, cancel_btn;
+    ImageView ensure_btn;
     EditText middle_et;
-    TextView mes;
+    RelativeLayout rlAll;
 
     public MyDialog(Context context) {
         super(context, R.style.Base_Theme_AppCompat_Light_Dialog);
         View mView = LayoutInflater.from(getContext()).inflate(R.layout.my_dialog, null);
-        title = (TextView) mView.findViewById(R.id.title_ll_dialog);
-        ensure_btn = (Button) mView.findViewById(R.id.ensure_btn_ll_dialog);
-        cancel_btn = (Button) mView.findViewById(R.id.cancel_btn_ll_dialog);
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        ensure_btn = (ImageView) mView.findViewById(R.id.ensure_btn_ll_dialog);
+        rlAll = (RelativeLayout) mView.findViewById(R.id.rl_dialog_all);
         middle_et = (EditText) mView.findViewById(R.id.middle_et_ll_dialog);
-        mes = (TextView) mView.findViewById(R.id.middle_et_ll_dialog_mes);
         super.setContentView(mView);
     }
 
-    /*设置顶部文字*/
-    public void setTitle(String tit) {
-        title.setText(tit);
+    //是否为OPENid
+    public void setRLBG(boolean isTrue) {
+        if (isTrue) {
+            rlAll.setBackgroundResource(R.mipmap.dialog_openid);
+        } else {
+            rlAll.setBackgroundResource(R.mipmap.dialog_phone);
+        }
     }
 
     /*为中部的EditText赋值*/
@@ -48,36 +45,12 @@ public class MyDialog extends Dialog {
         middle_et.setText(val);
     }
 
-    //中间提示信息
-    public void setMiddleMessage(String text) {
-        mes.setText(text);
-    }
-
-    /**
-     * 设置中间字体的颜色为红色
-     */
-    public void setMiddleMessageRed() {
-        mes.setTextColor(0xffff0000);
-    }
-
-    /*设置左侧按钮文字*/
-    public void setLeftButtonVal(String val) {
-        ensure_btn.setText(val);
-    }
-
-    /*设置右侧按钮文字*/
-    public void setRightButtonVal(String val) {
-        cancel_btn.setText(val);
-    }
 
     /*获得文本框的文字内容*/
     public String getMiddleVal() {
         return middle_et.getText().toString();
     }
 
-    public void visibileEdit() {
-        middle_et.setVisibility(View.GONE);
-    }
 
     /**
      * 确定键监听器
@@ -88,13 +61,5 @@ public class MyDialog extends Dialog {
         ensure_btn.setOnClickListener(listener);
     }
 
-    /**
-     * 取消键监听器
-     *
-     * @param listener
-     */
-    public void setOnNegativeListener(View.OnClickListener listener) {
-        cancel_btn.setOnClickListener(listener);
-        dismiss();
-    }
+
 }

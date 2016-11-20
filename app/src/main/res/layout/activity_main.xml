@@ -44,28 +44,6 @@
                     android:textColor="#fff" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:src="@mipmap/main_icon" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@mipmap/gonggao_bg"
-                    android:padding="5dp"
-                    android:text="温馨提示：\n为保障您的账号安全和不必要的误会，请您在电脑或其他设备上进行解绑换绑操作，操作前请先修改密码，谢谢合作！"
-                    android:textColor="#fff" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

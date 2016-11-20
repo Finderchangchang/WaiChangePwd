@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/top_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorhei"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/title_iv_left"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/title_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="账号管理"
+            android:textColor="@color/colorwrite"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/title_help"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/title_wen" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_tb"
+        android:background="@mipmap/help_bg"
+        android:layout_above="@+id/rl_bottem"
+        android:paddingTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_help"
+                android:textColor="@color/colorwrite" />
+
+            <TextView
+                android:id="@+id/tv_help_zhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_help"
+                android:text="注：如不需要自动改密码功能，本软件可免费试用，账号管理统计，随身携带哦！"
+                android:textColor="@color/colorwrite" />
+
+            <ImageView
+                android:id="@+id/help_iv_right"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tv_help_zhu"
+                android:src="@mipmap/help_03" />
+
+            <ImageView
+                android:id="@+id/help_iv_left"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/tv_help_zhu"
+                android:src="@mipmap/help_06"
+                android:layout_alignBottom="@+id/help_iv_right"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/tv_help_zhu"
+                android:layout_alignBottom="@+id/help_iv_left"
+                android:layout_toRightOf="@+id/help_iv_left"
+                android:text="客服QQ：3042661036"
+                android:textColor="@color/colorwrite" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/blue"
+        android:gravity="center_vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp">
+
+
+        <TextView
+            android:id="@+id/main_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号：656*****56"
+            android:textColor="@color/colorwrite" />
+
+        <TextView
+            android:id="@+id/main_user_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/main_user_name"
+            android:text="余额：265"
+            android:textColor="@color/colorwrite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/iv_main_bom"
+            android:text="www.bokebuyu.com"
+            android:textColor="@color/colorwrite"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/iv_main_bom"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/login_bottem" />
+    </RelativeLayout>
+
+</RelativeLayout>

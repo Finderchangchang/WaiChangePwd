@@ -29,11 +29,12 @@
             android:text="账号管理"
             android:textColor="@color/colorwrite"
             android:textSize="20dp" />
+
         <ImageView
-            android:layout_alignParentRight="true"
             android:id="@+id/title_help"
             android:layout_width="30dp"
             android:layout_height="25dp"
+            android:layout_alignParentRight="true"
             android:src="@mipmap/title_wen" />
     </RelativeLayout>
 
@@ -43,68 +44,75 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rl_bottem"
         android:layout_below="@+id/top_tb"
-        android:background="@mipmap/login_bg"
-        android:orientation="vertical">
+        android:background="@mipmap/login_bg">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rl_main_caozuo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="2dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/usr_name_tv"
-                android:layout_width="200dp"
-                android:layout_height="30dp"
-                android:background="@mipmap/btn_login1"
-                android:maxLines="1"
-                android:minLines="1"
-                android:paddingLeft="30dp" />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/main_dai" />
 
-            <EditText
-                android:id="@+id/pwd_et"
-                android:layout_width="200dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:background="@mipmap/btn_login2"
-                android:maxLines="1"
-                android:minLines="1"
-                android:paddingLeft="30dp"
-                android:password="true" />
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/main_right_bg" />
 
-            <ImageButton
-                android:id="@+id/login_btn"
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/login_button_bg" />
-        </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
-
 
     <RelativeLayout
         android:id="@+id/rl_bottem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:background="@color/blue"
+        android:gravity="center_vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp">
+
+
+        <TextView
+            android:id="@+id/main_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号：656*****56"
+            android:textColor="@color/colorwrite" />
+
+        <TextView
+            android:id="@+id/main_user_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/main_user_name"
+            android:text="余额：265"
+            android:textColor="@color/colorwrite" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/iv_main_bom"
             android:text="www.bokebuyu.com"
-            android:textColor="@color/colorwrite" />
+            android:textColor="@color/colorwrite"
+            android:textSize="12dp" />
 
         <ImageView
-
+            android:id="@+id/iv_main_bom"
             android:layout_width="20dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:src="@mipmap/login_bottem" />
