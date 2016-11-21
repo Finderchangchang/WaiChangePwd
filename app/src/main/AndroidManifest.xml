@@ -17,6 +17,8 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
     <uses-permission android:name="android.permission.READ_SMS"></uses-permission>
 
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -63,7 +65,16 @@
         <activity
             android:name=".ui.SettingActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="c.b.a.A"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="c.b.a.B"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent" />
         <service android:name=".service.SendCodeService">
             <intent-filter>
                 <action android:name="liuliu.service.SendCodeService" />

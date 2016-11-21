@@ -1,9 +1,6 @@
 package liuliu.waichangepwd.ui;
 
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +24,6 @@ import liuliu.waichangepwd.model.OpenIdModel;
 import liuliu.waichangepwd.model.PhoneNumberManager;
 import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.service.SendCodeService;
-import liuliu.waichangepwd.service.SmsReciver;
 import liuliu.waichangepwd.view.MyDialog;
 import liuliu.waichangepwd.view.getOpenidView;
 
@@ -36,10 +32,8 @@ import liuliu.waichangepwd.view.getOpenidView;
  */
 
 public class MainActivity extends BaseActivity implements getOpenidView {
-    //    @CodeNote(id = R.id.start_change_btn)
-    private Button start_change_btn;
     @CodeNote(id = R.id.bd_openid1_iv)
-    private ImageView bd_openid1_iv;
+    private TextView bd_openid1_iv;
     @CodeNote(id = R.id.add_tel1_tv)
     private TextView add_tel1_tv;
     @CodeNote(id = R.id.add_tel1_btn)
@@ -69,7 +63,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
 
     @Override
     public void initViews() {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_xin);
         loadlistener = new getOpenIDListener(this);
         openIdModel = new OpenIdModel();
         phoneList = new ArrayList<>();
@@ -219,7 +213,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     public void result(boolean isTrue, OpenIdModel model) {
         if (isTrue) {
             //切换图片为已绑定状态
-            bd_openid1_iv.setImageResource(R.mipmap.yibangding);
+            bd_openid1_iv.setText("已绑微信");
             openIdModel = model;
             //获取Openid下的两个手机号
             loadlistener.getPhones(model.getOpenid());
@@ -232,7 +226,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         if (type == 1) {
             if (isTrue) {
                 //tvphone1.setText(myDialog.getMiddleVal());//输入的openid值
-                bd_openid1_iv.setImageResource(R.mipmap.yibangding);
+                bd_openid1_iv.setText("已绑微信");
                 loadlistener.getOpenid(Utils.getCache("key"));
             } else {
                 ToastShort(mes);
@@ -253,7 +247,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             String[] str = mes.split(",");
             openIdModel.setObjectId(str[0]);
             openIdModel.setOpenid(str[1]);
-            bd_openid1_iv.setImageResource(R.mipmap.yibangding);
+            bd_openid1_iv.setText("已绑微信");
         } else {
             ToastShort(mes);
         }

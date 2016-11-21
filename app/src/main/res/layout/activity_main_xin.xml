@@ -46,42 +46,139 @@
         android:layout_below="@+id/top_tb"
         android:background="@mipmap/login_bg">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/rl_main_caozuo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:id="@+id/left_iv"
+                android:layout_width="95dp"
+                android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
                 android:src="@mipmap/main_dai" />
 
-            <ImageView
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:src="@mipmap/main_right_bg" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignLeft="@+id/left_iv"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/tag_bg">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/bd_openid1_iv"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="绑定微信"
+                    android:textColor="#fff"
+                    android:textSize="22sp"></TextView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/add_tel1_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/btn_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@mipmap/tel_bg" />
+
+                        <TextView
+                            android:id="@+id/add_tel1_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:text="添加手机号码"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/add_tel2_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/btn_bg"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@mipmap/tel_bg" />
+
+                        <TextView
+                            android:id="@+id/add_tel2_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:text="添加手机号码"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/add_tel1_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="管理"
+                        android:textColor="#fff"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/add_tel2_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="管理"
+                        android:textColor="#fff"
+                        android:textSize="15sp"></TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl_bottem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:background="@color/blue"
         android:gravity="center_vertical"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp">
+        android:paddingLeft="10dp">
 
 
         <TextView
@@ -93,29 +190,23 @@
 
         <TextView
             android:id="@+id/main_user_money"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/main_user_name"
+            android:layout_weight="1"
             android:text="余额：265"
             android:textColor="@color/colorwrite" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/iv_main_bom"
-            android:text="www.bokebuyu.com"
-            android:textColor="@color/colorwrite"
-            android:textSize="12dp" />
-
         <ImageView
-            android:id="@+id/iv_main_bom"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:id="@+id/setting_iv"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
             android:src="@mipmap/login_bottem" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
