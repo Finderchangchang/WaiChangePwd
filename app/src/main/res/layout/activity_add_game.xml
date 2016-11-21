@@ -31,22 +31,159 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="@mipmap/help_bg"
+        android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="游戏账号：" />
-
-        <EditText
-            android:id="@+id/et_game_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/text_bg"
-            android:padding="5dp"
-            android:maxLines="1"
-            android:minLines="1" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="已租"
+                android:textColor="@color/colorwrite"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="未租"
+                android:textColor="@color/colorwrite"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="续租"
+                android:textColor="@color/colorwrite"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:background="@mipmap/add_game1"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  vip等级："
+                    android:textColor="@color/colorwrite"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_game_vip"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/add_game_tv1"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="账号昵称："
+                    android:textColor="@color/colorwrite"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_game_name"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/add_game_tv1"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="炮台等级："
+                    android:textColor="@color/colorwrite"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_game_pao"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/add_game_tv1"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="    救济金："
+                    android:textColor="@color/colorwrite"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_game_jiuji"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/add_game_tv1"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorwrite"
+                android:text="342"/>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -55,7 +192,6 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-
         android:background="@mipmap/reg_btn"
         android:text="保存"
         android:textColor="@color/colorwrite" />
