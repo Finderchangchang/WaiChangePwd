@@ -17,14 +17,13 @@ import liuliu.waichangepwd.view.ILoginView;
  */
 public class LoginActivity extends BaseActivity implements ILoginView {
     public static LoginActivity mIntails;
-    @CodeNote(id = R.id.user_et)
-    private EditText user_et;
+    @CodeNote(id = R.id.usr_name_et)
+    private EditText usr_name_et;
     @CodeNote(id = R.id.pwd_et)
     private EditText pwd_et;
     private LoginListener mListener;
-
     @CodeNote(id = R.id.login_btn)
-    private ImageView login_btn;
+    ImageView login_btn;
 
     @Override
     public void initViews() {
@@ -46,7 +45,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
      * 验证执行登录
      */
     private void attemptLogin() {
-        String user_name = user_et.getText().toString();
+        String user_name = usr_name_et.getText().toString();
         String password = pwd_et.getText().toString();
         if (TextUtils.isEmpty(user_name)) {
             ToastShort("用户名不能为空~~");

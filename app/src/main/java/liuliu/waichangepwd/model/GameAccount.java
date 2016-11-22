@@ -11,21 +11,21 @@ public class GameAccount extends BmobObject {
     private String password;//密码
     private String AccountNumber;//游戏账号
     private String OpenId;//绑定OPENID
-private int VipGrade;//vip等级
-    private int AmountCharge;//充值金额
-    private int BatteryGrade;//炮台等级
-    private int Bomb;//核弹
-    private int Bronze;//青铜
-    private int Diamondes;//钻石
-    private int Frozen;//冰冻
-    private int Gold;//黄金
-    private int Horn;//号角
-    private int Locking;//锁定
-    private int MaterialScience;//材料
-    private int Platinum;//白金
-    private int Rage;//狂暴
-    private int ReliefFund;//救济金
-    private int Silver;//白银
+    private Integer VipGrade;//vip等级
+    private Integer AmountCharge;//充值金额
+    private Integer BatteryGrade;//炮台等级
+    private Integer Bomb;//核弹
+    private Integer Bronze;//青铜
+    private Integer Diamondes;//钻石
+    private Integer Frozen;//冰冻
+    private Integer Gold;//黄金
+    private Integer Horn;//号角
+    private Integer Locking;//锁定
+    private Integer MaterialScience;//材料
+    private Integer Platinum;//白金
+    private Integer Rage;//狂暴
+    private Integer ReliefFund;//救济金
+    private Integer Silver;//白银
 
     public boolean isCheced = false;
 
@@ -37,123 +37,123 @@ private int VipGrade;//vip等级
         OpenId = openId;
     }
 
-    public int getVipGrade() {
+    public Integer getVipGrade() {
         return VipGrade;
     }
 
-    public void setVipGrade(int vipGrade) {
+    public void setVipGrade(Integer vipGrade) {
         VipGrade = vipGrade;
     }
 
-    public int getAmountCharge() {
+    public Integer getAmountCharge() {
         return AmountCharge;
     }
 
-    public void setAmountCharge(int amountCharge) {
+    public void setAmountCharge(Integer amountCharge) {
         AmountCharge = amountCharge;
     }
 
-    public int getBatteryGrade() {
+    public Integer getBatteryGrade() {
         return BatteryGrade;
     }
 
-    public void setBatteryGrade(int batteryGrade) {
+    public void setBatteryGrade(Integer batteryGrade) {
         BatteryGrade = batteryGrade;
     }
 
-    public int getBomb() {
+    public Integer getBomb() {
         return Bomb;
     }
 
-    public void setBomb(int bomb) {
+    public void setBomb(Integer bomb) {
         Bomb = bomb;
     }
 
-    public int getBronze() {
+    public Integer getBronze() {
         return Bronze;
     }
 
-    public void setBronze(int bronze) {
+    public void setBronze(Integer bronze) {
         Bronze = bronze;
     }
 
-    public int getDiamondes() {
+    public Integer getDiamondes() {
         return Diamondes;
     }
 
-    public void setDiamondes(int diamondes) {
+    public void setDiamondes(Integer diamondes) {
         Diamondes = diamondes;
     }
 
-    public int getFrozen() {
+    public Integer getFrozen() {
         return Frozen;
     }
 
-    public void setFrozen(int frozen) {
+    public void setFrozen(Integer frozen) {
         Frozen = frozen;
     }
 
-    public int getGold() {
+    public Integer getGold() {
         return Gold;
     }
 
-    public void setGold(int gold) {
+    public void setGold(Integer gold) {
         Gold = gold;
     }
 
-    public int getHorn() {
+    public Integer getHorn() {
         return Horn;
     }
 
-    public void setHorn(int horn) {
+    public void setHorn(Integer horn) {
         Horn = horn;
     }
 
-    public int getLocking() {
+    public Integer getLocking() {
         return Locking;
     }
 
-    public void setLocking(int locking) {
+    public void setLocking(Integer locking) {
         Locking = locking;
     }
 
-    public int getMaterialScience() {
+    public Integer getMaterialScience() {
         return MaterialScience;
     }
 
-    public void setMaterialScience(int materialScience) {
+    public void setMaterialScience(Integer materialScience) {
         MaterialScience = materialScience;
     }
 
-    public int getPlatinum() {
+    public Integer getPlatinum() {
         return Platinum;
     }
 
-    public void setPlatinum(int platinum) {
+    public void setPlatinum(Integer platinum) {
         Platinum = platinum;
     }
 
-    public int getRage() {
+    public Integer getRage() {
         return Rage;
     }
 
-    public void setRage(int rage) {
+    public void setRage(Integer rage) {
         Rage = rage;
     }
 
-    public int getReliefFund() {
+    public Integer getReliefFund() {
         return ReliefFund;
     }
 
-    public void setReliefFund(int reliefFund) {
+    public void setReliefFund(Integer reliefFund) {
         ReliefFund = reliefFund;
     }
 
-    public int getSilver() {
+    public Integer getSilver() {
         return Silver;
     }
 
-    public void setSilver(int silver) {
+    public void setSilver(Integer silver) {
         Silver = silver;
     }
 

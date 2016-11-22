@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_above="@+id/main_scroll"
+        android:layout_alignParentTop="true"
         android:background="@color/colorhei"
         android:gravity="center_vertical"
         android:padding="10dp">
@@ -28,171 +30,482 @@
             android:textSize="20dp" />
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/main_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/help_bg"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@mipmap/help_bg">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="已租"
-                android:textColor="@color/colorwrite"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="未租"
-                android:textColor="@color/colorwrite"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="续租"
-                android:textColor="@color/colorwrite"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:background="@mipmap/add_game1"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="  vip等级："
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="已租"
                     android:textColor="@color/colorwrite"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/et_game_vip"
-                    android:layout_width="160dp"
-                    android:layout_height="30dp"
-                    android:background="@mipmap/add_game_tv1"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:padding="5dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="未租"
+                    android:textColor="@color/colorwrite"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="续租"
+                    android:textColor="@color/colorwrite"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:layout_height="260dp"
+                android:background="@mipmap/add_game1"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  vip等级："
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_game_vip"
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="账号昵称："
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_game_name"
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="炮台等级："
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_game_pao"
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="    救济金："
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_game_jiuji"
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="账号昵称："
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="**以上不能为空**"
                     android:textColor="@color/colorwrite"
                     android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_game_name"
-                    android:layout_width="160dp"
-                    android:layout_height="30dp"
-                    android:background="@mipmap/add_game_tv1"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:padding="5dp" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:layout_height="310dp"
+                android:background="@mipmap/add_game2"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="核弹"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/hd_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="青铜"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/qt_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="白银"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/by_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="黄金"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/hjj_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="白金"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/bj_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="号角"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/hj_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="锁定"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/sd_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="狂暴"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/kb_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="材料"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/cl_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="冰冻"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/bd_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="钻石"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/zs_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="充值金额"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/cz_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:padding="5dp" />
+                </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="炮台等级："
+                    android:gravity="center"
+                    android:text="**以上不能为空**"
                     android:textColor="@color/colorwrite"
                     android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_game_pao"
-                    android:layout_width="160dp"
-                    android:layout_height="30dp"
-                    android:background="@mipmap/add_game_tv1"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:padding="5dp" />
-
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="    救济金："
-                    android:textColor="@color/colorwrite"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_game_jiuji"
-                    android:layout_width="160dp"
-                    android:layout_height="30dp"
-                    android:background="@mipmap/add_game_tv1"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:padding="5dp" />
-
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorwrite"
-                android:text="342"/>
+            <Button
+                android:id="@+id/btn_game_save"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/reg_btn"
+                android:text="保存"
+                android:textColor="@color/colorwrite" />
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_game_save"
-        android:layout_width="60dp"
+    <LinearLayout
+        android:id="@+id/rl_bottem"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:background="@mipmap/reg_btn"
-        android:text="保存"
-        android:textColor="@color/colorwrite" />
+        android:background="@color/blue"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/user_id_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号：656*****56"
+            android:textColor="@color/colorwrite" />
+
+        <TextView
+            android:id="@+id/yue_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/main_user_name"
+            android:layout_weight="1"
+            android:text="余额：265"
+            android:textColor="@color/colorwrite" />
+
+        <ImageView
+            android:id="@+id/setting_iv"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:src="@mipmap/login_bottem" />
+    </LinearLayout>
 </LinearLayout>

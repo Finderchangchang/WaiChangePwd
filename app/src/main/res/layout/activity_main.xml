@@ -1,131 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context="liuliu.waichangepwd.ui.LoginActivity">
 
-    <ScrollView
+    <RelativeLayout
+        android:id="@+id/top_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorhei"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/title_iv_left"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/title_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="账号管理"
+            android:textColor="@color/colorwrite"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/title_help"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/title_wen" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/rl_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_ll"
-        android:gravity="center_horizontal"
+        android:layout_above="@+id/rl_bottem"
+        android:layout_below="@+id/top_tb"
+        android:background="#3BA8DB"
         android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@mipmap/main_bg_" />
+
+        <LinearLayout
+            android:id="@+id/rl_main_caozuo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="-10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@mipmap/main_guanggao" />
+                android:id="@+id/left_iv"
+                android:layout_width="95dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/main_dai" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-8dp"
-                    android:paddingBottom="7dp"
-                    android:paddingTop="7dp"
-                    android:src="@mipmap/main_laba" />
+                android:layout_height="match_parent"
+                android:layout_alignLeft="@+id/left_iv"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/tag_bg">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-10dp"
-                    android:text="自动充值系统已经上线。。。"
-                    android:textColor="#fff" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="-8dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@mipmap/main_bottom"
-                        android:text="等待添加"
-                        android:textColor="#fff"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@mipmap/main_bottom"
-                        android:text="等待添加"
-                        android:textColor="#fff"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@mipmap/wx_bg"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:src="@mipmap/wx_icon" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="and13585"
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
                     android:id="@+id/bd_openid1_iv"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="3"
-                    android:background="@mipmap/bang_left" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="-5.1dp"
-                    android:src="@mipmap/lj_center" />
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="绑定微信"
+                    android:textColor="#fff"
+                    android:textSize="22sp"></TextView>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="-5.1dp"
-                    android:layout_weight="4"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -134,37 +102,23 @@
                         android:layout_height="0dp"
                         android:layout_marginBottom="3dp"
                         android:layout_weight="1"
-                        android:background="@mipmap/main_manage"
+                        android:background="@mipmap/btn_bg"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="3dp"
-                            android:layout_marginTop="3dp"
-                            android:src="@mipmap/main_tel" />
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@mipmap/tel_bg" />
 
                         <TextView
                             android:id="@+id/add_tel1_tv"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
                             android:text="添加手机号码"
-                            android:textColor="#fff" />
-
-                        <TextView
-                            android:layout_width="3dp"
-                            android:layout_height="match_parent"
-                            android:background="#fff" />
-
-                        <TextView
-                            android:id="@+id/add_tel1_btn"
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="进入"
                             android:textColor="#fff" />
                     </LinearLayout>
 
@@ -172,88 +126,97 @@
                         android:id="@+id/add_tel2_ll"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="2dp"
                         android:layout_weight="1"
-                        android:background="@mipmap/main_manage"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:background="@mipmap/btn_bg"
+                        android:gravity="center_vertical">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="3dp"
-                            android:layout_marginTop="3dp"
-                            android:src="@mipmap/main_tel" />
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@mipmap/tel_bg" />
 
                         <TextView
                             android:id="@+id/add_tel2_tv"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
                             android:text="添加手机号码"
-                            android:textColor="#fff" />
-
-                        <TextView
-                            android:layout_width="3dp"
-                            android:layout_height="match_parent"
-                            android:background="#fff" />
-
-                        <TextView
-                            android:id="@+id/add_tel2_btn"
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="进入"
                             android:textColor="#fff" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/add_tel1_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="管理"
+                        android:textColor="#fff"
+                        android:textSize="15sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/add_tel2_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="管理"
+                        android:textColor="#fff"
+                        android:textSize="15sp"></TextView>
+                </LinearLayout>
+
             </LinearLayout>
 
-
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/bottom_ll"
+        android:id="@+id/rl_bottem"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:background="@mipmap/main_bottom"
+        android:background="@color/blue"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:paddingLeft="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="ID："
-            android:textColor="#fff"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/user_id_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="17093215800"
-            android:textColor="#fff" />
+            android:text="账号：656*****56"
+            android:textColor="@color/colorwrite" />
 
         <TextView
             android:id="@+id/yue_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/main_user_name"
             android:layout_weight="1"
-            android:text="余额：17.5"
-            android:textColor="#fff"
-            android:textSize="14sp" />
+            android:text="余额：265"
+            android:textColor="@color/colorwrite" />
 
         <ImageView
             android:id="@+id/setting_iv"
-            android:layout_width="80dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:background="@mipmap/main_manage"
-            android:padding="12dp"
-            android:src="@mipmap/main_manage_center" />
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:src="@mipmap/login_bottem" />
     </LinearLayout>
+
 </RelativeLayout>

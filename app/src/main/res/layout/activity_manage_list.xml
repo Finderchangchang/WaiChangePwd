@@ -5,107 +5,13 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_ll"
-        android:layout_below="@+id/top_tb">
-
-        <RelativeLayout
-            android:id="@+id/no_data_rl"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/no_data_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="请先设置当前手机号" />
-
-
-        </RelativeLayout>
-
-        <ListView
-            android:id="@+id/list_lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="#fff"
-            android:dividerHeight="0dp"
-            android:visibility="gone" />
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:id="@+id/bottom_ll"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="@mipmap/bottom_bg"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/add_nick_name_tv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="添加账号"
-            android:textColor="#333"
-            android:textSize="18sp" />
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#fff" />
-        <TextView
-            android:id="@+id/delete_nick_name_tv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="删除"
-            android:textColor="#333"
-            android:textSize="18sp" />
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#fff" />
-
-        <TextView
-            android:id="@+id/start_change_tv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="批量修改"
-            android:textColor="#333"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#fff" />
-
-        <TextView
-            android:id="@+id/share_tv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="发送至微信"
-            android:textColor="#333"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <RelativeLayout
         android:id="@+id/top_tb"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+
         android:background="@color/colorhei"
         android:gravity="center_vertical"
-        android:padding="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/title_iv_left"
@@ -122,4 +28,203 @@
             android:textColor="@color/colorwrite"
             android:textSize="20dp" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottem"
+        android:layout_below="@+id/top_tb"
+        android:background="@mipmap/help_bg">
+
+        <RelativeLayout
+            android:id="@+id/no_data_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/no_data_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="请先设置当前手机号" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/top_order"
+                    android:gravity="center"
+                    android:paddingLeft="-15dp"
+                    android:text="已租" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/top_order"
+                    android:gravity="center"
+                    android:paddingLeft="-15dp"
+                    android:text="未租" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/top_order"
+                    android:gravity="center"
+                    android:paddingLeft="-15dp"
+                    android:text="续租" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/top_order"
+                    android:gravity="center"
+                    android:paddingLeft="-15dp"
+                    android:text="vip" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/top_order"
+                    android:gravity="center"
+                    android:paddingLeft="-15dp"
+                    android:text="救济" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/check_all"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="全选" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/list_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#fff"
+                android:dividerHeight="0dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_ll"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/add_nick_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@mipmap/add_bg"
+                android:gravity="center"
+                android:text="添加"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/delete_nick_name_tv"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@mipmap/delete_bg"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/start_change_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/share_wx"
+                android:gravity="center"
+                android:text="微信分享"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/share_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/change_pwd"
+                android:gravity="center"
+                android:text="改密"
+                android:textColor="#000"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/rl_bottem"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/user_id_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号：656*****56"
+            android:textColor="@color/colorwrite" />
+
+        <TextView
+            android:id="@+id/yue_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/main_user_name"
+            android:layout_weight="1"
+            android:text="余额：265"
+            android:textColor="@color/colorwrite" />
+
+        <ImageView
+            android:id="@+id/setting_iv"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:src="@mipmap/login_bottem" />
+    </LinearLayout>
+
+
 </RelativeLayout>

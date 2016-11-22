@@ -37,7 +37,6 @@ public class SendCodeService extends Service {
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
-
     }
 
     @Override
