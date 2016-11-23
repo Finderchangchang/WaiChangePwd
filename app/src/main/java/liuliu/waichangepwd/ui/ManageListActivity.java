@@ -3,6 +3,7 @@ package liuliu.waichangepwd.ui;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -58,7 +59,6 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     List<GameAccount> mList;
     @CodeNote(id = R.id.title_iv_left)
     ImageView ivLeft;
-    private MyDialog myDialog;
     private List<GameAccount> checkList;
     private ProgressDialog progressDialog;
     @CodeNote(id = R.id.delete_nick_name_tv)
@@ -81,7 +81,6 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         checkList = new ArrayList<>();
         progressDialog = new ProgressDialog(this);
         no_data_tv.setText("当前无数据~~");
-
         mAdapter = new CommonAdapter<GameAccount>(this, mList, R.layout.item_game_name) {
             @Override
             public void convert(CommonViewHolder holder, GameAccount gameAccount, int position) {
@@ -169,19 +168,14 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         });
         tvDelete.setOnClickListener(v -> {
             if (checkList.size() > 0) {
-//                myDialog = new MyDialog(ManageListActivity.this);
-//                myDialog.setTitle("提示");
-//                myDialog.setMiddleMessage("确定要删除选择的信息吗？");
-//                myDialog.visibileEdit();
-//                myDialog.setLeftButtonVal("确定");
-//                myDialog.show();
-//                myDialog.setOnPositiveListener(v1 -> {
-//                    //执行删除操作
-//                    myDialog.dismiss();
-//                    progressDialog = ProgressDialog.show(ManageListActivity.this, "", "正在删除...", true, false);
-//                    progressDialog.show();
-//                    listListener.DeleteGame(checkList);
-//                });
+                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+                builder.setTitle("提示");
+                builder.setMessage("确定要删除当前选中的游戏账号吗？");
+                builder.setPositiveButton("取消", null);
+                builder.setNegativeButton("确定", (dialog, which) -> {
+                    listListener.DeleteGame(checkList);
+                });
+                builder.show();
             } else {
                 ToastShort("请选择要删除的信息");
             }

@@ -62,8 +62,6 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     EditText kb_et;//救济金
     @CodeNote(id = R.id.cl_et)
     EditText cl_et;//救济金
-    @CodeNote(id = R.id.bd_et)
-    EditText bd_et;//救济金
     @CodeNote(id = R.id.zs_et)
     EditText zs_et;//救济金
     @CodeNote(id = R.id.cz_et)
@@ -114,7 +112,6 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setAccountNumber(game_name_et.getText().toString().trim());
                 gameAccount.setBatteryGrade(getIntger(pt_et));
                 gameAccount.setReliefFund(jiuji_et.getText().toString());
-                gameAccount.setVipGrade(getIntger(vip_et));
                 gameAccount.setPhone(phone);
                 gameAccount.setBomb(getIntger(hd_et));
                 gameAccount.setBronze(getIntger(qt_et));
@@ -125,7 +122,6 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setLocking(getIntger(sd_et));
                 gameAccount.setRage(getIntger(kb_et));
                 gameAccount.setMaterialScience(getIntger(cl_et));
-                gameAccount.setFrozen(getIntger(bd_et));
                 gameAccount.setAmountCharge(getIntger(cz_et));
                 gameAccount.setDiamondes(getIntger(zs_et));
                 listener.addGame(gameAccount);

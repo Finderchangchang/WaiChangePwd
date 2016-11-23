@@ -22,30 +22,26 @@ public class ManagerListListener {
 
     public void DeleteGame(List<GameAccount> accounts) {
 
-        for (int i=0;i<accounts.size();i++) {
-            if(i==accounts.size()-1){
-                delete(true,accounts.get(i));
-            }else{
-                delete(false,accounts.get(i));
+        for (int i = 0; i < accounts.size(); i++) {
+            if (i == accounts.size() - 1) {
+                delete(true, accounts.get(i));
+            } else {
+                delete(false, accounts.get(i));
             }
         }
     }
 
-    public void delete(boolean isTrue,GameAccount account) {
+    public void delete(boolean isTrue, GameAccount account) {
         if (account != null) {
-            if(isTrue){
-                view.resultDelete(true,"已完成");
-            }
             account.delete(new UpdateListener() {
                 @Override
                 public void done(BmobException e) {
                     if (e == null) {
-                        //Log.i("bmob", "成功");
-
-
+                        if (isTrue) {
+                            view.resultDelete(true, "已完成");
+                        }
                     } else {
                         view.resultDelete(false, account.getAccountNumber() + "删除失败：" + e.getMessage());
-                        Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                     }
                 }
             });

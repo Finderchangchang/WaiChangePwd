@@ -36,7 +36,7 @@ public class GameAccount extends BmobObject {
         this.state = state;
     }
 
-    public boolean isCheced = false;
+    public Boolean isCheced = false;
 
     public String getOpenId() {
         return OpenId;
@@ -190,5 +190,11 @@ public class GameAccount extends BmobObject {
         AccountNumber = accountNumber;
     }
 
+    public Boolean getCheced() {
+        return isCheced;
+    }
 
+    public void setCheced(Boolean checed) {
+        isCheced = checed;
+    }
 }

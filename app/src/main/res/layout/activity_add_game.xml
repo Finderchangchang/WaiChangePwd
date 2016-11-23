@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/title_iv_left"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
             android:src="@mipmap/left_back_write" />
 
@@ -151,7 +151,7 @@
                     <EditText
                         android:id="@+id/vip_et"
                         android:layout_width="160dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:background="@mipmap/add_game_tv1"
                         android:inputType="number"
                         android:padding="5dp" />
@@ -176,7 +176,7 @@
                     <EditText
                         android:id="@+id/game_name_et"
                         android:layout_width="160dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
@@ -201,7 +201,7 @@
                     <EditText
                         android:id="@+id/pt_et"
                         android:layout_width="160dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:background="@mipmap/add_game_tv1"
                         android:inputType="number"
                         android:maxLines="1"
@@ -228,7 +228,7 @@
                     <EditText
                         android:id="@+id/jiuji_et"
                         android:layout_width="160dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:background="@mipmap/add_game_tv1"
                         android:inputType="number"
                         android:maxLines="1"
@@ -248,7 +248,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="225dp"
+                android:layout_height="230dp"
                 android:background="@mipmap/add_game2"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -270,7 +270,7 @@
                     <EditText
                         android:id="@+id/hd_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -288,7 +288,7 @@
                     <EditText
                         android:id="@+id/qt_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -306,7 +306,7 @@
                     <EditText
                         android:id="@+id/by_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -324,7 +324,7 @@
                     <EditText
                         android:id="@+id/hjj_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -351,7 +351,7 @@
                     <EditText
                         android:id="@+id/bj_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -369,7 +369,7 @@
                     <EditText
                         android:id="@+id/hj_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -387,7 +387,7 @@
                     <EditText
                         android:id="@+id/sd_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -405,7 +405,7 @@
                     <EditText
                         android:id="@+id/kb_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -431,25 +431,7 @@
                     <EditText
                         android:id="@+id/cl_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_weight="1"
-                        android:background="@mipmap/add_game_tv1"
-                        android:maxLines="1"
-                        android:minLines="1"
-                        android:padding="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="冰冻"
-                        android:textColor="@color/colorwrite"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/bd_et"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -467,9 +449,9 @@
                     <EditText
                         android:id="@+id/zs_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
@@ -494,7 +476,7 @@
                     <EditText
                         android:id="@+id/cz_et"
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
