@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/title_iv_left"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:src="@mipmap/left_back_write" />
 
@@ -40,49 +40,96 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_marginTop="-10dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/yz_ll"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="已租"
-                    android:textColor="@color/colorwrite"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="未租"
-                    android:textColor="@color/colorwrite"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    <CheckBox
+                        android:id="@+id/yz_cb"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/check_box_style"
+                        android:button="@null"
+                        android:checked="true"
+                        android:clickable="false" />
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="已租"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/wz_ll"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="续租"
-                    android:textColor="@color/colorwrite"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/wz_cb"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/check_box_style"
+                        android:button="@null"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="未租"
+                        android:textColor="#00FF00"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/xz_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/xz_cb"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/check_box_style"
+                        android:button="@null"
+                        android:clickable="false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="续租"
+                        android:textColor="#708090"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="210dp"
                 android:background="@mipmap/add_game1"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -102,12 +149,11 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/et_game_vip"
+                        android:id="@+id/vip_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/add_game_tv1"
-                        android:maxLines="1"
-                        android:minLines="1"
+                        android:inputType="number"
                         android:padding="5dp" />
 
                 </LinearLayout>
@@ -117,7 +163,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,9 +174,9 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/et_game_name"
+                        android:id="@+id/game_name_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
@@ -152,10 +199,11 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/et_game_pao"
+                        android:id="@+id/pt_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/add_game_tv1"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:minLines="1"
                         android:padding="5dp" />
@@ -167,7 +215,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -177,10 +226,11 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/et_game_jiuji"
+                        android:id="@+id/jiuji_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/add_game_tv1"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:minLines="1"
                         android:padding="5dp" />
@@ -198,7 +248,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="310dp"
+                android:layout_height="225dp"
                 android:background="@mipmap/add_game2"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -220,7 +270,7 @@
                     <EditText
                         android:id="@+id/hd_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -238,7 +288,7 @@
                     <EditText
                         android:id="@+id/qt_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -256,7 +306,7 @@
                     <EditText
                         android:id="@+id/by_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -274,7 +324,7 @@
                     <EditText
                         android:id="@+id/hjj_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -288,7 +338,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -300,7 +351,7 @@
                     <EditText
                         android:id="@+id/bj_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -318,7 +369,7 @@
                     <EditText
                         android:id="@+id/hj_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -336,7 +387,7 @@
                     <EditText
                         android:id="@+id/sd_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -354,7 +405,7 @@
                     <EditText
                         android:id="@+id/kb_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -380,7 +431,7 @@
                     <EditText
                         android:id="@+id/cl_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -398,7 +449,7 @@
                     <EditText
                         android:id="@+id/bd_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -416,7 +467,7 @@
                     <EditText
                         android:id="@+id/zs_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -430,7 +481,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:paddingLeft="10dp"
+                    android:paddingRight="50dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -442,7 +494,7 @@
                     <EditText
                         android:id="@+id/cz_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -454,6 +506,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="**以上不能为空**"
                     android:textColor="@color/colorwrite"
@@ -461,9 +514,9 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_game_save"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:id="@+id/save_btn"
+                android:layout_width="90dp"
+                android:layout_height="38dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@mipmap/reg_btn"

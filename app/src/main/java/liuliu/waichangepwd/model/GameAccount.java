@@ -11,6 +11,7 @@ public class GameAccount extends BmobObject {
     private String password;//密码
     private String AccountNumber;//游戏账号
     private String OpenId;//绑定OPENID
+    private String state;//状态
     private Integer VipGrade;//vip等级
     private Integer AmountCharge;//充值金额
     private Integer BatteryGrade;//炮台等级
@@ -24,8 +25,16 @@ public class GameAccount extends BmobObject {
     private Integer MaterialScience;//材料
     private Integer Platinum;//白金
     private Integer Rage;//狂暴
-    private Integer ReliefFund;//救济金
+    private String ReliefFund;//救济金
     private Integer Silver;//白银
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public boolean isCheced = false;
 
@@ -141,11 +150,11 @@ public class GameAccount extends BmobObject {
         Rage = rage;
     }
 
-    public Integer getReliefFund() {
+    public String getReliefFund() {
         return ReliefFund;
     }
 
-    public void setReliefFund(Integer reliefFund) {
+    public void setReliefFund(String reliefFund) {
         ReliefFund = reliefFund;
     }
 

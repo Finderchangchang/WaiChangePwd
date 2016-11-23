@@ -3,7 +3,6 @@ package liuliu.waichangepwd.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SmsMessage;
@@ -24,8 +23,6 @@ import liuliu.waichangepwd.method.HttpUtil;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.model.OrderModel;
-import liuliu.waichangepwd.ui.MainActivity;
-import liuliu.waichangepwd.ui.ManageListActivity;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
