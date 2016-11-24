@@ -60,14 +60,14 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     EditText sd_et;//救济金
     @CodeNote(id = R.id.kb_et)
     EditText kb_et;//救济金
-    @CodeNote(id = R.id.cl_et)
-    EditText cl_et;//救济金
     @CodeNote(id = R.id.zs_et)
     EditText zs_et;//救济金
     @CodeNote(id = R.id.cz_et)
     EditText cz_et;//救济金
     private AddGameListener listener;
     private String phone = "";
+    @CodeNote(id = R.id.remark_et)
+    EditText remark_et;
 
     @Override
     public void initViews() {
@@ -121,9 +121,9 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setHorn(getIntger(hj_et));
                 gameAccount.setLocking(getIntger(sd_et));
                 gameAccount.setRage(getIntger(kb_et));
-                gameAccount.setMaterialScience(getIntger(cl_et));
                 gameAccount.setAmountCharge(getIntger(cz_et));
                 gameAccount.setDiamondes(getIntger(zs_et));
+                gameAccount.setRemark(remark_et.getText().toString().trim());
                 listener.addGame(gameAccount);
             }
         });

@@ -3,7 +3,6 @@ package liuliu.waichangepwd.ui;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.service.SendCodeService;
 import liuliu.waichangepwd.service.SmsReciver;
 import liuliu.waichangepwd.view.ManagerListView;
-import liuliu.waichangepwd.view.MyDialog;
 
 /**
  * Created by Administrator on 2016/11/16.
@@ -84,7 +82,6 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         mAdapter = new CommonAdapter<GameAccount>(this, mList, R.layout.item_game_name) {
             @Override
             public void convert(CommonViewHolder holder, GameAccount gameAccount, int position) {
-                holder.setText(R.id.item_position_tv, position + 1);
                 holder.setText(R.id.nick_name_tv, gameAccount.getAccountNumber());
                 if (!("").equals(gameAccount.getPassword()) && gameAccount.getPassword() != null) {
                     holder.setText(R.id.pwd_tv, gameAccount.getPassword());
@@ -93,10 +90,12 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                     holder.setText(R.id.pwd_tv, "无");
                     holder.setText(R.id.pwd_change_tv, "密码未修改过");
                 }
+                holder.setText(R.id.pao_tv, gameAccount.getBatteryGrade() + "炮");
+                holder.setText(R.id.jj_tv, gameAccount.getReliefFund() + "万");
                 if (gameAccount.isCheced) {
-                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
+                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_normal);
                 } else {
-                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
+                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_normal);
                 }
                 holder.setOnClickListener(R.id.item_game_ivCheck,
                         v -> {

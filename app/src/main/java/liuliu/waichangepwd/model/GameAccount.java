@@ -22,11 +22,19 @@ public class GameAccount extends BmobObject {
     private Integer Gold;//黄金
     private Integer Horn;//号角
     private Integer Locking;//锁定
-    private Integer MaterialScience;//材料
     private Integer Platinum;//白金
     private Integer Rage;//狂暴
     private String ReliefFund;//救济金
     private Integer Silver;//白银
+    private String remark;//备注
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public String getState() {
         return state;
@@ -124,14 +132,6 @@ public class GameAccount extends BmobObject {
 
     public void setLocking(Integer locking) {
         Locking = locking;
-    }
-
-    public Integer getMaterialScience() {
-        return MaterialScience;
-    }
-
-    public void setMaterialScience(Integer materialScience) {
-        MaterialScience = materialScience;
     }
 
     public Integer getPlatinum() {

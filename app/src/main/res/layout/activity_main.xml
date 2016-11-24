@@ -66,21 +66,22 @@
             <ImageView
                 android:id="@+id/left_iv"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp"
-
-                android:src="@mipmap/main_dai" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1.25"
+                android:background="@mipmap/main_dai" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="match_parent"
                 android:layout_alignLeft="@+id/left_iv"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_weight="3"
                 android:background="@mipmap/tag_bg">
 
                 <TextView
@@ -88,10 +89,10 @@
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:paddingBottom="5dp"
                     android:text="绑定微信"
                     android:textColor="#fff"
                     android:textSize="20sp"
-                    android:paddingBottom="5dp"
                     android:textStyle="bold"></TextView>
 
                 <LinearLayout
@@ -115,6 +116,8 @@
                             android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             android:layout_marginLeft="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
                             android:src="@mipmap/tel_bg" />
 
                         <TextView
@@ -123,6 +126,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
                             android:text="添加手机号码"
+                            android:textSize="12sp"
                             android:textColor="#fff" />
                     </LinearLayout>
 
@@ -140,6 +144,8 @@
                             android:layout_height="30dp"
                             android:layout_marginBottom="2dp"
                             android:layout_marginLeft="5dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
                             android:src="@mipmap/tel_bg" />
 
                         <TextView
@@ -147,13 +153,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
+                            android:textSize="12sp"
                             android:text="添加手机号码"
                             android:textColor="#fff" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="40dp"
+                    android:layout_width="43dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
