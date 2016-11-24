@@ -82,18 +82,50 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         mAdapter = new CommonAdapter<GameAccount>(this, mList, R.layout.item_game_name) {
             @Override
             public void convert(CommonViewHolder holder, GameAccount gameAccount, int position) {
-                holder.setText(R.id.nick_name_tv, gameAccount.getAccountNumber());
-                if (!("").equals(gameAccount.getPassword()) && gameAccount.getPassword() != null) {
-                    holder.setText(R.id.pwd_tv, gameAccount.getPassword());
-                    holder.setText(R.id.pwd_change_tv, "上次修改时间：" + gameAccount.getUpdatedAt());
-                } else {
-                    holder.setText(R.id.pwd_tv, "无");
-                    holder.setText(R.id.pwd_change_tv, "密码未修改过");
+                if(gameAccount.getAccountNumber().length()>=4){
+                    holder.setText(R.id.item_name, gameAccount.getAccountNumber().substring(0,4)+"..");
+                }else {
+                    holder.setText(R.id.item_name, gameAccount.getAccountNumber());
                 }
-                holder.setText(R.id.pao_tv, gameAccount.getBatteryGrade() + "炮");
-                holder.setText(R.id.jj_tv, gameAccount.getReliefFund() + "万");
+                if (!("").equals(gameAccount.getPassword()) && gameAccount.getPassword() != null) {
+                    holder.setText(R.id.item_pwd, gameAccount.getPassword());
+                } else {
+                    holder.setText(R.id.item_pwd, "无");
+
+                }
+                holder.setOnClickListener(R.id.ll_item_first, v -> {
+                    holder.setVisible(R.id.item_iv_open,false);
+                    holder.setVisible(R.id.item_ll_open,true);
+                });
+                holder.setOnClickListener(R.id.item_ll_open, v -> {
+                    holder.setVisible(R.id.item_iv_open,true);
+                    holder.setVisible(R.id.item_ll_open,false);
+                });
+                holder.setText(R.id.item_battery, gameAccount.getBatteryGrade()+"炮");
+                holder.setText(R.id.item_relief, "材料 "+gameAccount.getReliefFund());
+                holder.setText(R.id.item_amount,"充值 "+gameAccount.getAmountCharge());
+                holder.setText(R.id.item_bomb,"核弹 "+gameAccount.getBomb());
+                holder.setText(R.id.item_bronze,"核弹 "+gameAccount.getBronze());
+
+                holder.setText(R.id.item_change_time,"改:"+gameAccount.getUpdatedAt().substring(5,7)+"日"+gameAccount.getUpdatedAt().substring(8,10)+"时");
+
+                holder.setText(R.id.item_time,"定:--日--时");
+
+                holder.setText(R.id.item_diamonds,"钻石 "+gameAccount.getDiamonds());
+                holder.setText(R.id.item_gold,"黄金 "+gameAccount.getGold());
+                holder.setText(R.id.item_horn,"号角 "+gameAccount.getHorn());
+                holder.setText(R.id.item_lock,"锁定 "+gameAccount.getLocking());
+                holder.setText(R.id.item_jiu,"黄金 "+gameAccount.getReliefFund());
+                //holder.setText(R.id.item_vip,"黄金 "+gameAccount.getReliefFund());
+                holder.setText(R.id.item_platinum,"白金 "+gameAccount.getPlatinum());
+                holder.setText(R.id.item_silver,"白银 "+gameAccount.getSilver());
+                if(gameAccount.getRemark()==null){
+                    holder.setText(R.id.item_rember,"备: 无");
+                }else {
+                    holder.setText(R.id.item_rember, "备: " + gameAccount.getRemark());
+                }
                 if (gameAccount.isCheced) {
-                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_normal);
+                    holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_click);
                 } else {
                     holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_normal);
                 }
@@ -102,12 +134,12 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                             if (gameAccount.isCheced) {
                                 gameAccount.isCheced = false;
                                 checkList.remove(gameAccount);
-                                holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check);
+                                holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_normal);
                             } else {
                                 gameAccount.setOpenId(open_id);
                                 checkList.add(gameAccount);
                                 gameAccount.isCheced = true;
-                                holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.check_normal);
+                                holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_click);
                             }
                         });
             }

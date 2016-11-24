@@ -122,7 +122,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setLocking(getIntger(sd_et));
                 gameAccount.setRage(getIntger(kb_et));
                 gameAccount.setAmountCharge(getIntger(cz_et));
-                gameAccount.setDiamondes(getIntger(zs_et));
+                gameAccount.setDiamonds(getIntger(zs_et));
                 gameAccount.setRemark(remark_et.getText().toString().trim());
                 listener.addGame(gameAccount);
             }

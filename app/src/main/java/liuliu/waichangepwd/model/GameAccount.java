@@ -1,12 +1,14 @@
 package liuliu.waichangepwd.model;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
  * Created by Administrator on 2016/11/16.
  */
 
-public class GameAccount extends BmobObject {
+public class GameAccount extends BmobObject implements Serializable{
     private String phone;//手机号
     private String password;//密码
     private String AccountNumber;//游戏账号
@@ -17,7 +19,7 @@ public class GameAccount extends BmobObject {
     private Integer BatteryGrade;//炮台等级
     private Integer Bomb;//核弹
     private Integer Bronze;//青铜
-    private Integer Diamondes;//钻石
+    private Integer Diamonds;//钻石
     private Integer Frozen;//冰冻
     private Integer Gold;//黄金
     private Integer Horn;//号角
@@ -94,12 +96,12 @@ public class GameAccount extends BmobObject {
         Bronze = bronze;
     }
 
-    public Integer getDiamondes() {
-        return Diamondes;
+    public Integer getDiamonds() {
+        return Diamonds;
     }
 
-    public void setDiamondes(Integer diamondes) {
-        Diamondes = diamondes;
+    public void setDiamonds(Integer Diamonds) {
+        Diamonds = Diamonds;
     }
 
     public Integer getFrozen() {
