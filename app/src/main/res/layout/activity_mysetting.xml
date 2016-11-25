@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorhui"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@mipmap/help_bg"
+              android:orientation="vertical">
 
-    <include layout="@layout/activity_title" />
+    <include layout="@layout/activity_title"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,14 +17,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="显示设置"
-            android:textSize="18dp" />
+            android:text="账号充值"
+            android:textSize="18dp"/>
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/right_jian" />
+            android:src="@mipmap/right_jian"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -39,34 +39,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="修改密码"
-            android:textSize="18dp" />
+            android:textSize="18dp"/>
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/right_jian" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorwrite"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="安全码"
-            android:textSize="18dp" />
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/right_jian" />
+            android:src="@mipmap/right_jian"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -81,13 +60,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="分享软件"
-            android:textSize="18dp" />
+            android:textSize="18dp"/>
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/right_jian" />
+            android:src="@mipmap/right_jian"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -101,35 +80,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="问题反馈"
-            android:textSize="18dp" />
+            android:text="退出"
+            android:textSize="18dp"/>
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/right_jian" />
+            android:src="@mipmap/right_jian"/>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorwrite"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="关于我们"
-            android:textSize="18dp" />
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/right_jian" />
-    </RelativeLayout>
-
 </LinearLayout>

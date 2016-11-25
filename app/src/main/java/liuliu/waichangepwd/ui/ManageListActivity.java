@@ -187,9 +187,16 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                 ToastShort("当前任务已存在，请等待任务完成以后再操作~~");
             } else {
                 if (checkList.size() > 0) {
-                    BaseApplication.setmOrder(checkList);
-                    registerReceiver(mSmsReceiver, intentFilter);
-                    startService(intent);
+                    android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+                    builder.setTitle("提示");
+                    builder.setMessage("确定要修改当前选中的游戏账号吗？");
+                    builder.setPositiveButton("取消", null);
+                    builder.setNegativeButton("确定", (dialog, which) -> {
+                        BaseApplication.setmOrder(checkList);
+                        registerReceiver(mSmsReceiver, intentFilter);
+                        startService(intent);
+                    });
+                    builder.show();
                 } else {
                     ToastShort("请至少选择一个游戏账号进行修改~~");
                 }

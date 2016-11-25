@@ -55,60 +55,61 @@ public class SmsReciver extends BroadcastReceiver {
                         map.put("identityCard", "");//空
                         map.put("bindPhone", list.getPhone());
                         map.put("messageCode", m.group());
-                        HttpUtil.load().changePwd(map)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(model -> {
-                                    boolean result;
-                                    if (("s").equals(model.getRet()) || ("S").equals(model.getRet())) {
-                                        result = true;
-                                        Intent intents = new Intent();
-                                        intents.setAction("action.refreshFriend");//通知更新ui
-                                        BaseApplication.getContext().sendBroadcast(intents);
-                                        //扣钱
-                                        GameAccount game = new GameAccount();
-                                        game.setPassword(pwd);//修改数据库密码
-                                        game.setState("未租");
-                                        game.update(list.getObjectId(), new UpdateListener() {
+                        new Handler().postDelayed(() -> {
+                            HttpUtil.load().changePwd(map)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(model -> {
+                                        boolean result;
+                                        if (("s").equals(model.getRet()) || ("S").equals(model.getRet())) {
+                                            result = true;
+                                            Intent intents = new Intent();
+                                            intents.setAction("action.refreshFriend");//通知更新ui
+                                            BaseApplication.getContext().sendBroadcast(intents);
+                                            //扣钱
+                                            GameAccount game = new GameAccount();
+                                            game.setPassword(pwd);//修改数据库密码
+                                            game.setState("未租");
+                                            game.update(list.getObjectId(), new UpdateListener() {
+                                                @Override
+                                                public void done(BmobException e) {
+                                                    //修改成功。
+                                                }
+                                            });
+                                        } else {
+                                            result = false;
+                                            Toast.makeText(BaseApplication.getContext(), model.getMsg(), Toast.LENGTH_SHORT).show();
+                                        }
+                                        //在数据库存订单
+                                        OrderModel order = new OrderModel();
+                                        order.setState(result);
+                                        order.setGameid(list);
+                                        order.save(new SaveListener<String>() {
                                             @Override
-                                            public void done(BmobException e) {
-                                                //修改成功。
+                                            public void done(String s, BmobException e) {
+                                                if (e == null) {
+
+                                                } else {
+
+                                                }
                                             }
                                         });
-                                    } else {
-                                        result = false;
-                                        Toast.makeText(BaseApplication.getContext(), model.getMsg(), Toast.LENGTH_SHORT).show();
-                                    }
-                                    //在数据库存订单
-                                    OrderModel order = new OrderModel();
-                                    order.setState(result);
-                                    order.setGameid(list);
-                                    order.save(new SaveListener<String>() {
-                                        @Override
-                                        public void done(String s, BmobException e) {
-                                            if (e == null) {
-
-                                            } else {
-
-                                            }
+                                        List<GameAccount> lists = BaseApplication.getmOrder();
+                                        lists.remove(0);//移除第一个
+                                        BaseApplication.setmOrder(lists);
+                                        if (BaseApplication.getmOrder().size() > 0) {
+                                            new Handler().postDelayed(() -> {
+                                                Intent intents = new Intent(BaseApplication.getContext(), SendCodeService.class);
+                                                intents.setAction(SendCodeService.ACTION);
+                                                BaseApplication.getContext().startService(intents);
+                                            }, 3000);
+                                        } else {
+                                            BaseApplication.getContext().unregisterReceiver(this);//关闭当前接受短信服务
                                         }
+                                    }, error -> {
+                                        String s = "";
                                     });
-                                    List<GameAccount> lists = BaseApplication.getmOrder();
-                                    lists.remove(0);//移除第一个
-                                    BaseApplication.setmOrder(lists);
-                                    if (BaseApplication.getmOrder().size() > 0) {
-                                        new Handler().postDelayed(() -> {
-                                            Intent intents = new Intent(BaseApplication.getContext(), SendCodeService.class);
-                                            intents.setAction(SendCodeService.ACTION);
-                                            BaseApplication.getContext().startService(intents);
-                                        }, 3000);
-                                    } else {
-                                        BaseApplication.getContext().unregisterReceiver(this);//关闭当前接受短信服务
-                                    }
-//                                    BaseApplication.getContext().startService(intent);
-                                }, error -> {
-                                    String s = "";
-                                });
+                        }, 3000);
                     }
                 }
             }

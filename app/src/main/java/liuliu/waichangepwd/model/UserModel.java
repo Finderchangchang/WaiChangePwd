@@ -9,14 +9,14 @@ import cn.bmob.v3.BmobObject;
 public class UserModel extends BmobObject {
     private String username;
     private String password;
-    private String myMoney;
+    private Integer yue;
 
-    public String getMyMoney() {
-        return myMoney;
+    public Integer getYue() {
+        return yue;
     }
 
-    public void setMyMoney(String myMoney) {
-        this.myMoney = myMoney;
+    public void setYue(Integer yue) {
+        this.yue = yue;
     }
 
     public String getUsername() {

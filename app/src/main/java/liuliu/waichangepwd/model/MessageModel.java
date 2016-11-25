@@ -14,6 +14,24 @@ public class MessageModel {
     private String msg;
     private String type;
     private String ret;
+    private String ifTw;
+    private int phoneState;
+
+    public String getIfTw() {
+        return ifTw;
+    }
+
+    public void setIfTw(String ifTw) {
+        this.ifTw = ifTw;
+    }
+
+    public int getPhoneState() {
+        return phoneState;
+    }
+
+    public void setPhoneState(int phoneState) {
+        this.phoneState = phoneState;
+    }
 
     public String getMsg() {
         return msg;

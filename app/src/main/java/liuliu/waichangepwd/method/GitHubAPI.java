@@ -12,6 +12,11 @@ import rx.Observable;
  */
 
 public interface GitHubAPI {
+    @GET("safety.findp.html")
+    Observable<String> openPwd();
+    @GET("checkBindPhone.do")
+    Observable<MessageModel> checkName(@QueryMap Map<String, String> map);
+
     /*
      *  发送短信操作
      */

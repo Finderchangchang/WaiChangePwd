@@ -3,6 +3,7 @@ package liuliu.waichangepwd.service;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Toast;
 
@@ -43,14 +44,34 @@ public class SendCodeService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         intentFilter = new IntentFilter();
         intentFilter.addAction("sms_received");
-        sendCode();//请求验证码
+        GameAccount game = BaseApplication.getmOrder().get(0);//获得当前最新的一个账号名
+        HttpUtil.load().openPwd()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(str -> {
+                }, error -> {
+                    new Handler().postDelayed(() -> {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("nickName", game.getAccountNumber());
+                        map.put("type", "findp");
+                        HttpUtil.load().checkName(map)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(model -> {
+                                    if (("S").equals(model.getRet())) {//判断昵称
+                                        new Handler().postDelayed(() -> {
+                                            sendCode(game);
+                                        }, 2000);
+                                    }
+                                });
+                    }, 3000);
+                });
         return super.onStartCommand(intent, flags, startId);
     }
 
     IntentFilter intentFilter;
 
-    private void sendCode() {
-        GameAccount game = BaseApplication.getmOrder().get(0);//获得当前最新的一个账号名
+    private void sendCode(GameAccount game) {
         Map<String, String> map = new HashMap<>();
         map.put("type", "findp");//ovPbFs9GEQidN3Wod-vQjNOawHxU
         map.put("nickName", game.getAccountNumber());
