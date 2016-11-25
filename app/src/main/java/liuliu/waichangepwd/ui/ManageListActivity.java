@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -82,9 +81,9 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         mAdapter = new CommonAdapter<GameAccount>(this, mList, R.layout.item_game_name) {
             @Override
             public void convert(CommonViewHolder holder, GameAccount gameAccount, int position) {
-                if(gameAccount.getAccountNumber().length()>=4){
-                    holder.setText(R.id.item_name, gameAccount.getAccountNumber().substring(0,4)+"..");
-                }else {
+                if (gameAccount.getAccountNumber().length() >= 4) {
+                    holder.setText(R.id.item_name, gameAccount.getAccountNumber().substring(0, 4) + "..");
+                } else {
                     holder.setText(R.id.item_name, gameAccount.getAccountNumber());
                 }
                 if (!("").equals(gameAccount.getPassword()) && gameAccount.getPassword() != null) {
@@ -94,34 +93,34 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
 
                 }
                 holder.setOnClickListener(R.id.ll_item_first, v -> {
-                    holder.setVisible(R.id.item_iv_open,false);
-                    holder.setVisible(R.id.item_ll_open,true);
+                    holder.setVisible(R.id.item_iv_open, false);
+                    holder.setVisible(R.id.item_ll_open, true);
                 });
                 holder.setOnClickListener(R.id.item_ll_open, v -> {
-                    holder.setVisible(R.id.item_iv_open,true);
-                    holder.setVisible(R.id.item_ll_open,false);
+                    holder.setVisible(R.id.item_iv_open, true);
+                    holder.setVisible(R.id.item_ll_open, false);
                 });
-                holder.setText(R.id.item_battery, gameAccount.getBatteryGrade()+"炮");
-                holder.setText(R.id.item_relief, "材料 "+gameAccount.getReliefFund());
-                holder.setText(R.id.item_amount,"充值 "+gameAccount.getAmountCharge());
-                holder.setText(R.id.item_bomb,"核弹 "+gameAccount.getBomb());
-                holder.setText(R.id.item_bronze,"核弹 "+gameAccount.getBronze());
+                holder.setText(R.id.item_battery, gameAccount.getBatteryGrade() + "炮");
+                holder.setText(R.id.item_relief, "材料 " + gameAccount.getReliefFund());
+                holder.setText(R.id.item_amount, "充值 " + gameAccount.getAmountCharge());
+                holder.setText(R.id.item_bomb, "核弹 " + gameAccount.getBomb());
+                holder.setText(R.id.item_bronze, "核弹 " + gameAccount.getBronze());
 
-                holder.setText(R.id.item_change_time,"改:"+gameAccount.getUpdatedAt().substring(5,7)+"日"+gameAccount.getUpdatedAt().substring(8,10)+"时");
+                holder.setText(R.id.item_change_time, "改:" + gameAccount.getUpdatedAt().substring(5, 7) + "日" + gameAccount.getUpdatedAt().substring(8, 10) + "时");
 
-                holder.setText(R.id.item_time,"定:--日--时");
+                holder.setText(R.id.item_time, "定:--日--时");
 
-                holder.setText(R.id.item_diamonds,"钻石 "+gameAccount.getDiamonds());
-                holder.setText(R.id.item_gold,"黄金 "+gameAccount.getGold());
-                holder.setText(R.id.item_horn,"号角 "+gameAccount.getHorn());
-                holder.setText(R.id.item_lock,"锁定 "+gameAccount.getLocking());
-                holder.setText(R.id.item_jiu,"黄金 "+gameAccount.getReliefFund());
+                holder.setText(R.id.item_diamonds, "钻石 " + gameAccount.getDiamonds());
+                holder.setText(R.id.item_gold, "黄金 " + gameAccount.getGold());
+                holder.setText(R.id.item_horn, "号角 " + gameAccount.getHorn());
+                holder.setText(R.id.item_lock, "锁定 " + gameAccount.getLocking());
+                holder.setText(R.id.item_jiu, "黄金 " + gameAccount.getReliefFund());
                 //holder.setText(R.id.item_vip,"黄金 "+gameAccount.getReliefFund());
-                holder.setText(R.id.item_platinum,"白金 "+gameAccount.getPlatinum());
-                holder.setText(R.id.item_silver,"白银 "+gameAccount.getSilver());
-                if(gameAccount.getRemark()==null){
-                    holder.setText(R.id.item_rember,"备: 无");
-                }else {
+                holder.setText(R.id.item_platinum, "白金 " + gameAccount.getPlatinum());
+                holder.setText(R.id.item_silver, "白银 " + gameAccount.getSilver());
+                if (gameAccount.getRemark() == null) {
+                    holder.setText(R.id.item_rember, "备: 无");
+                } else {
                     holder.setText(R.id.item_rember, "备: " + gameAccount.getRemark());
                 }
                 if (gameAccount.isCheced) {
@@ -146,25 +145,28 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         };
         list_lv.setAdapter(mAdapter);
         //注册广播接收器
-//        receiver = new MyReceiver();
-//        IntentFilter filter = new IntentFilter();
-//        filter.addAction("com.ljq.activity.CountService");
-//        ManageListActivity.this.registerReceiver(receiver, filter);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("action.refreshFriend");
+        registerReceiver(mRefreshBroadcastReceiver, intentFilter);
+        IntentFilter intentFilters = new IntentFilter();
+        intentFilters.addAction("sms_received");
     }
 
-    private MyReceiver receiver = null;
+    private BroadcastReceiver mRefreshBroadcastReceiver = new BroadcastReceiver() {
 
-    /**
-     * 获取广播数据
-     *
-     * @author jiqinlin
-     */
-    public class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Bundle bundle = intent.getExtras();
-            int count = bundle.getInt("count");
+            String action = intent.getAction();
+            if (action.equals("action.refreshFriend")) {
+                load();
+            }
         }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mRefreshBroadcastReceiver);
     }
 
     @Override

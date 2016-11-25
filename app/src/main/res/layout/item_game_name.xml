@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="10dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -16,68 +16,68 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="10dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:layout_marginTop="-10dp"
                 android:background="@mipmap/item_title"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginTop="-10dp">
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/item_vip"
                     android:layout_width="37dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:src="@mipmap/vip_0" />
+                    android:src="@mipmap/vip_0"/>
 
                 <TextView
                     android:id="@+id/item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="百世快递" />
+                    android:text="百世快递"/>
 
                 <TextView
                     android:id="@+id/item_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:text="" />
+                    android:text=""/>
 
                 <TextView
                     android:id="@+id/item_battery"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
-                    android:text="炮" />
+                    android:layout_weight="1"
+                    android:text="炮"/>
 
                 <TextView
                     android:id="@+id/item_jiu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
-                    android:text="200万" />
+                    android:layout_weight="1"
+                    android:text="200万"/>
+
                 <TextView
                     android:id="@+id/item_jiu2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="无" />
+                    android:text="无"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_item_first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:id="@+id/ll_item_first">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/item_change_time"
@@ -87,7 +87,7 @@
                     android:gravity="center_vertical"
                     android:text="改:11日20时"
                     android:textColor="@color/colorhei"
-                    android:textSize="10dp" />
+                    android:textSize="10dp"/>
 
                 <TextView
                     android:id="@+id/item_time"
@@ -97,7 +97,7 @@
                     android:gravity="center_vertical"
                     android:text="定:11日20时"
                     android:textColor="@color/colorhei"
-                    android:textSize="10dp" />
+                    android:textSize="10dp"/>
 
                 <TextView
                     android:id="@+id/item_rember"
@@ -108,13 +108,13 @@
                     android:gravity="center_vertical"
                     android:text="备:1.35亿 12日收"
                     android:textColor="@color/colorhei"
-                    android:textSize="10dp" />
+                    android:textSize="10dp"/>
 
                 <ImageView
                     android:id="@+id/item_iv_open"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@mipmap/item_down" />
+                    android:src="@mipmap/item_down"/>
 
                 <ImageView
                     android:id="@+id/item_game_ivCheck"
@@ -122,16 +122,16 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="15dp"
                     android:padding="10dp"
-                    android:src="@mipmap/cb_normal" />
+                    android:src="@mipmap/cb_normal"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/item_ll_open"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:id="@+id/item_ll_open"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:text="核弹 244"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_bronze"
@@ -154,7 +154,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="青铜 224"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_silver"
@@ -163,7 +163,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="白银 224"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_gold"
@@ -172,7 +172,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="黄金 234"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_platinum"
@@ -181,7 +181,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="白金 2234"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_amount"
@@ -190,15 +190,15 @@
                         android:layout_marginLeft="10dp"
                         android:text="充值 224"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -207,7 +207,7 @@
                         android:layout_height="wrap_content"
                         android:text="号角 244"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_lock"
@@ -216,7 +216,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="锁定 224"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_rage"
@@ -225,7 +225,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="狂暴 224"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_relief"
@@ -234,7 +234,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="材料 234"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/item_diamonds"
@@ -243,14 +243,14 @@
                         android:layout_marginLeft="10dp"
                         android:text="钻石 2234"
                         android:textColor="@color/colorhei"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"/>
 
                     <ImageView
                         android:id="@+id/item_iv_opens"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:src="@mipmap/item_up" />
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/item_up"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -267,42 +267,42 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
             </LinearLayout>
 
             <LinearLayout
@@ -317,42 +317,42 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="青铜" />
+                    android:text="青铜"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

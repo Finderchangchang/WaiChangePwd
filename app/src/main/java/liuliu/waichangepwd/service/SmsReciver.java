@@ -34,7 +34,6 @@ public class SmsReciver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         Bundle bundle = intent.getExtras();
         SmsMessage msg = null;
         if (null != bundle) {
@@ -63,12 +62,17 @@ public class SmsReciver extends BroadcastReceiver {
                                     boolean result;
                                     if (("s").equals(model.getRet()) || ("S").equals(model.getRet())) {
                                         result = true;
+                                        Intent intents = new Intent();
+                                        intents.setAction("action.refreshFriend");//通知更新ui
+                                        BaseApplication.getContext().sendBroadcast(intents);
+                                        //扣钱
                                         GameAccount game = new GameAccount();
                                         game.setPassword(pwd);//修改数据库密码
+                                        game.setState("未租");
                                         game.update(list.getObjectId(), new UpdateListener() {
                                             @Override
                                             public void done(BmobException e) {
-
+                                                //修改成功。
                                             }
                                         });
                                     } else {
@@ -103,7 +107,7 @@ public class SmsReciver extends BroadcastReceiver {
                                     }
 //                                    BaseApplication.getContext().startService(intent);
                                 }, error -> {
-                                    String s="";
+                                    String s = "";
                                 });
                     }
                 }

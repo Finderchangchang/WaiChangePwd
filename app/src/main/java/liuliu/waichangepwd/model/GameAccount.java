@@ -8,7 +8,7 @@ import cn.bmob.v3.BmobObject;
  * Created by Administrator on 2016/11/16.
  */
 
-public class GameAccount extends BmobObject implements Serializable{
+public class GameAccount extends BmobObject implements Serializable {
     private String phone;//手机号
     private String password;//密码
     private String AccountNumber;//游戏账号
@@ -100,8 +100,8 @@ public class GameAccount extends BmobObject implements Serializable{
         return Diamonds;
     }
 
-    public void setDiamonds(Integer Diamonds) {
-        Diamonds = Diamonds;
+    public void setDiamonds(Integer diamonds) {
+        Diamonds = diamonds;
     }
 
     public Integer getFrozen() {
