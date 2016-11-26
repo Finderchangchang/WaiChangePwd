@@ -9,13 +9,22 @@ import cn.bmob.v3.BmobObject;
 public class UserModel extends BmobObject {
     private String username;
     private String password;
-    private Integer yue;
+    private Double yue;
+    private Boolean isShare;
 
-    public Integer getYue() {
+    public Boolean getShare() {
+        return isShare;
+    }
+
+    public void setShare(Boolean share) {
+        isShare = share;
+    }
+
+    public Double getYue() {
         return yue;
     }
 
-    public void setYue(Integer yue) {
+    public void setYue(Double yue) {
         this.yue = yue;
     }
 

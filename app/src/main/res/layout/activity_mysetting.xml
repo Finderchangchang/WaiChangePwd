@@ -8,6 +8,7 @@
     <include layout="@layout/activity_title"/>
 
     <RelativeLayout
+        android:id="@+id/pay_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorwrite"
@@ -28,6 +29,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/update_pwd_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -49,6 +51,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/share_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -70,6 +73,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/exit_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

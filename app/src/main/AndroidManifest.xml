@@ -62,7 +62,9 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".wxapi.WXEntryActivity"/>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"/>
         <activity
             android:name=".ui.SettingActivity"
             android:screenOrientation="portrait"/>
