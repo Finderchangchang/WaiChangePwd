@@ -1,6 +1,9 @@
 package liuliu.waichangepwd.model;
 
+import java.util.Date;
+
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobDate;
 
 /**
  * Created by Administrator on 2016/11/8.
@@ -11,6 +14,15 @@ public class UserModel extends BmobObject {
     private String password;
     private Double yue;
     private Boolean isShare;
+    private String shareTime;
+
+    public String getShareTime() {
+        return shareTime;
+    }
+
+    public void setShareTime(String shareTime) {
+        this.shareTime = shareTime;
+    }
 
     public Boolean getShare() {
         return isShare;

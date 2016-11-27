@@ -15,7 +15,9 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import liuliu.waichangepwd.base.BaseApplication;
@@ -23,6 +25,7 @@ import liuliu.waichangepwd.method.HttpUtil;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.model.OrderModel;
+import liuliu.waichangepwd.model.UserModel;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -66,7 +69,7 @@ public class SmsReciver extends BroadcastReceiver {
                                             Intent intents = new Intent();
                                             intents.setAction("action.refreshFriend");//通知更新ui
                                             BaseApplication.getContext().sendBroadcast(intents);
-                                            //扣钱
+                                            load();
                                             GameAccount game = new GameAccount();
                                             game.setPassword(pwd);//修改数据库密码
                                             game.setState("未租");
@@ -87,11 +90,7 @@ public class SmsReciver extends BroadcastReceiver {
                                         order.save(new SaveListener<String>() {
                                             @Override
                                             public void done(String s, BmobException e) {
-                                                if (e == null) {
 
-                                                } else {
-
-                                                }
                                             }
                                         });
                                         List<GameAccount> lists = BaseApplication.getmOrder();
@@ -107,13 +106,33 @@ public class SmsReciver extends BroadcastReceiver {
                                             BaseApplication.getContext().unregisterReceiver(this);//关闭当前接受短信服务
                                         }
                                     }, error -> {
-                                        String s = "";
+
                                     });
                         }, 3000);
                     }
                 }
             }
         }
+    }
+
+    private void load() {
+        BmobQuery<UserModel> query = new BmobQuery<>();
+        query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
+            @Override
+            public void done(UserModel userModel, BmobException e) {
+                if (e == null) {
+                    userModel.setYue(userModel.getYue() - 0.5);
+                    userModel.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e != null) {
+                                Toast.makeText(BaseApplication.getContext(), "扣费失败~~", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     public static String getPwd() {

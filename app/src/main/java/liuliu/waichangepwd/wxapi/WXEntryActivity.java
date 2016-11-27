@@ -46,8 +46,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
                 BmobQuery<UserModel> query = new BmobQuery<>();
-                String key = Utils.getCache("key");
-                int i = 0;
                 query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
                     @Override
                     public void done(UserModel userModel, BmobException e) {
@@ -56,7 +54,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                             int lastShare;
                             boolean result = false;
                             try {
-                                Date d = new SimpleDateFormat("yyyy-MM-dd").parse(userModel.getUpdatedAt());
+                                Date d = new SimpleDateFormat("yyyy-MM-dd").parse(userModel.getShareTime());
                                 lastShare = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(d));
                                 if (now == lastShare) {
                                     if (!userModel.getShare()) {
@@ -68,6 +66,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                             }
                             if (result) {
                                 userModel.setShare(true);
+                                userModel.setShareTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
                                 userModel.update(userModel.getObjectId(), new UpdateListener() {
                                     @Override
                                     public void done(BmobException e) {

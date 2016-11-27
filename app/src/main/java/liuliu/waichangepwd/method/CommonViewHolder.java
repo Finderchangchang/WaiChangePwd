@@ -171,6 +171,12 @@ public class CommonViewHolder {
         return this;
     }
 
+    public CommonViewHolder setBG(int viewId, int drawableId) {
+        View view = getView(viewId);
+        view.setBackgroundResource(drawableId);
+        return this;
+    }
+
     /**
      * 为ImageView设置图片
      *

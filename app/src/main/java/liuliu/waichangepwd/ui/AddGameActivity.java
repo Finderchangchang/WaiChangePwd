@@ -75,6 +75,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         gameAccount = new GameAccount();
         listener = new AddGameListener(this);
         phone = getIntent().getStringExtra("PhoneNumber");
+        gameAccount = (GameAccount) getIntent().getSerializableExtra("id");
     }
 
     @Override

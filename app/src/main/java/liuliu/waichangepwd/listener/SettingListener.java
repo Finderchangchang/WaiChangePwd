@@ -135,6 +135,21 @@ public class SettingListener implements ISettingMView {
         }
     }
 
+    @Override
+    public void loadYE() {
+        BmobQuery<UserModel> query = new BmobQuery<>();
+        query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
+            @Override
+            public void done(UserModel userModel, BmobException e) {
+                if (e == null) {
+                    mView.yueResult(userModel.getYue().toString());
+                } else {
+                    mView.yueResult("0");
+                }
+            }
+        });
+    }
+
     private void wechatShare(int flag) {
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = "www.dakedaojia.com";
@@ -156,8 +171,6 @@ public class SettingListener implements ISettingMView {
     void installBmobPayPlugin(String fileName) {
         try {
             InputStream is = mContext.getAssets().open(fileName);
-            String name = Environment.getExternalStorageDirectory()
-                    + File.separator + fileName + ".apk";
             File file = new File(Environment.getExternalStorageDirectory()
                     + File.separator + fileName + ".apk");
             if (file.exists())
@@ -189,4 +202,6 @@ interface ISettingMView {
     void loadShare();//调起分享
 
     void loadPay(double money);//调起支付
+
+    void loadYE();//加载余额
 }

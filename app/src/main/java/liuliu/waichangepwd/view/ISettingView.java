@@ -6,4 +6,6 @@ package liuliu.waichangepwd.view;
 
 public interface ISettingView {
     void payResult(boolean result);//支付结果
+
+    void yueResult(String yue);//余额显示
 }

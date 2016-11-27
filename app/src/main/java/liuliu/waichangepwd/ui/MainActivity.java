@@ -67,7 +67,6 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     }
 
 
-
     @Override
     public void initEvents() {
         myDialog = new MyDialog(this);
@@ -167,6 +166,12 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                 String s = "";
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        loadData();
+        super.onRestart();
     }
 
     @Override
