@@ -10,7 +10,7 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class GameAccount extends BmobObject implements Serializable {
-    private String phone;//手机号
+    private PhoneNumberManager phoneId;
     private String password;//密码
     private String AccountNumber;//游戏账号
     private String state;//状态
@@ -56,6 +56,13 @@ public class GameAccount extends BmobObject implements Serializable {
 
     public Boolean isCheced = false;
 
+    public PhoneNumberManager getPhoneId() {
+        return phoneId;
+    }
+
+    public void setPhoneId(PhoneNumberManager phoneId) {
+        this.phoneId = phoneId;
+    }
 
     public Integer getVipGrade() {
         return VipGrade;
@@ -104,7 +111,6 @@ public class GameAccount extends BmobObject implements Serializable {
     public void setDiamonds(Integer diamonds) {
         Diamonds = diamonds;
     }
-
 
 
     public Integer getGold() {
@@ -163,13 +169,6 @@ public class GameAccount extends BmobObject implements Serializable {
         Silver = silver;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getPassword() {
         return password;

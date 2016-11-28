@@ -12,8 +12,15 @@ public class OpenIdModel extends BmobObject {
 
     private String userid;
     private String openid;
+    private String tel;
 
+    public String getTel() {
+        return tel;
+    }
 
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
     public String getUserid() {
         return userid;

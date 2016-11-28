@@ -34,9 +34,10 @@ import rx.schedulers.Schedulers;
  */
 
 public class SmsReciver extends BroadcastReceiver {
-
+    public static SmsReciver mIntail;
     @Override
     public void onReceive(Context context, Intent intent) {
+        mIntail=this;
         Bundle bundle = intent.getExtras();
         SmsMessage msg = null;
         if (null != bundle) {
@@ -54,9 +55,9 @@ public class SmsReciver extends BroadcastReceiver {
                         map.put("nickName", list.getAccountNumber());//昵称
                         map.put("password", Utils.MD5(pwd));
                         map.put("confirmPassword", Utils.MD5(pwd));
-                        //map.put("openid", list.getOpenId());
+                        map.put("openid", list.getPhoneId().getOpenid());
                         map.put("identityCard", "");//空
-                        map.put("bindPhone", list.getPhone());
+                        map.put("bindPhone", list.getPhoneId().getPhonenumber());
                         map.put("messageCode", m.group());
                         new Handler().postDelayed(() -> {
                             HttpUtil.load().changePwd(map)

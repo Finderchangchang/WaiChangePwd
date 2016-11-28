@@ -18,10 +18,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
 import liuliu.waichangepwd.listener.AddGameListener;
 import liuliu.waichangepwd.model.GameAccount;
+import liuliu.waichangepwd.model.PhoneNumberManager;
 import liuliu.waichangepwd.view.AddGameView;
 
 /**
@@ -111,12 +115,12 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             cz_et.setText(gameAccount.getAmountCharge().toString());
             by_et.setText(gameAccount.getSilver().toString());
             //if(gameAccount.getRenew()!=null) {
-                //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                renew_et.setText(gameAccount.getRenew());
+            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            renew_et.setText(gameAccount.getRenew());
             //}
             remark_et.setText(gameAccount.getRemark());
-        }else{
-            gameAccount=new GameAccount();
+        } else {
+            gameAccount = new GameAccount();
         }
 
         yz_ll.setOnClickListener(v -> {
@@ -152,7 +156,9 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setAccountNumber(game_name_et.getText().toString().trim());
                 gameAccount.setBatteryGrade(getIntger(pt_et));
                 gameAccount.setReliefFund(jiuji_et.getText().toString());
-                gameAccount.setPhone(phone);
+                PhoneNumberManager manager = new PhoneNumberManager();
+                manager.setObjectId(phone);
+                gameAccount.setPhoneId(manager);
                 gameAccount.setBomb(getIntger(hd_et));
                 gameAccount.setBronze(getIntger(qt_et));
                 gameAccount.setSilver(getIntger(by_et));
@@ -166,7 +172,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setRemark(remark_et.getText().toString().trim());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
-                    gameAccount.setRenew(renew_et.getText().toString());
+                gameAccount.setRenew(renew_et.getText().toString());
 
                 listener.addGame(gameAccount);
             }

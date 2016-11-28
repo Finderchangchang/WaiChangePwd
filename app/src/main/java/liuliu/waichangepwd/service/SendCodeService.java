@@ -62,7 +62,17 @@ public class SendCodeService extends Service {
                                         new Handler().postDelayed(() -> {
                                             sendCode(game);
                                         }, 2000);
+                                    } else {
+                                        Toast.makeText(this, "昵称不存在", Toast.LENGTH_SHORT).show();
+                                        List<GameAccount> lists = BaseApplication.getmOrder();
+                                        lists.remove(0);//移除第一个
+                                        BaseApplication.setmOrder(lists);
+                                        Intent intents = new Intent();
+                                        intents.setAction("action.refreshFriend");//通知更新ui
+                                        BaseApplication.getContext().sendBroadcast(intents);
                                     }
+                                }, errors -> {
+                                    Toast.makeText(this, errors.toString(), Toast.LENGTH_SHORT).show();
                                 });
                     }, 3000);
                 });
@@ -75,8 +85,8 @@ public class SendCodeService extends Service {
         Map<String, String> map = new HashMap<>();
         map.put("type", "findp");//ovPbFs9GEQidN3Wod-vQjNOawHxU
         map.put("nickName", game.getAccountNumber());
-        //map.put("openid", game.getOpenId());
-        map.put("bindPhone", game.getPhone());
+        map.put("openid", game.getPhoneId().getOpenid());
+        map.put("bindPhone", game.getPhoneId().getPhonenumber());
         if (Utils.isNetworkConnected()) {
             HttpUtil.load()
                     .sendMsg(map)

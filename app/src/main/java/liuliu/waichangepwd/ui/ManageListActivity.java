@@ -405,7 +405,8 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
 
     private void load(String order) {
         BmobQuery<GameAccount> query = new BmobQuery<>();
-        query.addWhereEqualTo("phone", tel);
+        query.addWhereEqualTo("phoneId", tel);
+        query.include("phoneId");
         if (!("").equals(order)) {
             query.order(order);
         }

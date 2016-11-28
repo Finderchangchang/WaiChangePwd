@@ -64,8 +64,10 @@ public class MainActivity extends BaseActivity implements getOpenidView {
     LinearLayout add_tel2_ll;
     @CodeNote(id = R.id.title_help)
     ImageView title_help;
-    @CodeNote(id=R.id.title_iv_left)ImageView title_iv_left;
-    @CodeNote(id=R.id.top_tb)RelativeLayout top_tb;
+    @CodeNote(id = R.id.title_iv_left)
+    ImageView title_iv_left;
+    @CodeNote(id = R.id.top_tb)
+    RelativeLayout top_tb;
     private getOpenIDListener loadlistener;
     private OpenIdModel openIdModel;
     private List<PhoneNumberManager> phoneList;
@@ -87,39 +89,39 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         loadData();
         add_tel1_ll.setOnClickListener(v -> {
             if (add_tel1_tv.getText().toString().equals("添加手机号码")) {
-                ToastShort("请先绑定手机号");
+                myDialog.setMiddleVal("");
             } else {
                 myDialog.setMiddleVal(add_tel1_tv.getText().toString());
-                myDialog.setOnPositiveListener(v1 -> {
-                    if (phoneList.size() > 1) {
-                        loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
-                    } else {
-                        loadlistener.addPhone(1, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
-                    }
-                });
-                myDialog.show();
-
             }
+            myDialog.setOnPositiveListener(v1 -> {
+                if (phoneList.size() > 1) {
+                    loadlistener.addPhone(1, myDialog.getMiddleVal(), "", phoneList.get(0).getObjectId());
+                } else {
+                    loadlistener.addPhone(1, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
+                }
+            });
+            myDialog.show();
         });
         add_tel2_ll.setOnClickListener(v -> {
             if (add_tel2_tv.getText().toString().equals("添加手机号码")) {
-                ToastShort("请先绑定手机号");
+                myDialog.setMiddleVal("");
             } else {
                 myDialog.setMiddleVal(add_tel2_tv.getText().toString());
-                myDialog.setOnPositiveListener(v1 -> {
-                    if (phoneList.size() > 1) {
-                        loadlistener.addPhone(2, myDialog.getMiddleVal(), "", phoneList.get(1).getObjectId());
-                    } else {
-                        loadlistener.addPhone(2, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
-                    }
-                });
-                myDialog.show();
+
             }
+            myDialog.setOnPositiveListener(v1 -> {
+                if (phoneList.size() > 1) {
+                    loadlistener.addPhone(2, myDialog.getMiddleVal(), "", phoneList.get(1).getObjectId());
+                } else {
+                    loadlistener.addPhone(2, myDialog.getMiddleVal(), openIdModel.getOpenid(), "");
+                }
+            });
+            myDialog.show();
         });
         add_tel1_btn.setOnClickListener(v -> {//第一个手机号管理
             if (!add_tel1_tv.getText().toString().equals("添加手机号码")) {
                 Intent intent = new Intent(MainActivity.this, ManageListActivity.class);
-                intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel1_tv.getText().toString().trim());
+                intent.putExtra(ConfigModel.KEY_Now_Tel, phoneList.get(0).getObjectId());
                 intent.putExtra(ConfigModel.KEY_OpenId, openIdModel.getOpenid());
                 startActivity(intent);
             }
@@ -257,6 +259,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             ToastShort(mes);
         }
     }
+
     private void showPopupWindow(View view) {
 
         // 一个自定义的布局，作为显示的内容
