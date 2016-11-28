@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@mipmap/help_bg"
-              android:orientation="vertical">
+            >
 
-    <include layout="@layout/activity_title"/>
+    <RelativeLayout
+        android:id="@+id/top_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorhei"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/title_iv_left"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/title_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="账号管理"
+            android:textColor="@color/colorwrite"
+            android:textSize="20dp" />
+
+
+    </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_yue"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
+        android:layout_below="@+id/top_tb"
         android:orientation="horizontal">
 
         <TextView
@@ -37,6 +66,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_chongzhi"
+        android:layout_below="@+id/ll_yue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -73,6 +104,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:layout_below="@+id/ll_chongzhi"
         android:id="@+id/update_pwd_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,9 +125,31 @@
             android:layout_alignParentRight="true"
             android:src="@mipmap/right_jian"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/setting_help"
+        android:layout_below="@+id/update_pwd_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorwrite"
+        android:padding="10dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="帮助"
+            android:textSize="18dp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/right_jian"/>
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/share_rl"
+        android:layout_below="@+id/setting_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -118,6 +172,7 @@
 
     <RelativeLayout
         android:id="@+id/exit_rl"
+        android:layout_below="@+id/share_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -137,4 +192,42 @@
             android:layout_alignParentRight="true"
             android:src="@mipmap/right_jian"/>
     </RelativeLayout>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rl_bottem"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/user_id_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号：656*****56"
+            android:textColor="@color/colorwrite"/>
+
+        <TextView
+            android:id="@+id/bottom_yue_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/main_user_name"
+            android:layout_weight="1"
+            android:text="余额：265"
+            android:textColor="@color/colorwrite"/>
+
+        <ImageView
+            android:id="@+id/setting_iv"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:src="@mipmap/login_bottem"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -24,6 +24,8 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import net.tsz.afinal.annotation.view.CodeNote;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +91,16 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     TextView jj_tv;
     @CodeNote(id = R.id.qx_tv)
     TextView qx_tv;
+    @CodeNote(id = R.id.user_id_tv)
+    TextView user_id_tv;
+    @CodeNote(id = R.id.yue_tv)
+    TextView yue_tv;
+    @CodeNote(id = R.id.title_help)
+    ImageView title_help;
+    @CodeNote(id = R.id.title_iv_left)
+    ImageView title_iv_left;
+    @CodeNote(id=R.id.rl_bottem)LinearLayout rl_bottem;
+    private Boolean isCheckAll = true;
 
     @Override
     public void initViews() {
@@ -203,7 +215,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                                 checkList.remove(gameAccount);
                                 holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_normal);
                             } else {
-                                gameAccount.setOpenId(open_id);
+                                //gameAccount.setOpenId(open_id);
                                 checkList.add(gameAccount);
                                 gameAccount.isCheced = true;
                                 holder.setImageResource(R.id.item_game_ivCheck, R.mipmap.cb_click);
@@ -213,21 +225,16 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         };
         list_lv.setAdapter(mAdapter);
         list_lv.setOnItemLongClickListener((parent, view, position, id) -> {
-            Utils.IntentPost(AddGameActivity.class, listener -> {
-                listener.putExtra("id", mList.get(position));
-            });
+            // Utils.IntentPost(AddGameActivity.class, listener -> {
+            //    listener.putExtra("id",mList.get(position));
+            //startActivityForResult
+            // });
+            Intent intent = new Intent(ManageListActivity.this, AddGameActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("id", mList.get(position));
+            intent.putExtras(bundle);
+            startActivityForResult(intent, 11);
             return false;
-        });
-        list_lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ManageListActivity.this, AddGameActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("GAMEMODEL", mList.get(position));
-                intent.putExtras(bundle);
-                startActivityForResult(intent, 11);
-                return false;
-            }
         });
         //注册广播接收器
         IntentFilter intentFilter = new IntentFilter();
@@ -304,10 +311,10 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         });
 
         share_tv.setOnClickListener(v -> {//分享
-            if (BaseApplication.getmOrder().size() > 0) {
+            if (checkList.size() > 0) {
                 wechatShare(0);
             } else {
-                ToastShort("请至少选择一个游戏账号进行修改~~");
+                ToastShort("请选择一个游戏账号进行分享~~");
             }
         });
         tvDelete.setOnClickListener(v -> {
@@ -327,11 +334,51 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         qx_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < mList.size(); i++) {
-                    mList.get(i).setCheced(true);
-                    checkList.add(mList.get(i));
+                if (isCheckAll) {
+                    isCheckAll = false;
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setCheced(true);
+                        checkList.add(mList.get(i));
+                    }
+                } else {
+                    for (int i = 0; i < mList.size(); i++) {
+                        mList.get(i).setCheced(false);
+                        checkList.add(mList.get(i));
+                    }
+                    isCheckAll = true;
                 }
-              mAdapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+        title_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManageListActivity.this, HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+        title_iv_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        rl_bottem.setOnClickListener(v -> {
+            Intent intents = new Intent(ManageListActivity.this, SettingActivity.class);
+            startActivity(intents);
+        });
+        loadBase();
+    }
+
+    private void loadBase() {
+        BmobQuery<UserModel> query = new BmobQuery<UserModel>();
+        query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
+            @Override
+            public void done(UserModel userModel, BmobException e) {
+                if (userModel != null) {
+                    user_id_tv.setText("账号：" + userModel.getUsername());
+                    yue_tv.setText("余额：" + userModel.getYue());
+                }
             }
         });
     }

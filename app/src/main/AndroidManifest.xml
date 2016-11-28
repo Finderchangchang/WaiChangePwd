@@ -36,9 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.HelpActivity">
-
-        </activity>
         <activity
             android:name=".ui.RegUserActivity"
             android:screenOrientation="portrait"
@@ -68,7 +65,10 @@
         <activity
             android:name=".ui.SettingActivity"
             android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".ui.HelpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.UpdatePassWordActivity" android:screenOrientation="portrait"/>
         <service android:name=".service.SendCodeService">
             <intent-filter>
                 <action android:name="liuliu.service.SendCodeService"/>

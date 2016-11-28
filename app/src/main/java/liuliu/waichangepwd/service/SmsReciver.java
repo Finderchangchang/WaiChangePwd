@@ -54,7 +54,7 @@ public class SmsReciver extends BroadcastReceiver {
                         map.put("nickName", list.getAccountNumber());//昵称
                         map.put("password", Utils.MD5(pwd));
                         map.put("confirmPassword", Utils.MD5(pwd));
-                        map.put("openid", list.getOpenId());
+                        //map.put("openid", list.getOpenId());
                         map.put("identityCard", "");//空
                         map.put("bindPhone", list.getPhone());
                         map.put("messageCode", m.group());

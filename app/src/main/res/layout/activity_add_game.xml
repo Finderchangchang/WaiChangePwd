@@ -248,7 +248,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="300dp"
                 android:background="@mipmap/add_game2"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -464,6 +464,34 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
+                    android:paddingRight="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="到期时间"
+                        android:textColor="@color/colorwrite"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/renew_et"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/add_game_tv1"
+                        android:maxLines="1"
+                        android:hint="年/月/日（2016/02/20）"
+                        android:minLines="1"
+                        android:padding="5dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:paddingRight="30dp">
 
                     <TextView

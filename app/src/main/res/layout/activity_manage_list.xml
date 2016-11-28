@@ -27,6 +27,13 @@
             android:text="账号管理"
             android:textColor="@color/colorwrite"
             android:textSize="20dp"/>
+
+        <ImageView
+            android:id="@+id/title_help"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/title_wen" />
     </RelativeLayout>
 
     <LinearLayout
@@ -73,6 +80,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/top_tb"
+        android:layout_above="@+id/rl_bottem"
         android:background="@mipmap/help_bg">
 
         <RelativeLayout

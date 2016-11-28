@@ -1,12 +1,22 @@
 package liuliu.waichangepwd.ui;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TimePicker;
 
 import net.tsz.afinal.annotation.view.CodeNote;
+import net.tsz.afinal.view.DatePickerDialog;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
@@ -67,6 +77,8 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     private String phone = "";
     @CodeNote(id = R.id.remark_et)
     EditText remark_et;
+    @CodeNote(id = R.id.renew_et)
+    EditText renew_et;
     private GameAccount gameAccount;
 
     @Override
@@ -75,11 +87,38 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         gameAccount = new GameAccount();
         listener = new AddGameListener(this);
         phone = getIntent().getStringExtra("PhoneNumber");
-        gameAccount = (GameAccount) getIntent().getSerializableExtra("GAMEMODEL");
+        gameAccount = (GameAccount) getIntent().getSerializableExtra("id");
     }
 
     @Override
     public void initEvents() {
+
+        if (gameAccount != null) {
+            //String vip=gameAccount.getVipGrade();
+
+            vip_et.setText(gameAccount.getVipGrade().toString());
+            game_name_et.setText(gameAccount.getAccountNumber());
+            pt_et.setText(gameAccount.getBatteryGrade().toString());
+            jiuji_et.setText(gameAccount.getReliefFund().toString());
+            hd_et.setText(gameAccount.getBomb().toString());
+            qt_et.setText(gameAccount.getBronze().toString());
+            hjj_et.setText(gameAccount.getGold().toString());
+            bj_et.setText(gameAccount.getPlatinum().toString());
+            hj_et.setText(gameAccount.getHorn().toString());
+            sd_et.setText(gameAccount.getLocking().toString());
+            kb_et.setText(gameAccount.getRage().toString());
+            zs_et.setText(gameAccount.getDiamonds().toString());
+            cz_et.setText(gameAccount.getAmountCharge().toString());
+            by_et.setText(gameAccount.getSilver().toString());
+            //if(gameAccount.getRenew()!=null) {
+                //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                renew_et.setText(gameAccount.getRenew());
+            //}
+            remark_et.setText(gameAccount.getRemark());
+        }else{
+            gameAccount=new GameAccount();
+        }
+
         yz_ll.setOnClickListener(v -> {
             clearCB();
             yz_cb.setChecked(true);
@@ -125,6 +164,10 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setAmountCharge(getIntger(cz_et));
                 gameAccount.setDiamonds(getIntger(zs_et));
                 gameAccount.setRemark(remark_et.getText().toString().trim());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+                    gameAccount.setRenew(renew_et.getText().toString());
+
                 listener.addGame(gameAccount);
             }
         });

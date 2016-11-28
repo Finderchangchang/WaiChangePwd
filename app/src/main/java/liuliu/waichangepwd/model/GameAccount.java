@@ -1,6 +1,7 @@
 package liuliu.waichangepwd.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import cn.bmob.v3.BmobObject;
 
@@ -12,7 +13,6 @@ public class GameAccount extends BmobObject implements Serializable {
     private String phone;//手机号
     private String password;//密码
     private String AccountNumber;//游戏账号
-    private String OpenId;//绑定OPENID
     private String state;//状态
     private Integer VipGrade;//vip等级
     private Integer AmountCharge;//充值金额
@@ -20,7 +20,6 @@ public class GameAccount extends BmobObject implements Serializable {
     private Integer Bomb;//核弹
     private Integer Bronze;//青铜
     private Integer Diamonds;//钻石
-    private Integer Frozen;//冰冻
     private Integer Gold;//黄金
     private Integer Horn;//号角
     private Integer Locking;//锁定
@@ -29,6 +28,15 @@ public class GameAccount extends BmobObject implements Serializable {
     private String ReliefFund;//救济金
     private Integer Silver;//白银
     private String remark;//备注
+    private String renew;//到期时间
+
+    public String getRenew() {
+        return renew;
+    }
+
+    public void setRenew(String renew) {
+        this.renew = renew;
+    }
 
     public String getRemark() {
         return remark;
@@ -48,13 +56,6 @@ public class GameAccount extends BmobObject implements Serializable {
 
     public Boolean isCheced = false;
 
-    public String getOpenId() {
-        return OpenId;
-    }
-
-    public void setOpenId(String openId) {
-        OpenId = openId;
-    }
 
     public Integer getVipGrade() {
         return VipGrade;
@@ -104,13 +105,7 @@ public class GameAccount extends BmobObject implements Serializable {
         Diamonds = diamonds;
     }
 
-    public Integer getFrozen() {
-        return Frozen;
-    }
 
-    public void setFrozen(Integer frozen) {
-        Frozen = frozen;
-    }
 
     public Integer getGold() {
         return Gold;

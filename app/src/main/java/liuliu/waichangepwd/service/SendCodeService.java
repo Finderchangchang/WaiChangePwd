@@ -75,7 +75,7 @@ public class SendCodeService extends Service {
         Map<String, String> map = new HashMap<>();
         map.put("type", "findp");//ovPbFs9GEQidN3Wod-vQjNOawHxU
         map.put("nickName", game.getAccountNumber());
-        map.put("openid", game.getOpenId());
+        //map.put("openid", game.getOpenId());
         map.put("bindPhone", game.getPhone());
         if (Utils.isNetworkConnected()) {
             HttpUtil.load()

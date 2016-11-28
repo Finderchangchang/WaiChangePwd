@@ -1,8 +1,15 @@
 package liuliu.waichangepwd.ui;
 
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import net.tsz.afinal.annotation.view.CodeNote;
 
@@ -24,7 +31,9 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     private LoginListener mListener;
     @CodeNote(id = R.id.login_btn)
     ImageView login_btn;
-
+    @CodeNote(id=R.id.title_iv_left)ImageView title_iv_left;
+    @CodeNote(id=R.id.title_help)ImageView title_help;
+@CodeNote(id=R.id.top_tb)RelativeLayout top_tb;
     @Override
     public void initViews() {
         setContentView(R.layout.activity_login);
@@ -39,6 +48,19 @@ public class LoginActivity extends BaseActivity implements ILoginView {
             Utils.IntentPost(MainActivity.class);
             finish();
         }
+        title_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow(top_tb);
+            }
+        });
+        title_iv_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
     }
 
     /**
@@ -65,6 +87,40 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         } else {
             ToastShort("账号或密码错误，请重新输入~~");
         }
+    }
+    private void showPopupWindow(View view) {
+
+        // 一个自定义的布局，作为显示的内容
+        View contentView = LayoutInflater.from(this).inflate(
+                R.layout.pop_window, null);
+        // 设置按钮的点击事件
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        popupWindow.setTouchable(true);
+
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                Log.i("mengdd", "onTouch : ");
+
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
+        // 我觉得这里是API的一个bug
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(
+                R.mipmap.openid_layout));
+
+        // 设置好参数之后再show
+        popupWindow.showAsDropDown(view);
+
     }
 }
 

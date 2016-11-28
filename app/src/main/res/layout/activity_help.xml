@@ -30,12 +30,6 @@
             android:textColor="@color/colorwrite"
             android:textSize="20dp" />
 
-        <ImageView
-            android:id="@+id/title_help"
-            android:layout_width="30dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/title_wen" />
     </RelativeLayout>
 
     <ScrollView
