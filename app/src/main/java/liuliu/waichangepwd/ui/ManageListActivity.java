@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -213,9 +214,20 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         list_lv.setAdapter(mAdapter);
         list_lv.setOnItemLongClickListener((parent, view, position, id) -> {
             Utils.IntentPost(AddGameActivity.class, listener -> {
-                listener.putExtra("id",mList.get(position));
+                listener.putExtra("id", mList.get(position));
             });
             return false;
+        });
+        list_lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ManageListActivity.this, AddGameActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("GAMEMODEL", mList.get(position));
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 11);
+                return false;
+            }
         });
         //注册广播接收器
         IntentFilter intentFilter = new IntentFilter();
@@ -312,6 +324,16 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                 ToastShort("请选择要删除的信息");
             }
         });
+        qx_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < mList.size(); i++) {
+                    mList.get(i).setCheced(true);
+                    checkList.add(mList.get(i));
+                }
+              mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private IWXAPI api;
@@ -347,7 +369,9 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                 if (list != null) {
                     if (list.size() > 0) {
                         is_null = false;
-                        mAdapter.refresh(list);
+                        mList.removeAll(mList);
+                        mList.addAll(list);
+                        mAdapter.notifyDataSetChanged();
                     } else {
                         is_null = true;
                     }

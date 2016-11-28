@@ -41,7 +41,6 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     private EditText game_name_et;
     @CodeNote(id = R.id.save_btn)
     private Button save_btn;
-    GameAccount gameAccount;
     @CodeNote(id = R.id.title_iv_left)
     ImageView titleLift;
     @CodeNote(id = R.id.hd_et)
@@ -68,6 +67,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     private String phone = "";
     @CodeNote(id = R.id.remark_et)
     EditText remark_et;
+    private GameAccount gameAccount;
 
     @Override
     public void initViews() {
@@ -75,7 +75,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         gameAccount = new GameAccount();
         listener = new AddGameListener(this);
         phone = getIntent().getStringExtra("PhoneNumber");
-        gameAccount = (GameAccount) getIntent().getSerializableExtra("id");
+        gameAccount = (GameAccount) getIntent().getSerializableExtra("GAMEMODEL");
     }
 
     @Override
