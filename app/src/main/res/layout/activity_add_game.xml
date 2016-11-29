@@ -129,7 +129,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="280dp"
                 android:background="@mipmap/add_game1"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -151,7 +151,7 @@
                     <EditText
                         android:id="@+id/vip_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:background="@mipmap/add_game_tv1"
                         android:inputType="number"
                         android:padding="5dp" />
@@ -176,7 +176,7 @@
                     <EditText
                         android:id="@+id/game_name_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
@@ -201,7 +201,7 @@
                     <EditText
                         android:id="@+id/pt_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:background="@mipmap/add_game_tv1"
                         android:inputType="number"
                         android:maxLines="1"
@@ -228,7 +228,7 @@
                     <EditText
                         android:id="@+id/jiuji_et"
                         android:layout_width="160dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:background="@mipmap/add_game_tv1"
                         android:inputType="number"
                         android:maxLines="1"
@@ -248,7 +248,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="400dp"
                 android:background="@mipmap/add_game2"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -258,7 +258,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -270,12 +271,14 @@
                     <EditText
                         android:id="@+id/hd_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
 
                     <TextView
@@ -288,12 +291,14 @@
                     <EditText
                         android:id="@+id/qt_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
 
                     <TextView
@@ -306,12 +311,14 @@
                     <EditText
                         android:id="@+id/by_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
 
                     <TextView
@@ -324,12 +331,14 @@
                     <EditText
                         android:id="@+id/hjj_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
                 </LinearLayout>
 
@@ -351,12 +360,14 @@
                     <EditText
                         android:id="@+id/bj_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
 
                     <TextView
@@ -369,12 +380,14 @@
                     <EditText
                         android:id="@+id/hj_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
 
                     <TextView
@@ -387,12 +400,14 @@
                     <EditText
                         android:id="@+id/sd_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
 
                     <TextView
@@ -405,12 +420,14 @@
                     <EditText
                         android:id="@+id/kb_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789"
+                        android:inputType="number"
                         android:padding="5dp" />
                 </LinearLayout>
 
@@ -431,13 +448,15 @@
                     <EditText
                         android:id="@+id/zs_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
-                        android:padding="5dp" />
+                        android:padding="5dp"
+                        android:inputType="number"
+                        android:digits="0123456789"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -449,12 +468,14 @@
                     <EditText
                         android:id="@+id/cz_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
                         android:minLines="1"
+                        android:digits="0123456789."
+                        android:inputType="number"
                         android:padding="5dp" />
                 </LinearLayout>
 
@@ -476,7 +497,7 @@
                     <EditText
                         android:id="@+id/renew_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -504,7 +525,7 @@
                     <EditText
                         android:id="@+id/remark_et"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
@@ -529,6 +550,7 @@
                 android:layout_height="38dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@mipmap/reg_btn"
                 android:text="保存"
                 android:textColor="@color/colorwrite" />

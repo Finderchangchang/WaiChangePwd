@@ -138,13 +138,14 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         add_tel2_btn.setOnClickListener(v -> {//第2个手机号管理
             if (!add_tel2_tv.getText().toString().equals("添加手机号码")) {
                 Intent intent = new Intent(MainActivity.this, ManageListActivity.class);
-                intent.putExtra(ConfigModel.KEY_Now_Tel, add_tel2_tv.getText().toString().trim());
+                intent.putExtra(ConfigModel.KEY_Now_Tel, phoneList.get(1).getObjectId());
                 intent.putExtra(ConfigModel.KEY_OpenId, openIdModel.getOpenid());
                 startActivity(intent);
             }
         });
         bd_openid1_iv.setOnClickListener(v -> {
             myDialog.setTitle("OPENID");
+            myDialog.setRLBG(true);
             //ovPbFs9GEQidN3Wod-vQjNOawHxU
             if (("").equals(openIdModel.getOpenid()) || openIdModel.getOpenid() == null) {
                 //myDialog.setMiddleVal(openIdModel.getOpenid());
@@ -259,12 +260,27 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         if (type == 1) {
             if (isTrue) {
                 add_tel1_tv.setText(myDialog.getMiddleVal());//输入的openid值
+                PhoneNumberManager manager=new PhoneNumberManager();
+                if(!mes.equals("")) {
+                manager.setObjectId(mes);
+                }
+                manager.setOpenid(openIdModel.getOpenid());
+                manager.setPhonenumber(myDialog.getMiddleVal());
+                phoneList.add(manager);
             } else {
                 ToastShort(mes);
             }
         } else {
             if (isTrue) {
                 add_tel2_tv.setText(myDialog.getMiddleVal());//输入的openid值
+
+                PhoneNumberManager manager=new PhoneNumberManager();
+                if(!mes.equals("")) {
+                    manager.setObjectId(mes);
+                }
+                manager.setOpenid(openIdModel.getOpenid());
+                manager.setPhonenumber(myDialog.getMiddleVal());
+                phoneList.add(manager);
             } else {
                 ToastShort(mes);
             }

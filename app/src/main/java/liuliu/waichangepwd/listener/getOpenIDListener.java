@@ -34,7 +34,7 @@ public class getOpenIDListener {
                 @Override
                 public void done(String s, BmobException e) {
                     if (e == null) {
-                        openView.addPhoneResult(type, true, "绑定手机号成功！");
+                        openView.addPhoneResult(type, true, s);
                     } else if (e.getMessage().contains("errorCode:100")) {
                         openView.addPhoneResult(type,false, "服务器维护中...");
                     }  else {
@@ -49,7 +49,7 @@ public class getOpenIDListener {
                 @Override
                 public void done(BmobException e) {
                     if (e == null) {
-                        openView.addPhoneResult(type, true, "重新绑定手机号成功！");
+                        openView.addPhoneResult(type, true, "");
                     } else if (e.getMessage().contains("errorCode:100")) {
                         openView.addPhoneResult(type,false, "服务器维护中...");
                     } else {

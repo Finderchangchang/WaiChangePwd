@@ -134,7 +134,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             xz_cb.setChecked(true);
         });
         save_btn.setOnClickListener(v -> {
-            String data="//d{2}///d{2}///d{2}";
+            String data="\\d{2}/\\d{2}/\\d{2}";
             if (("").equals(vip_et.getText().toString().trim())) {
                 ToastShort("vip等级不能为空");
             } else if (("").equals(game_name_et.getText().toString().trim())) {
@@ -143,7 +143,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 ToastShort("炮台等级不能为空");
             } else if (("").equals(jiuji_et.getText().toString().trim())) {
                 ToastShort("救济金不能为空");
-            }else if(renew_et.getText().toString().matches(data)){
+            }else if(!YANRIQI(renew_et.getText().toString().trim())){
                 ToastShort("请核对到期时间格式");
             } else {
                 if (yz_cb.isChecked()) {
@@ -157,9 +157,13 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setAccountNumber(game_name_et.getText().toString().trim());
                 gameAccount.setBatteryGrade(getIntger(pt_et));
                 gameAccount.setReliefFund(jiuji_et.getText().toString());
-                PhoneNumberManager manager = new PhoneNumberManager();
-                manager.setObjectId(phone);
-                gameAccount.setPhoneId(manager);
+                if(gameAccount.getPhoneId()==null) {
+                    PhoneNumberManager manager = new PhoneNumberManager();
+                    manager.setObjectId(phone);
+                    gameAccount.setPhoneId(manager);
+                }
+
+
                 gameAccount.setBomb(getIntger(hd_et));
                 gameAccount.setBronze(getIntger(qt_et));
                 gameAccount.setSilver(getIntger(by_et));
@@ -171,7 +175,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setAmountCharge(getIntger(cz_et));
                 gameAccount.setDiamonds(getIntger(zs_et));
                 gameAccount.setRemark(remark_et.getText().toString().trim());
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
 
                 gameAccount.setRenew(renew_et.getText().toString());
 
@@ -187,6 +191,21 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             return 0;
         } else {
             return Integer.parseInt(e);
+        }
+    }
+    private boolean YANRIQI(String data){
+        if(data.equals("")){
+            return true;
+        }else {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            try {
+                sdf.parse(data);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+
+            }
+            return true;
         }
     }
 
