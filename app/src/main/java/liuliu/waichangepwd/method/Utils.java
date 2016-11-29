@@ -57,7 +57,23 @@ public class Utils {
     public static Dialog setDialog(String cont, final setSure sure) {
         return setDialog("提示", cont, "确定", "取消", sure, null);
     }
+    public static boolean isPhoneNumberValid(String phoneNumber) {
+        boolean isValid = false;
+        CharSequence inputStr = phoneNumber;
+        //正则表达式
 
+        String phone="^1[34578]\\d{9}$" ;
+
+
+        Pattern pattern = Pattern.compile(phone);
+        Matcher matcher = pattern.matcher(inputStr);
+
+
+        if(matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
+    }
     public static Dialog setDialog(String title, String cont, String sure_str, String cancle_str, final setSure sure, final setCancle cancle) {
         AlertDialog.Builder localBuilder1 = new AlertDialog.Builder(BaseApplication.getContext())
                 .setTitle(title).setMessage(cont);

@@ -8,7 +8,6 @@
         android:id="@+id/top_tb"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-
         android:background="@color/colorhei"
         android:gravity="center_vertical"
         android:padding="10dp">
@@ -33,7 +32,7 @@
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/title_wen" />
+            android:src="@mipmap/title_wen"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -77,10 +76,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottem"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/top_tb"
-        android:layout_above="@+id/rl_bottem"
         android:background="@mipmap/help_bg">
 
         <RelativeLayout

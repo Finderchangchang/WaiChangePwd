@@ -35,6 +35,10 @@ public class getOpenIDListener {
                 public void done(String s, BmobException e) {
                     if (e == null) {
                         openView.addPhoneResult(type, true, "绑定手机号成功！");
+                    } else if (e.getMessage().contains("errorCode:100")) {
+                        openView.addPhoneResult(type,false, "服务器维护中...");
+                    } else if (e.getMessage().contains("errorCode:401")) {
+                        openView.addPhoneResult(type,false, "游戏账号已存在");
                     } else {
                         openView.addPhoneResult(type, false, "绑定手机号失败:" + e.getMessage());
                     }
@@ -42,11 +46,16 @@ public class getOpenIDListener {
             });
         } else {
             //修改
+            //phoneNumberManager.setOpenid(openid);
             phoneNumberManager.update(objectid, new UpdateListener() {
                 @Override
                 public void done(BmobException e) {
                     if (e == null) {
                         openView.addPhoneResult(type, true, "重新绑定手机号成功！");
+                    } else if (e.getMessage().contains("errorCode:100")) {
+                        openView.addPhoneResult(type,false, "服务器维护中...");
+                    } else if (e.getMessage().contains("errorCode:401")) {
+                        openView.addPhoneResult(type,false, "游戏账号已存在");
                     } else {
                         openView.addPhoneResult(type, false, "重新绑定手机号失败:" + e.getMessage());
                     }
@@ -66,7 +75,7 @@ public class getOpenIDListener {
                 @Override
                 public void done(String s, BmobException e) {
                     if (e == null) {
-                        openView.addOpenidResult(true, s+","+oid);
+                        openView.addOpenidResult(true, s + "," + oid);
                     } else {
                         openView.addOpenidResult(false, "绑定OPENID失败:" + e.getMessage());
                     }

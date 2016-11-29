@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.tsz.afinal.annotation.view.CodeNote;
@@ -41,6 +42,7 @@ public class UpdatePassWordActivity extends BaseActivity {
     private MyDialog myDialog;
 @CodeNote(id=R.id.yue_tv)TextView yue_tv;
     @CodeNote(id=R.id.user_id_tv)TextView user_id_tv;
+    @CodeNote(id=R.id.rl_bottem)LinearLayout rl_bottem;
     @Override
     public void initViews() {
         setContentView(R.layout.activity_update_passwrod);
@@ -71,7 +73,12 @@ public class UpdatePassWordActivity extends BaseActivity {
                finish();
             }
         });
-
+        rl_bottem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void loadBase() {

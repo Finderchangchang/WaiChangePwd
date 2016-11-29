@@ -14,13 +14,15 @@ import liuliu.waichangepwd.view.AddGameView;
 
 public class AddGameListener {
     private AddGameView view;
-    public AddGameListener(AddGameView v){
-        view=v;
+
+    public AddGameListener(AddGameView v) {
+        view = v;
     }
+
     //添加游戏账号信息
-    public void addGame(GameAccount account){
-        if(account!=null){
-            if(account.getObjectId()!=null){
+    public void addGame(GameAccount account) {
+        if (account != null) {
+            if (account.getObjectId() != null) {
                 account.update(new UpdateListener() {
                     @Override
                     public void done(BmobException e) {
@@ -28,16 +30,27 @@ public class AddGameListener {
                             view.ResultAddGame(true, "修改成功");
                         } else {
                             Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
-                            view.ResultAddGame(false, e.getMessage());
+                            if (e.getMessage().contains("errorCode:100")) {
+                                view.ResultAddGame(false, "服务器维护中...");
+                            } else if (e.getMessage().contains("errorCode:401")) {
+                                view.ResultAddGame(false, "游戏账号已存在");
+                            } else {
+                                view.ResultAddGame(false, e.getMessage());
+                            }
                         }
                     }
                 });
-            }else {
+            } else {
                 account.save(new SaveListener<String>() {
                     @Override
                     public void done(String s, BmobException e) {
                         if (e == null) {
                             view.ResultAddGame(true, "添加成功");
+                        }
+                        if (e.getMessage().contains("errorCode:100")) {
+                            view.ResultAddGame(false, "服务器维护中...");
+                        } else if (e.getMessage().contains("errorCode:401")) {
+                            view.ResultAddGame(false, "游戏账号已存在");
                         } else {
                             Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                             view.ResultAddGame(false, e.getMessage());

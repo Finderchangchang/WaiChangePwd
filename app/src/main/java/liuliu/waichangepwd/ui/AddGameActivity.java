@@ -98,8 +98,6 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     public void initEvents() {
 
         if (gameAccount != null) {
-            //String vip=gameAccount.getVipGrade();
-
             vip_et.setText(gameAccount.getVipGrade().toString());
             game_name_et.setText(gameAccount.getAccountNumber());
             pt_et.setText(gameAccount.getBatteryGrade().toString());
@@ -136,6 +134,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             xz_cb.setChecked(true);
         });
         save_btn.setOnClickListener(v -> {
+            String data="//d{2}///d{2}///d{2}";
             if (("").equals(vip_et.getText().toString().trim())) {
                 ToastShort("vip等级不能为空");
             } else if (("").equals(game_name_et.getText().toString().trim())) {
@@ -144,6 +143,8 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 ToastShort("炮台等级不能为空");
             } else if (("").equals(jiuji_et.getText().toString().trim())) {
                 ToastShort("救济金不能为空");
+            }else if(renew_et.getText().toString().matches(data)){
+                ToastShort("请核对到期时间格式");
             } else {
                 if (yz_cb.isChecked()) {
                     gameAccount.setState("已租");

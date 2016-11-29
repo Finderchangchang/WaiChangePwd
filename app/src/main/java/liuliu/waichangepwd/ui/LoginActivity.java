@@ -31,9 +31,13 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     private LoginListener mListener;
     @CodeNote(id = R.id.login_btn)
     ImageView login_btn;
-    @CodeNote(id=R.id.title_iv_left)ImageView title_iv_left;
-    @CodeNote(id=R.id.title_help)ImageView title_help;
-@CodeNote(id=R.id.top_tb)RelativeLayout top_tb;
+    @CodeNote(id = R.id.title_iv_left)
+    ImageView title_iv_left;
+    @CodeNote(id = R.id.title_help)
+    ImageView title_help;
+    @CodeNote(id = R.id.top_tb)
+    RelativeLayout top_tb;
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_login);
@@ -88,6 +92,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
             ToastShort("账号或密码错误，请重新输入~~");
         }
     }
+
     private void showPopupWindow(View view) {
 
         // 一个自定义的布局，作为显示的内容
