@@ -234,7 +234,8 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             phoneList = list;
             if (list.size() > 1) {
                 add_tel2_tv.setText(list.get(1).getPhonenumber());
-            } else if (list.size() > 0) {
+            }
+            if (list.size() > 0) {
                 add_tel1_tv.setText(list.get(0).getPhonenumber());
             }
 

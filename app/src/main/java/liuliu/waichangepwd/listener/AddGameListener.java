@@ -32,8 +32,6 @@ public class AddGameListener {
                             Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                             if (e.getMessage().contains("errorCode:100")) {
                                 view.ResultAddGame(false, "服务器维护中...");
-                            } else if (e.getMessage().contains("errorCode:401")) {
-                                view.ResultAddGame(false, "游戏账号已存在");
                             } else {
                                 view.ResultAddGame(false, e.getMessage());
                             }
@@ -46,11 +44,8 @@ public class AddGameListener {
                     public void done(String s, BmobException e) {
                         if (e == null) {
                             view.ResultAddGame(true, "添加成功");
-                        }
-                        if (e.getMessage().contains("errorCode:100")) {
+                        } else if (e.getMessage().contains("errorCode:100")) {
                             view.ResultAddGame(false, "服务器维护中...");
-                        } else if (e.getMessage().contains("errorCode:401")) {
-                            view.ResultAddGame(false, "游戏账号已存在");
                         } else {
                             Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                             view.ResultAddGame(false, e.getMessage());
