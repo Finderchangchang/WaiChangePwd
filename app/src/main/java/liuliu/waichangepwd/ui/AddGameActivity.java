@@ -131,6 +131,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         yz_ll.setOnClickListener(v -> {
             clearCB();
             yz_cb.setChecked(true);
+            renew_et.setEnabled(false);
         });
         wz_ll.setOnClickListener(v -> {
             clearCB();
@@ -140,6 +141,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         xz_ll.setOnClickListener(v -> {
             clearCB();
             xz_cb.setChecked(true);
+            renew_et.setEnabled(true);
         });
         save_btn.setOnClickListener(v -> {
             String data="\\d{2}/\\d{2}/\\d{2}";

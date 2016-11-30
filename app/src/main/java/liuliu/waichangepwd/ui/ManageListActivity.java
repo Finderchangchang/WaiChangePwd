@@ -101,7 +101,8 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     ImageView title_iv_left;
     @CodeNote(id=R.id.rl_bottem)LinearLayout rl_bottem;
     private Boolean isCheckAll = true;
-
+private String vipsearch="VipGrade";
+    private String reliefund="ReliefFund";
     @Override
     public void initViews() {
         setContentView(R.layout.activity_manage_list);
@@ -272,10 +273,10 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
             intent.putExtra("PhoneNumber", tel);
             startActivityForResult(intent, 11);
         });
-        yz_tv.setOnClickListener(v -> load("state"));
-        wz_tv.setOnClickListener(v -> load("-state"));
-        xz_tv.setOnClickListener(v -> load("state"));
-        vip_tv.setOnClickListener(v -> load("VipGrade"));
+        yz_tv.setOnClickListener(v -> load("1"));
+        wz_tv.setOnClickListener(v -> load("2"));
+        xz_tv.setOnClickListener(v -> load("3"));
+        vip_tv.setOnClickListener(v -> load(vipsearch));
         jj_tv.setOnClickListener(v -> load("ReliefFund"));
         Intent intent = new Intent(ManageListActivity.this, SendCodeService.class);
         intent.setAction(SendCodeService.ACTION);
@@ -391,7 +392,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         String fen="";
         for(int i=0;i<checkList.size();i++){
             GameAccount account=checkList.get(i);
-            fen+="账号"+i+"：您的账号：" + account.getAccountNumber() + "\n您的密码："+account.getPassword();
+            fen+="账号"+(i+1)+"：\n账号：" + account.getAccountNumber() + "\n密码："+account.getPassword()==null?"":account.getPassword();
         }
         WXWebpageObject webpage = new WXWebpageObject();
         webpage.webpageUrl = "www.bokebuyu.com";
@@ -416,7 +417,31 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         query.addWhereEqualTo("phoneId", tel);
         query.include("phoneId");
         if (!("").equals(order)) {
-            query.order(order);
+            if(order.equals("1")){
+                query.addWhereEqualTo("state","已租");
+            }else if(order.equals("2")){
+                query.addWhereEqualTo("state","未租");
+            }else if(order.equals("3")){
+                query.addWhereEqualTo("state","续租");
+            }else if(order.contains("Vip")){
+                query.order(vipsearch);
+                if(vipsearch.equals("VipGrade")){
+                    vipsearch="-VipGrade";
+                }else{
+                    vipsearch="VipGrade";
+                }
+            } else if(reliefund.contains("ReliefFund")){
+                query.order(reliefund);
+                if(reliefund.equals("ReliefFund")){
+                    reliefund="-ReliefFund";
+                }else{
+                    reliefund="ReliefFund";
+                }
+            }else{
+                query.order(order);
+            }
+
+            //query.order("createAt");
         }
         query.findObjects(new FindListener<GameAccount>() {
             @Override
