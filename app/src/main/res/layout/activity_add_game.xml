@@ -539,7 +539,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="**以上不能为空**"
+                    android:text="**以上选填**"
                     android:textColor="@color/colorwrite"
                     android:textStyle="bold" />
             </LinearLayout>

@@ -12,13 +12,17 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
+import liuliu.waichangepwd.base.BaseApplication;
 import liuliu.waichangepwd.method.Utils;
+import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.model.UserModel;
 
 /**
@@ -45,40 +49,62 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp resp) {
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
-                BmobQuery<UserModel> query = new BmobQuery<>();
-                query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
-                    @Override
-                    public void done(UserModel userModel, BmobException e) {
-                        if (userModel != null) {
-                            int now = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date()));
-                            int lastShare;
-                            boolean result = false;
-                            try {
-                                Date d = new SimpleDateFormat("yyyy-MM-dd").parse(userModel.getShareTime());
-                                lastShare = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(d));
-                                if (now == lastShare) {
-                                    if (!userModel.getShare()) {
-                                        result = true;
-                                    }
+                List<GameAccount> list=BaseApplication.getmOrder();
+                if(BaseApplication.getmOrder().size()>0){//fenxiang zhanghao
+                    //循环修改账号状态---就这一步
+                    for(int i=0;i<BaseApplication.getmOrder().size();i++){
+                        GameAccount account=BaseApplication.getmOrder().get(i);
+                        account.setState("已租");
+                        account.update(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if(e==null){
+                                    System.out.println("分享成功");
+                                }else{
+                                    System.out.println("分享失败");
                                 }
-                            } catch (ParseException s) {
-
                             }
-                            if (result) {
-                                userModel.setShare(true);
-                                userModel.setShareTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-                                userModel.update(userModel.getObjectId(), new UpdateListener() {
-                                    @Override
-                                    public void done(BmobException e) {
-                                        Toast.makeText(WXEntryActivity.this, "分享成功，已给您返钱，请注意查收", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                        BaseApplication.setmOrder(new ArrayList<>());//清空操作
+                }else {//fenxiang app
+                    BmobQuery<UserModel> query = new BmobQuery<>();
+                    query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
+                        @Override
+                        public void done(UserModel userModel, BmobException e) {
+                            if (userModel != null) {
+                                int now = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(new Date()));
+                                int lastShare;
+                                boolean result = false;
+                                try {
+                                    Date d = new SimpleDateFormat("yyyy-MM-dd").parse(userModel.getShareTime());
+                                    lastShare = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(d));
+                                    if (now == lastShare) {
+                                        if (!userModel.getShare()) {
+                                            result = true;
+                                        }
                                     }
-                                });
-                            } else {
-                                Toast.makeText(WXEntryActivity.this, "您已经分享过一次，本次分享不返钱~~", Toast.LENGTH_SHORT).show();
+                                } catch (ParseException s) {
+
+                                }
+                                if (result) {
+                                    userModel.setShare(true);
+                                    userModel.setShareTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                                    userModel.update(userModel.getObjectId(), new UpdateListener() {
+                                        @Override
+                                        public void done(BmobException e) {
+
+
+                                            Toast.makeText(WXEntryActivity.this, "分享成功，已给您返钱，请注意查收", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                } else {
+                                    Toast.makeText(WXEntryActivity.this, "您已经分享过一次，本次分享不返钱~~", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:
             case BaseResp.ErrCode.ERR_AUTH_DENIED:

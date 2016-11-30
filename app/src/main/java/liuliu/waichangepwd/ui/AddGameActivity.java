@@ -9,6 +9,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import net.tsz.afinal.annotation.view.CodeNote;
@@ -24,8 +25,10 @@ import cn.bmob.v3.listener.QueryListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.base.BaseActivity;
 import liuliu.waichangepwd.listener.AddGameListener;
+import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.GameAccount;
 import liuliu.waichangepwd.model.PhoneNumberManager;
+import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.view.AddGameView;
 
 /**
@@ -84,7 +87,10 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     @CodeNote(id = R.id.renew_et)
     EditText renew_et;
     private GameAccount gameAccount;
-
+    @CodeNote(id = R.id.user_id_tv)
+    private TextView user_id_tv;
+    @CodeNote(id = R.id.yue_tv)
+    private TextView yue_tv;
     @Override
     public void initViews() {
         setContentView(R.layout.activity_add_game);
@@ -92,6 +98,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         listener = new AddGameListener(this);
         phone = getIntent().getStringExtra("PhoneNumber");
         gameAccount = (GameAccount) getIntent().getSerializableExtra("id");
+        loadBase();
     }
 
     @Override
@@ -128,6 +135,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         wz_ll.setOnClickListener(v -> {
             clearCB();
             wz_cb.setChecked(true);
+            renew_et.setEnabled(false);
         });
         xz_ll.setOnClickListener(v -> {
             clearCB();
@@ -208,7 +216,18 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             return true;
         }
     }
-
+    private void loadBase() {
+        BmobQuery<UserModel> query = new BmobQuery<UserModel>();
+        query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
+            @Override
+            public void done(UserModel userModel, BmobException e) {
+                if (userModel != null) {
+                    user_id_tv.setText("账号：" + userModel.getUsername());
+                    yue_tv.setText("余额：" + userModel.getYue());
+                }
+            }
+        });
+    }
     private void clearCB() {
         yz_cb.setChecked(false);
         wz_cb.setChecked(false);

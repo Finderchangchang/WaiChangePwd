@@ -43,6 +43,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         setContentView(R.layout.activity_login);
         mListener = new LoginListener(this);
         mIntails = this;
+       // System.out.println("key-------:loginactiv" );
     }
 
     @Override
@@ -110,7 +111,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                Log.i("mengdd", "onTouch : ");
+                //Log.i("mengdd", "onTouch : ");
 
                 return false;
                 // 这里如果返回true的话，touch事件将被拦截

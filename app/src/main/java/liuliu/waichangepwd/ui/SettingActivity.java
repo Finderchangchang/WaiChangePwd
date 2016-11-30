@@ -1,6 +1,8 @@
 package liuliu.waichangepwd.ui;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
@@ -56,7 +58,11 @@ public class SettingActivity extends BaseActivity implements ISettingView {
         setContentView(R.layout.activity_mysetting);
         mListener = new SettingListener(this, this);
         mListener.checkPay();
-        mListener.loadYE();
+        if (Utils.getCache("key") != null & (!Utils.getCache("key").equals(""))) {
+            loadBase();
+            mListener.loadYE();
+
+        }
     }
 
     @Override
@@ -105,13 +111,8 @@ public class SettingActivity extends BaseActivity implements ISettingView {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        finish();
-                        //System.exit(0);
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        android.os.Process.killProcess(android.os.Process.myPid());
+                        Utils.putCache("key", "");
+                        myfinish();
 
                     }
                 });
@@ -124,7 +125,12 @@ public class SettingActivity extends BaseActivity implements ISettingView {
                 builder.create().show();
             }
         });
-        loadBase();
+
+    }
+
+    private void myfinish() {
+        setResult(131);
+        finish();
     }
 
     private void loadBase() {

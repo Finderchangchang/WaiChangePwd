@@ -83,12 +83,14 @@ public class getOpenIDListener {
                 @Override
                 public void done(BmobException e) {
                     if (e == null) {
-                        openView.addOpenidResult(true, "重新绑定OPENID成功！");
+                        openView.addOpenidResult(true,  objectid+ "," + oid);
+
                     } else {
                         openView.addOpenidResult(false, "重新绑定OPENID失败:" + e.getMessage());
                     }
                 }
             });
+
         }
     }
 
@@ -129,6 +131,17 @@ public class getOpenIDListener {
             }
         });
     }
-
+    public void updatePhoneOpenid(PhoneNumberManager model){
+        model.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    System.out.println("手机号的openid修改成功！");
+                }else{
+                    System.out.println("手机号的openid修改失败！"+e.getMessage());
+                }
+            }
+        });
+    }
 }
 

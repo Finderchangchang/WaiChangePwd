@@ -365,7 +365,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         });
         rl_bottem.setOnClickListener(v -> {
             Intent intents = new Intent(ManageListActivity.this, SettingActivity.class);
-            startActivity(intents);
+            startActivityForResult(intents,131);
         });
         loadBase();
     }
@@ -386,13 +386,21 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     private IWXAPI api;
 
     private void wechatShare(int flag) {
+        BaseApplication.getmOrder().removeAll(BaseApplication.getmOrder());
+        BaseApplication.getmOrder().addAll(checkList);
+        String fen="";
+        for(int i=0;i<checkList.size();i++){
+            GameAccount account=checkList.get(i);
+            fen+="账号"+i+"：您的账号：" + account.getAccountNumber() + "\n您的密码："+account.getPassword();
+        }
         WXWebpageObject webpage = new WXWebpageObject();
-        webpage.webpageUrl = "www.dakedaojia.com";
+        webpage.webpageUrl = "www.bokebuyu.com";
         WXMediaMessage msg = new WXMediaMessage(webpage);
         msg.title = "提示";
-        msg.description = "您的账号：" + flag + "\n您的密码：";
+
+        msg.description = fen;
         //这里替换一张自己工程里的图片资源
-        Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.icon_delete);
+        Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.mipmap.logo);
         msg.setThumbImage(thumb);
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = String.valueOf(System.currentTimeMillis());
@@ -437,6 +445,10 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 11 && resultCode == 121) {
             load("");
+        }
+        if(requestCode==131&&requestCode==131){
+            setResult(131);
+            finish();
         }
     }
 
