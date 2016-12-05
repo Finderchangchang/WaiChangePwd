@@ -130,7 +130,7 @@
                 android:layout_height="38dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@mipmap/reg_btn"
+                android:background="@mipmap/btn_bg"
                 android:text="保存"
                 android:textColor="@color/colorwrite"/>
         </LinearLayout>
@@ -149,7 +149,7 @@
                 android:id="@+id/user_id_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="账号：656*****56"
+                android:text="账号：无"
                 android:textColor="@color/colorwrite"/>
 
             <TextView
@@ -159,7 +159,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/main_user_name"
                 android:layout_weight="1"
-                android:text="余额：265"
+                android:text="余额：无"
                 android:textColor="@color/colorwrite"/>
 
             <ImageView

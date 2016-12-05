@@ -152,12 +152,12 @@ public class SettingListener implements ISettingMView {
 
     private void wechatShare(int flag) {
         WXWebpageObject webpage = new WXWebpageObject();
-        webpage.webpageUrl = "www.dakedaojia.com";
+        webpage.webpageUrl = "https://www.hao123.com/?tn=99223597_hao_pg&tt=161133";//QQ3042661036
         WXMediaMessage msg = new WXMediaMessage(webpage);
-        msg.title = "提示";
-        msg.description = "您的账号：" + flag + "\n您的密码：";
+        msg.title = "QQ:3042661036";
+        //msg.description = "QQ3042661036";
         //这里替换一张自己工程里的图片资源
-        Bitmap thumb = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon_delete);
+        Bitmap thumb = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.icon_blue);
         msg.setThumbImage(thumb);
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = String.valueOf(System.currentTimeMillis());

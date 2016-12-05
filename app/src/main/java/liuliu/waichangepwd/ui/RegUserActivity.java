@@ -3,6 +3,7 @@ package liuliu.waichangepwd.ui;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import net.tsz.afinal.annotation.view.CodeNote;
 
@@ -18,14 +19,14 @@ import liuliu.waichangepwd.view.IRegUserView;
 
 public class RegUserActivity extends BaseActivity implements IRegUserView {
     RegUserListener mListener;
-    @CodeNote(id = R.id.usr_name_tv)
-    AutoCompleteTextView usr_name_tv;
+    @CodeNote(id = R.id.usr_name_et)
+    EditText usr_name_et;
     @CodeNote(id = R.id.pwd_et)
     EditText pwd_et;
-    @CodeNote(id = R.id.confirm_pwd_et)
-    EditText confirm_pwd_et;
-    @CodeNote(id = R.id.reg_user_btn)
-    Button reg_user_btn;
+    @CodeNote(id = R.id.pwd_et2)
+    EditText pwd_et2;
+    @CodeNote(id = R.id.login_reg)
+    ImageButton login_reg;
 
     @Override
     public void initViews() {
@@ -38,15 +39,23 @@ public class RegUserActivity extends BaseActivity implements IRegUserView {
 
     @Override
     public void initEvents() {
-        reg_user_btn.setOnClickListener(v -> {
-            name = usr_name_tv.getText().toString().trim();
+        login_reg.setOnClickListener(v -> {
+            name = usr_name_et.getText().toString().trim();
             pwd = pwd_et.getText().toString().trim();
-            String confirm_pwd = confirm_pwd_et.getText().toString().trim();
+            String confirm_pwd = pwd_et2.getText().toString().trim();
             if (("").equals(name)) {
-                ToastShort("用户名不能为空~~");
+                ToastShort("用户名不能为空！");
             } else if (("").equals(pwd) || ("").equals(confirm_pwd)) {
-                ToastShort("前后密码不一致，请重新输入！！");
-            } else {
+                ToastShort("密码不能为空！");
+            }else if(!pwd.equals(confirm_pwd)){
+                ToastShort("前后密码不一致，请重新输入！");
+                pwd_et.setText("");
+                pwd_et2.setText("");
+            }else if(pwd.length()!=6){
+                ToastShort("密码为6位字符，请重新输入！");
+                pwd_et.setText("");
+                pwd_et2.setText("");
+            }else {
                 mListener.regUser(name, pwd);
             }
         });

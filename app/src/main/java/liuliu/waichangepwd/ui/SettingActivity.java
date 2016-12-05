@@ -36,8 +36,6 @@ public class SettingActivity extends BaseActivity implements ISettingView {
     Button cz_btn;
     @CodeNote(id = R.id.yue_tv)
     TextView yue_tv;
-    @CodeNote(id = R.id.refresh_iv)
-    ImageView refresh_iv;
     @CodeNote(id = R.id.cz_et)
     EditText cz_et;
     @CodeNote(id = R.id.setting_help)
@@ -67,9 +65,7 @@ public class SettingActivity extends BaseActivity implements ISettingView {
 
     @Override
     public void initEvents() {
-        refresh_iv.setOnClickListener(v -> {
-            mListener.loadYE();
-        });
+
         share_rl.setOnClickListener(v -> {
             mListener.loadShare();
         });
@@ -131,6 +127,25 @@ public class SettingActivity extends BaseActivity implements ISettingView {
     private void myfinish() {
         setResult(131);
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("----------onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("----------onRestart");
+        loadBase();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("----------onPause");
     }
 
     private void loadBase() {

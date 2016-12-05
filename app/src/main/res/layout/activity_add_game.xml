@@ -502,7 +502,7 @@
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
-                        android:hint="年/月/日（2016/02/20）"
+                        android:hint="例3120 为31日20时"
                         android:minLines="1"
                         android:padding="5dp" />
                 </LinearLayout>
@@ -551,7 +551,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:background="@mipmap/reg_btn"
+                android:background="@mipmap/btn_bg"
                 android:text="保存"
                 android:textColor="@color/colorwrite" />
         </LinearLayout>

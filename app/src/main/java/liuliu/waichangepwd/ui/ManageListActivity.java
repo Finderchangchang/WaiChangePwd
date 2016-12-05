@@ -99,10 +99,12 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
     ImageView title_help;
     @CodeNote(id = R.id.title_iv_left)
     ImageView title_iv_left;
-    @CodeNote(id=R.id.rl_bottem)LinearLayout rl_bottem;
+    @CodeNote(id = R.id.rl_bottem)
+    LinearLayout rl_bottem;
     private Boolean isCheckAll = true;
-private String vipsearch="VipGrade";
-    private String reliefund="ReliefFund";
+    private String vipsearch = "VipGrade";
+    private String reliefund = "ReliefFund";
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_manage_list);
@@ -142,11 +144,14 @@ private String vipsearch="VipGrade";
                 holder.setText(R.id.item_relief, "材料 " + gameAccount.getReliefFund());
                 holder.setText(R.id.item_amount, "充值 " + gameAccount.getAmountCharge());
                 holder.setText(R.id.item_bomb, "核弹 " + gameAccount.getBomb());
-                holder.setText(R.id.item_bronze, "核弹 " + gameAccount.getBronze());
+                holder.setText(R.id.item_bronze, "青铜 " + gameAccount.getBronze());
 
                 holder.setText(R.id.item_change_time, "改:" + gameAccount.getUpdatedAt().substring(8, 10) + "日" + gameAccount.getUpdatedAt().substring(11, 13) + "时");
-
-                holder.setText(R.id.item_time, "定:--日--时");
+                if (!gameAccount.getRenew().equals("")) {
+                    holder.setText(R.id.item_time, "定:" + gameAccount.getRenew().substring(0,2)+"日"+gameAccount.getRenew().substring(0,2)+"时");
+                } else {
+                    holder.setText(R.id.item_time, "定:--日--时");
+                }
 
                 holder.setText(R.id.item_diamonds, "钻石 " + gameAccount.getDiamonds());
                 holder.setText(R.id.item_gold, "黄金 " + gameAccount.getGold());
@@ -366,7 +371,7 @@ private String vipsearch="VipGrade";
         });
         rl_bottem.setOnClickListener(v -> {
             Intent intents = new Intent(ManageListActivity.this, SettingActivity.class);
-            startActivityForResult(intents,131);
+            startActivityForResult(intents, 131);
         });
         loadBase();
     }
@@ -389,13 +394,18 @@ private String vipsearch="VipGrade";
     private void wechatShare(int flag) {
         BaseApplication.getmOrder().removeAll(BaseApplication.getmOrder());
         BaseApplication.getmOrder().addAll(checkList);
-        String fen="";
-        for(int i=0;i<checkList.size();i++){
-            GameAccount account=checkList.get(i);
-            fen+="账号"+(i+1)+"：\n账号：" + account.getAccountNumber() + "\n密码："+account.getPassword()==null?"":account.getPassword();
+        String fen = "";
+        for (int i = 0; i < checkList.size(); i++) {
+            GameAccount account = checkList.get(i);
+            fen += "账号" + (i + 1) + "：\n账号：" + account.getAccountNumber() + "\n密码：";
+            if (null == account.getPassword()) {
+                fen += "";
+            } else {
+                fen += account.getPassword();
+            }
         }
         WXWebpageObject webpage = new WXWebpageObject();
-        webpage.webpageUrl = "www.bokebuyu.com";
+        webpage.webpageUrl = "QQ3042661036";
         WXMediaMessage msg = new WXMediaMessage(webpage);
         msg.title = "提示";
 
@@ -417,31 +427,31 @@ private String vipsearch="VipGrade";
         query.addWhereEqualTo("phoneId", tel);
         query.include("phoneId");
         if (!("").equals(order)) {
-            if(order.equals("1")){
-                query.addWhereEqualTo("state","已租");
-            }else if(order.equals("2")){
-                query.addWhereEqualTo("state","未租");
-            }else if(order.equals("3")){
-                query.addWhereEqualTo("state","续租");
-            }else if(order.contains("Vip")){
+            if (order.equals("1")) {
+                query.addWhereEqualTo("state", "已租");
+            } else if (order.equals("2")) {
+                query.addWhereEqualTo("state", "未租");
+            } else if (order.equals("3")) {
+                query.addWhereEqualTo("state", "续租");
+            } else if (order.contains("Vip")) {
                 query.order(vipsearch);
-                if(vipsearch.equals("VipGrade")){
-                    vipsearch="-VipGrade";
-                }else{
-                    vipsearch="VipGrade";
+                if (vipsearch.equals("VipGrade")) {
+                    vipsearch = "-VipGrade";
+                } else {
+                    vipsearch = "VipGrade";
                 }
-            } else if(reliefund.contains("ReliefFund")){
+            } else if (reliefund.contains("ReliefFund")) {
                 query.order(reliefund);
-                if(reliefund.equals("ReliefFund")){
-                    reliefund="-ReliefFund";
-                }else{
-                    reliefund="ReliefFund";
+                if (reliefund.equals("ReliefFund")) {
+                    reliefund = "-ReliefFund";
+                } else {
+                    reliefund = "ReliefFund";
                 }
-            }else{
+            } else {
                 query.order(order);
             }
-
-            //query.order("createAt");
+        } else {
+            query.order("createAt");
         }
         query.findObjects(new FindListener<GameAccount>() {
             @Override
@@ -451,7 +461,11 @@ private String vipsearch="VipGrade";
                     if (list.size() > 0) {
                         is_null = false;
                         mList.removeAll(mList);
-                        mList.addAll(list);
+                        for (int i = 0; i < list.size(); i++) {
+                            GameAccount ac = list.get(i);
+                            ac.setCheced(false);
+                            mList.add(ac);
+                        }
                         mAdapter.notifyDataSetChanged();
                     } else {
                         is_null = true;
@@ -471,7 +485,7 @@ private String vipsearch="VipGrade";
         if (requestCode == 11 && resultCode == 121) {
             load("");
         }
-        if(requestCode==131&&requestCode==131){
+        if (requestCode == 131 && requestCode == 131) {
             setResult(131);
             finish();
         }

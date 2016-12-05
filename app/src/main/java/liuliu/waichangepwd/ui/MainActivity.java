@@ -100,6 +100,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                 } else {
                     myDialog.setMiddleVal(add_tel1_tv.getText().toString());
                 }
+                myDialog.setRLBG(false);
                 myDialog.setOnPositiveListener(v1 -> {
                     if (!Utils.isPhoneNumberValid(myDialog.getMiddleVal())) {
                         ToastShort("请核对手机号");
@@ -124,6 +125,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                     myDialog.setMiddleVal(add_tel2_tv.getText().toString());
 
                 }
+                myDialog.setRLBG(false);
                 myDialog.setOnPositiveListener(v1 -> {
                     if (!Utils.isPhoneNumberValid(myDialog.getMiddleVal())) {
                         ToastShort("请核对手机号");

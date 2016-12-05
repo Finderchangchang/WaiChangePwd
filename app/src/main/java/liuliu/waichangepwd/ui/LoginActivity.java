@@ -1,5 +1,6 @@
 package liuliu.waichangepwd.ui;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     private LoginListener mListener;
     @CodeNote(id = R.id.login_btn)
     ImageView login_btn;
+    @CodeNote(id=R.id.login_reg) ImageView login_reg;
     @CodeNote(id = R.id.title_iv_left)
     ImageView title_iv_left;
     @CodeNote(id = R.id.title_help)
@@ -64,6 +66,13 @@ public class LoginActivity extends BaseActivity implements ILoginView {
             public void onClick(View v) {
                 finish();
                 System.exit(0);
+            }
+        });
+        login_reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,RegUserActivity.class);
+                startActivity(intent);
             }
         });
     }

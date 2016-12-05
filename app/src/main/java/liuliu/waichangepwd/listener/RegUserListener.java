@@ -22,6 +22,7 @@ public class RegUserListener implements IRegUserMView {
         UserModel model = new UserModel();
         model.setUsername(user);
         model.setPassword(pwd);
+        model.setYue(0.0);
         model.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {

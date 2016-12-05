@@ -85,12 +85,26 @@
                 android:paddingLeft="35dp"
                 android:password="true" />
 
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
             <ImageButton
                 android:id="@+id/login_btn"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/login_button_bg" />
+            <ImageButton
+                android:id="@+id/login_reg"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/zhuce" />
         </LinearLayout>
     </LinearLayout>
 
@@ -108,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="www.bokebuyu.com"
+            android:text="QQ3042661036"
             android:textColor="@color/colorwrite" />
 
         <ImageView
