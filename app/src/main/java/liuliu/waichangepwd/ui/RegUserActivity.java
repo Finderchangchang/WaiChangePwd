@@ -70,7 +70,7 @@ public class RegUserActivity extends BaseActivity implements IRegUserView {
                 LoginActivity.mIntails.finish();
             }
         } else {
-            ToastShort("用户名已存在，请重新输入~~");
+            ToastShort("用户名已存在，请重新输入!");
         }
     }
 }
