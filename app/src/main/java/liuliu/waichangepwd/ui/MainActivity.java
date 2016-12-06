@@ -90,23 +90,28 @@ public class MainActivity extends BaseActivity implements getOpenidView {
                 new FindListener<VersionModel>() {
                     @Override
                     public void done(List<VersionModel> list, BmobException e) {
-                        if (list.size() > 0) {
-                            int now = Integer.parseInt(list.get(0).getVersion().replace(".", ""));
-                            int ver = Integer.parseInt(Utils.getVersion().replace(".", ""));
-                            if (now > ver) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                                builder.setMessage(list.get(0).getUpdateContent());
-                                builder.setTitle("提示");
-                                builder.setPositiveButton("取消", (dialog, which) -> dialog.dismiss());
-                                builder.setNegativeButton("确定", (dialog, which) -> {
-                                    dialog.dismiss();
-                                    Uri uri = Uri.parse(list.get(0).getUrl());
-                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                    startActivity(intent);
-                                });
-                                builder.create().show();
+                        if (e == null) {
+                            if (list.size() > 0) {
+                                int now = Integer.parseInt(list.get(0).getVersion().replace(".", ""));
+                                int ver = Integer.parseInt(Utils.getVersion().replace(".", ""));
+                                if (now > ver) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                    builder.setMessage(list.get(0).getUpdateContent());
+                                    builder.setTitle("提示");
+                                    builder.setPositiveButton("取消", (dialog, which) -> dialog.dismiss());
+                                    builder.setNegativeButton("确定", (dialog, which) -> {
+                                        dialog.dismiss();
+                                        Uri uri = Uri.parse(list.get(0).getUrl());
+                                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                        startActivity(intent);
+                                    });
+                                    builder.create().show();
+                                }
                             }
+                        }else{
+                            ToastShort("加载失败!");
                         }
+
                     }
                 }
 
