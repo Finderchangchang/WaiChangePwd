@@ -27,6 +27,7 @@ public class BaseApplication extends Application {
         context = getApplicationContext();
         mOrder = new ArrayList<>();
         Bmob.initialize(this, "99a9de341f584e294351fcc26e156014");
+        cn.bmob.statistics.AppStat.i("99a9de341f584e294351fcc26e156014", null);
         BP.init(context, "99a9de341f584e294351fcc26e156014");
 
     }

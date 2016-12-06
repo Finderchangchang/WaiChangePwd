@@ -8,7 +8,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
     }
     buildTypes {
         release {
@@ -37,4 +37,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.0.1'
     compile 'com.android.support:cardview-v7:22.2.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile files('libs/BmobStat_v1.0_1026.jar')
 }

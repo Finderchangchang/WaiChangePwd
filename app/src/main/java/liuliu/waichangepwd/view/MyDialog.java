@@ -19,30 +19,30 @@ import liuliu.waichangepwd.R;
 public class MyDialog extends Dialog {
     ImageView ensure_btn;
     EditText middle_et;
-    RelativeLayout rlAll;
+    TextView name;
 
     public MyDialog(Context context) {
         super(context, R.style.Base_Theme_AppCompat_Light_Dialog);
         View mView = LayoutInflater.from(getContext()).inflate(R.layout.my_dialog_tan, null);
-//        ensure_btn = (ImageView) mView.findViewById(R.id.ensure_btn_ll_dialog);
-//        rlAll = (RelativeLayout) mView.findViewById(R.id.rl_dialog_all);
-//        middle_et = (EditText) mView.findViewById(R.id.middle_et_ll_dialog);
+        ensure_btn = (ImageView) mView.findViewById(R.id.ensure_btn_ll_dialog);
+        name = (TextView) mView.findViewById(R.id.dialog_type);
+        middle_et = (EditText) mView.findViewById(R.id.dialog_et_yu);
         super.setContentView(mView);
     }
 
     //是否为OPENid
     public void setRLBG(boolean isTrue) {
-//        if (isTrue) {
-//            rlAll.setBackgroundResource(R.mipmap.dialog_openid);
-//        } else {
-//            rlAll.setBackgroundResource(R.mipmap.dialog_phone);
-//        }
+        if (isTrue) {
+            name.setText("输入openid");
+        } else {
+            name.setText("输入手机号");
+        }
     }
 
     /*为中部的EditText赋值*/
     public void setMiddleVal(String val) {
-//        middle_et.setVisibility(View.VISIBLE);
-//        middle_et.setText(val);
+        middle_et.setVisibility(View.VISIBLE);
+        middle_et.setText(val);
     }
 
 
@@ -58,7 +58,7 @@ public class MyDialog extends Dialog {
      * @param listener
      */
     public void setOnPositiveListener(View.OnClickListener listener) {
-        //ensure_btn.setOnClickListener(listener);
+        ensure_btn.setOnClickListener(listener);
     }
 
 

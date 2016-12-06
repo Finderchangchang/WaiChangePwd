@@ -1,6 +1,9 @@
 package liuliu.waichangepwd.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,6 +35,7 @@ import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.OpenIdModel;
 import liuliu.waichangepwd.model.PhoneNumberManager;
 import liuliu.waichangepwd.model.UserModel;
+import liuliu.waichangepwd.model.VersionModel;
 import liuliu.waichangepwd.service.SendCodeService;
 import liuliu.waichangepwd.view.MyDialog;
 import liuliu.waichangepwd.view.getOpenidView;
@@ -80,8 +84,33 @@ public class MainActivity extends BaseActivity implements getOpenidView {
         phoneList = new ArrayList<>();
         Intent intent = new Intent(MainActivity.this, SendCodeService.class);
         intent.setAction(SendCodeService.ACTION);
-        //System.out.println("key-------:mainactivity");
+        //查找Person表里面id为6b6c11c537的数据
+        BmobQuery<VersionModel> bmobQuery = new BmobQuery<VersionModel>();
+        bmobQuery.findObjects(
+                new FindListener<VersionModel>() {
+                    @Override
+                    public void done(List<VersionModel> list, BmobException e) {
+                        if (list.size() > 0) {
+                            int now = Integer.parseInt(list.get(0).getVersion().replace(".", ""));
+                            int ver = Integer.parseInt(Utils.getVersion().replace(".", ""));
+                            if (now > ver) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                builder.setMessage(list.get(0).getUpdateContent());
+                                builder.setTitle("提示");
+                                builder.setPositiveButton("取消", (dialog, which) -> dialog.dismiss());
+                                builder.setNegativeButton("确定", (dialog, which) -> {
+                                    dialog.dismiss();
+                                    Uri uri = Uri.parse(list.get(0).getUrl());
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                    startActivity(intent);
+                                });
+                                builder.create().show();
+                            }
+                        }
+                    }
+                }
 
+        );
     }
 
 
@@ -94,7 +123,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
 
         add_tel1_ll.setOnClickListener(v -> {
 
-            if (null!=openIdModel.getOpenid()) {
+            if (null != openIdModel.getOpenid()) {
                 if (add_tel1_tv.getText().toString().equals("添加手机号码")) {
                     myDialog.setMiddleVal("");
                 } else {
@@ -118,7 +147,7 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             }
         });
         add_tel2_ll.setOnClickListener(v -> {
-            if (null!=openIdModel.getOpenid()) {
+            if (null != openIdModel.getOpenid()) {
                 if (add_tel2_tv.getText().toString().equals("添加手机号码")) {
                     myDialog.setMiddleVal("");
                 } else {
@@ -151,12 +180,12 @@ public class MainActivity extends BaseActivity implements getOpenidView {
             }
         });
         add_tel2_btn.setOnClickListener(v -> {//第2个手机号管理
-                if (!add_tel2_tv.getText().toString().equals("添加手机号码")) {
-                    Intent intent = new Intent(MainActivity.this, ManageListActivity.class);
-                    intent.putExtra(ConfigModel.KEY_Now_Tel, phoneList.get(1).getObjectId());
-                    intent.putExtra(ConfigModel.KEY_OpenId, openIdModel.getOpenid());
-                    startActivity(intent);
-                }
+            if (!add_tel2_tv.getText().toString().equals("添加手机号码")) {
+                Intent intent = new Intent(MainActivity.this, ManageListActivity.class);
+                intent.putExtra(ConfigModel.KEY_Now_Tel, phoneList.get(1).getObjectId());
+                intent.putExtra(ConfigModel.KEY_OpenId, openIdModel.getOpenid());
+                startActivity(intent);
+            }
         });
         bd_openid1_iv.setOnClickListener(v -> {
             myDialog.setTitle("OPENID");
