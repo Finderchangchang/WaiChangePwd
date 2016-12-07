@@ -397,7 +397,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         String fen = "";
         for (int i = 0; i < checkList.size(); i++) {
             GameAccount account = checkList.get(i);
-            fen += "账号" + (i + 1) + "：\n账号：" + account.getAccountNumber() + "\n密码：";
+            fen += "账号" + (i + 1) + "：\n账号：" + account.getAccountNumber() + "\n密码：及阿娇阿娇\n及阿娇阿娇及阿娇阿娇及阿娇阿娇及\n阿娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇及阿\n娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇";
             if (null == account.getPassword()) {
                 fen += "";
             } else {

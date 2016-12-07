@@ -8,12 +8,18 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import liuliu.waichangepwd.method.Utils;
+import liuliu.waichangepwd.model.Setting;
 import liuliu.waichangepwd.model.UserModel;
 import liuliu.waichangepwd.view.ILoginView;
 
 /**
  * Created by Administrator on 2016/11/8.
  */
+interface ILoginMView {
+    void toLogin(String name, String pwd);//登录
+
+    void checkSetting();//检测系统设置
+}
 
 public class LoginListener implements ILoginMView {
     ILoginView mView;
@@ -51,8 +57,21 @@ public class LoginListener implements ILoginMView {
             }
         });
     }
-}
 
-interface ILoginMView {
-    void toLogin(String name, String pwd);//登录
+    @Override
+    public void checkSetting() {
+        BmobQuery<Setting> list = new BmobQuery<>();
+        list.findObjects(new FindListener<Setting>() {
+            @Override
+            public void done(List<Setting> list, BmobException e) {
+                if (e == null) {
+                    if (list != null) {
+                        if (list.size() > 0) {
+                            mView.isKFZC(list.get(0).getKfzc());
+                        }
+                    }
+                }
+            }
+        });
+    }
 }

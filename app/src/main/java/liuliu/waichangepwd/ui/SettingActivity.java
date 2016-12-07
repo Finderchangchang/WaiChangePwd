@@ -50,12 +50,14 @@ public class SettingActivity extends BaseActivity implements ISettingView {
     TextView bottom_yue_tv;
     @CodeNote(id = R.id.user_id_tv)
     TextView user_id_tv;
+    public static SettingActivity mInstails;
 
     @Override
     public void initViews() {
         setContentView(R.layout.activity_mysetting);
         mListener = new SettingListener(this, this);
         mListener.checkPay();
+        mInstails=this;
         if (Utils.getCache("key") != null & (!Utils.getCache("key").equals(""))) {
             loadBase();
             mListener.loadYE();

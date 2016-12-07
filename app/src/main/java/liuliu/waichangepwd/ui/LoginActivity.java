@@ -45,6 +45,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void initViews() {
         setContentView(R.layout.activity_login);
         mListener = new LoginListener(this);
+        mListener.checkSetting();
         mIntails = this;
         // System.out.println("key-------:loginactiv" );
     }
@@ -56,25 +57,14 @@ public class LoginActivity extends BaseActivity implements ILoginView {
             Utils.IntentPost(MainActivity.class);
             finish();
         }
-        title_help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopupWindow(top_tb);
-            }
+        title_help.setOnClickListener(v -> showPopupWindow(top_tb));
+        title_iv_left.setOnClickListener(v -> {
+            finish();
+            System.exit(0);
         });
-        title_iv_left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                System.exit(0);
-            }
-        });
-        login_reg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegUserActivity.class);
-                startActivity(intent);
-            }
+        login_reg.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegUserActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -102,6 +92,11 @@ public class LoginActivity extends BaseActivity implements ILoginView {
             if (!mes.equals(""))
                 ToastShort(mes);
         }
+    }
+
+    @Override
+    public void isKFZC(boolean result) {
+        login_reg.setVisibility(result ? View.VISIBLE : View.GONE);
     }
 
 

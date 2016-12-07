@@ -5,5 +5,7 @@ package liuliu.waichangepwd.view;
  */
 
 public interface ILoginView {
-    void loginResult(boolean result,String mes);
+    void loginResult(boolean result, String mes);
+
+    void isKFZC(boolean result);
 }

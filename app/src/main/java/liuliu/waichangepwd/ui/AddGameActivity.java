@@ -103,7 +103,6 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
 
     @Override
     public void initEvents() {
-
         if (gameAccount != null) {
             vip_et.setText(gameAccount.getVipGrade().toString());
             game_name_et.setText(gameAccount.getAccountNumber());
@@ -155,7 +154,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 ToastShort("炮台等级不能为空");
             } else if (("").equals(jiuji_et.getText().toString().trim())) {
                 ToastShort("救济金不能为空");
-            }else if(renew_et.getText().toString().trim().length()!=4){
+            }else if(!("").equals(renew_et.getText().toString().trim())&&renew_et.getText().toString().trim().length()!=4){
                 ToastShort("请核对到期时间格式");
             } else {
                 if (yz_cb.isChecked()) {

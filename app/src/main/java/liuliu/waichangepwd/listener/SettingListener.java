@@ -1,5 +1,6 @@
 package liuliu.waichangepwd.listener;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +29,7 @@ import cn.bmob.v3.listener.UpdateListener;
 import liuliu.waichangepwd.R;
 import liuliu.waichangepwd.method.Utils;
 import liuliu.waichangepwd.model.UserModel;
+import liuliu.waichangepwd.ui.SettingActivity;
 import liuliu.waichangepwd.view.ISettingView;
 
 /**
@@ -75,6 +77,16 @@ public class SettingListener implements ISettingMView {
             installBmobPayPlugin("bp.db");
         } else {
             //调起微信支付
+            try {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                ComponentName cn = new ComponentName("com.bmob.app.sport",
+                        "com.bmob.app.sport.wxapi.BmobActivity");
+                intent.setComponent(cn);
+                SettingActivity.mInstails.startActivity(intent);
+            } catch (Throwable e) {
+
+            }
             BP.pay("账号充值", "商品描述", money, false, new PListener() {
                 @Override
                 public void orderId(String s) {
