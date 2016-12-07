@@ -17,12 +17,9 @@ import net.tsz.afinal.FinalDb;
 public abstract class BaseActivity extends FinalActivity {
     public FinalDb finalDb;
     public Toolbar toolbar;
-    public Bundle savedInstanceState;
-    private int netMobile;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        savedInstanceState = savedInstanceState;
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         finalDb = FinalDb.create(this, false);
         initViews();

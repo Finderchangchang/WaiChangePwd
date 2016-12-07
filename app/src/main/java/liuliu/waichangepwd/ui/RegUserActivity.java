@@ -62,7 +62,7 @@ public class RegUserActivity extends BaseActivity implements IRegUserView {
     }
 
     @Override
-    public void regResult(boolean result) {
+    public void regResult(boolean result, String mes) {
         if (result) {
             Utils.IntentPost(MainActivity.class);
             finish();//关闭当前页面
@@ -70,7 +70,9 @@ public class RegUserActivity extends BaseActivity implements IRegUserView {
                 LoginActivity.mIntails.finish();
             }
         } else {
-            ToastShort("用户名已存在，请重新输入!");
+            if(!mes.equals(""))
+            ToastShort(mes);
         }
     }
+
 }

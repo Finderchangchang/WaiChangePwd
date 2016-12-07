@@ -502,6 +502,8 @@
                         android:layout_weight="1"
                         android:background="@mipmap/add_game_tv1"
                         android:maxLines="1"
+                        android:inputType="number"
+                        android:enabled="false"
                         android:hint="例3120 为31日20时"
                         android:minLines="1"
                         android:padding="5dp" />

@@ -5,5 +5,5 @@ package liuliu.waichangepwd.view;
  */
 
 public interface ILoginView {
-    void loginResult(boolean result);
+    void loginResult(boolean result,String mes);
 }

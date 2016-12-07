@@ -5,5 +5,5 @@ package liuliu.waichangepwd.view;
  */
 
 public interface IRegUserView {
-    void regResult(boolean result);
+    void regResult(boolean result,String mes);
 }

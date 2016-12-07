@@ -32,6 +32,8 @@ public class AddGameListener {
                             Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                             if (e.getMessage().contains("errorCode:100")) {
                                 view.ResultAddGame(false, "服务器维护中...");
+                            } else if (e.getErrorCode() == 9016) {
+                                view.ResultAddGame(false, "网络错误，请检查网络");
                             } else {
                                 view.ResultAddGame(false, e.getMessage());
                             }

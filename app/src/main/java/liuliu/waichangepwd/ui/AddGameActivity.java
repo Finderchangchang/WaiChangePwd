@@ -131,11 +131,13 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
         yz_ll.setOnClickListener(v -> {
             clearCB();
             yz_cb.setChecked(true);
+            renew_et.setText("");
             renew_et.setEnabled(false);
         });
         wz_ll.setOnClickListener(v -> {
             clearCB();
             wz_cb.setChecked(true);
+            renew_et.setText("");
             renew_et.setEnabled(false);
         });
         xz_ll.setOnClickListener(v -> {
@@ -144,7 +146,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             renew_et.setEnabled(true);
         });
         save_btn.setOnClickListener(v -> {
-            String data="\\d{2}/\\d{2}/\\d{2}";
+
             if (("").equals(vip_et.getText().toString().trim())) {
                 ToastShort("vip等级不能为空");
             } else if (("").equals(game_name_et.getText().toString().trim())) {
@@ -153,7 +155,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 ToastShort("炮台等级不能为空");
             } else if (("").equals(jiuji_et.getText().toString().trim())) {
                 ToastShort("救济金不能为空");
-            }else if(!YANRIQI(renew_et.getText().toString().trim())){
+            }else if(renew_et.getText().toString().trim().length()!=4){
                 ToastShort("请核对到期时间格式");
             } else {
                 if (yz_cb.isChecked()) {
@@ -172,8 +174,6 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                     manager.setObjectId(phone);
                     gameAccount.setPhoneId(manager);
                 }
-
-
                 gameAccount.setBomb(getIntger(hd_et));
                 gameAccount.setBronze(getIntger(qt_et));
                 gameAccount.setSilver(getIntger(by_et));
@@ -185,10 +185,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setAmountCharge(getIntger(cz_et));
                 gameAccount.setDiamonds(getIntger(zs_et));
                 gameAccount.setRemark(remark_et.getText().toString().trim());
-
-
                 gameAccount.setRenew(renew_et.getText().toString());
-
                 listener.addGame(gameAccount);
             }
         });

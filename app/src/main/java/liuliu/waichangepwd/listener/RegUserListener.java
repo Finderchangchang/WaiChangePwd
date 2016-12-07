@@ -27,10 +27,16 @@ public class RegUserListener implements IRegUserMView {
             @Override
             public void done(String s, BmobException e) {
                 if (e == null) {//将s存储在内存中。用来执行记录登录状态
-                    Utils.putCache("key",s);
-                    mView.regResult(true);
+                    Utils.putCache("key", s);
+                    mView.regResult(true, "注册成功");
                 } else {
-                    mView.regResult(false);
+                    if (e.getErrorCode() == 9016) {
+                        mView.regResult(false, "网络错误，请检查网络");
+                    } else if (e.getErrorCode() == 401) {
+                        mView.regResult(false, "此账号已存在");
+                    } else {
+                        mView.regResult(false, "注册失败");
+                    }
                 }
             }
         });

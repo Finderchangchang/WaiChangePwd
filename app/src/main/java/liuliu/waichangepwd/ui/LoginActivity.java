@@ -32,7 +32,8 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     private LoginListener mListener;
     @CodeNote(id = R.id.login_btn)
     ImageView login_btn;
-    @CodeNote(id=R.id.login_reg) ImageView login_reg;
+    @CodeNote(id = R.id.login_reg)
+    ImageView login_reg;
     @CodeNote(id = R.id.title_iv_left)
     ImageView title_iv_left;
     @CodeNote(id = R.id.title_help)
@@ -45,7 +46,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         setContentView(R.layout.activity_login);
         mListener = new LoginListener(this);
         mIntails = this;
-       // System.out.println("key-------:loginactiv" );
+        // System.out.println("key-------:loginactiv" );
     }
 
     @Override
@@ -71,7 +72,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         login_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(LoginActivity.this,RegUserActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegUserActivity.class);
                 startActivity(intent);
             }
         });
@@ -92,16 +93,17 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         }
     }
 
-
     @Override
-    public void loginResult(boolean result) {
+    public void loginResult(boolean result, String mes) {
         if (result) {
             Utils.IntentPost(MainActivity.class);
             finish();
         } else {
-            ToastShort("账号或密码错误，请重新输入~~");
+            if (!mes.equals(""))
+                ToastShort(mes);
         }
     }
+
 
     private void showPopupWindow(View view) {
 

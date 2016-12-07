@@ -30,15 +30,23 @@ public class LoginListener implements ILoginMView {
         list.findObjects(new FindListener<UserModel>() {
             @Override
             public void done(List<UserModel> list, BmobException e) {
-                if (list != null) {
-                    if (list.size() > 0) {
-                        Utils.putCache("key", list.get(0).getObjectId());
-                        mView.loginResult(true);
+                if (e == null) {
+                    if (list != null) {
+                        if (list.size() > 0) {
+                            Utils.putCache("key", list.get(0).getObjectId());
+                            mView.loginResult(true, "");
+                        } else {
+                            mView.loginResult(false, "账号信息不存在");
+                        }
                     } else {
-                        mView.loginResult(false);
+                        mView.loginResult(false, "未知错误");
                     }
                 } else {
-                    mView.loginResult(false);
+                    if (e.getErrorCode() == 9016) {
+                        mView.loginResult(false, "网络错误，请检查网络");
+                    } else {
+                        mView.loginResult(false, "维护中");
+                    }
                 }
             }
         });
