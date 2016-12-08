@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/help_bg"
         android:layout_marginTop="45dp"
+        android:background="@mipmap/help_bg"
         android:orientation="vertical">
 
         <LinearLayout
@@ -24,7 +24,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="当前余额："
                 android:textColor="@color/colorwrite"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/yue_tv"
@@ -32,8 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="0"
-                android:textSize="18sp"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"/>
 
         </LinearLayout>
 
@@ -51,7 +51,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="充值金额："
                 android:textColor="@color/colorwrite"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/cz_et"
@@ -62,7 +62,7 @@
                 android:digits="0123456789."
                 android:hint="充值金额"
                 android:inputType="number"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"/>
 
             <Button
                 android:id="@+id/cz_btn"
@@ -74,14 +74,38 @@
                 android:background="@mipmap/btn_bg"
                 android:text="充值"
                 android:textColor="@color/colorwrite"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chongzhitisi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_chongzhi"
+            android:layout_margin="10dp"
+            android:background="@drawable/item_game_bag"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="用户须知"
+                android:textColor="#15A915"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="收款方为第三方企业：个人企业。付款后系统会自动给你充值到余额！如有问题，请联系QQ：3042661036"/>
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/update_pwd_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_chongzhi"
             android:layout_marginTop="5dp"
             android:background="@color/colorwrite"
             android:padding="10dp">
@@ -91,13 +115,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="修改密码"
-                android:textSize="18dp" />
+                android:textSize="18dp"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/right_jian" />
+                android:src="@mipmap/right_jian"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -114,13 +138,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="帮助"
-                android:textSize="18dp" />
+                android:textSize="18dp"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/right_jian" />
+                android:src="@mipmap/right_jian"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -137,13 +161,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="分享软件"
-                android:textSize="18dp" />
+                android:textSize="18dp"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/right_jian" />
+                android:src="@mipmap/right_jian"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -160,13 +184,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="退出"
-                android:textSize="18dp" />
+                android:textSize="18dp"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/right_jian" />
+                android:src="@mipmap/right_jian"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -187,7 +211,7 @@
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@mipmap/title_left" />
+            android:src="@mipmap/title_left"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -195,7 +219,7 @@
             android:layout_centerInParent="true"
             android:text="账号管理"
             android:textColor="@color/colorwrite"
-            android:textSize="20dp" />
+            android:textSize="20dp"/>
 
 
     </RelativeLayout>
@@ -215,7 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="账号：无"
-            android:textColor="@color/colorwrite" />
+            android:textColor="@color/colorwrite"/>
 
         <TextView
             android:id="@+id/bottom_yue_tv"
@@ -225,7 +249,7 @@
             android:layout_toRightOf="@+id/main_user_name"
             android:layout_weight="1"
             android:text="余额：无"
-            android:textColor="@color/colorwrite" />
+            android:textColor="@color/colorwrite"/>
 
         <ImageView
             android:id="@+id/setting_iv"
@@ -235,6 +259,6 @@
             android:paddingBottom="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:src="@mipmap/login_bottem" />
+            android:src="@mipmap/login_bottem"/>
     </LinearLayout>
 </RelativeLayout>
