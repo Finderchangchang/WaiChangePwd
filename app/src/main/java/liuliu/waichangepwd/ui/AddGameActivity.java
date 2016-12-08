@@ -91,6 +91,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
     private TextView user_id_tv;
     @CodeNote(id = R.id.yue_tv)
     private TextView yue_tv;
+
     @Override
     public void initViews() {
         setContentView(R.layout.activity_add_game);
@@ -154,7 +155,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 ToastShort("炮台等级不能为空");
             } else if (("").equals(jiuji_et.getText().toString().trim())) {
                 ToastShort("救济金不能为空");
-            }else if(!("").equals(renew_et.getText().toString().trim())&&renew_et.getText().toString().trim().length()!=4){
+            } else if (!("").equals(renew_et.getText().toString().trim()) && renew_et.getText().toString().trim().length() != 4) {
                 ToastShort("请核对到期时间格式");
             } else {
                 if (yz_cb.isChecked()) {
@@ -167,8 +168,8 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
                 gameAccount.setVipGrade(getIntger(vip_et));
                 gameAccount.setAccountNumber(game_name_et.getText().toString().trim());
                 gameAccount.setBatteryGrade(getIntger(pt_et));
-                gameAccount.setReliefFund(jiuji_et.getText().toString());
-                if(gameAccount.getPhoneId()==null) {
+                gameAccount.setReliefFund(getIntger(jiuji_et));
+                if (gameAccount.getPhoneId() == null) {
                     PhoneNumberManager manager = new PhoneNumberManager();
                     manager.setObjectId(phone);
                     gameAccount.setPhoneId(manager);
@@ -199,10 +200,11 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             return Integer.parseInt(e);
         }
     }
-    private boolean YANRIQI(String data){
-        if(data.equals("")){
+
+    private boolean YANRIQI(String data) {
+        if (data.equals("")) {
             return true;
-        }else {
+        } else {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             try {
                 sdf.parse(data);
@@ -214,6 +216,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             return true;
         }
     }
+
     private void loadBase() {
         BmobQuery<UserModel> query = new BmobQuery<UserModel>();
         query.getObject(Utils.getCache("key"), new QueryListener<UserModel>() {
@@ -226,6 +229,7 @@ public class AddGameActivity extends BaseActivity implements AddGameView {
             }
         });
     }
+
     private void clearCB() {
         yz_cb.setChecked(false);
         wz_cb.setChecked(false);

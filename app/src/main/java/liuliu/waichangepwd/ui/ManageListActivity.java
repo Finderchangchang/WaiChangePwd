@@ -130,14 +130,13 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                     holder.setText(R.id.item_pwd, gameAccount.getPassword());
                 } else {
                     holder.setText(R.id.item_pwd, "无");
-
                 }
                 holder.setOnClickListener(R.id.ll_item_first, v -> {
-                    holder.setVisible(R.id.item_iv_open, false);
+                    // holder.setVisible(R.id.item_iv_open, false);
                     holder.setVisible(R.id.item_ll_open, true);
                 });
                 holder.setOnClickListener(R.id.item_ll_open, v -> {
-                    holder.setVisible(R.id.item_iv_open, true);
+                    // holder.setVisible(R.id.item_iv_open, true);
                     holder.setVisible(R.id.item_ll_open, false);
                 });
                 holder.setText(R.id.item_battery, gameAccount.getBatteryGrade() + "炮");
@@ -145,10 +144,10 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
                 holder.setText(R.id.item_amount, "充值 " + gameAccount.getAmountCharge());
                 holder.setText(R.id.item_bomb, "核弹 " + gameAccount.getBomb());
                 holder.setText(R.id.item_bronze, "青铜 " + gameAccount.getBronze());
-
+                holder.setText(R.id.item_rage, "狂暴 " + gameAccount.getRage());
                 holder.setText(R.id.item_change_time, "改:" + gameAccount.getUpdatedAt().substring(8, 10) + "日" + gameAccount.getUpdatedAt().substring(11, 13) + "时");
                 if (!gameAccount.getRenew().equals("")) {
-                    holder.setText(R.id.item_time, "定:" + gameAccount.getRenew().substring(0,2)+"日"+gameAccount.getRenew().substring(0,2)+"时");
+                    holder.setText(R.id.item_time, "定:" + gameAccount.getRenew().substring(0, 2) + "日" + gameAccount.getRenew().substring(2, 4) + "时");
                 } else {
                     holder.setText(R.id.item_time, "定:--日--时");
                 }
@@ -318,7 +317,11 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
 
         share_tv.setOnClickListener(v -> {//分享
             if (checkList.size() > 0) {
-                wechatShare(0);
+                if (checkList.size() > 1) {
+                    ToastShort("只能选择一个游戏账号进行分享~~");
+                } else {
+                    wechatShare(0);
+                }
             } else {
                 ToastShort("请选择一个游戏账号进行分享~~");
             }
@@ -397,7 +400,7 @@ public class ManageListActivity extends BaseActivity implements ManagerListView 
         String fen = "";
         for (int i = 0; i < checkList.size(); i++) {
             GameAccount account = checkList.get(i);
-            fen += "账号" + (i + 1) + "：\n账号：" + account.getAccountNumber() + "\n密码：及阿娇阿娇\n及阿娇阿娇及阿娇阿娇及阿娇阿娇及\n阿娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇及阿\n娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇及阿娇阿娇";
+            fen += "您的\n账号：" + account.getAccountNumber() + "\n密码：";
             if (null == account.getPassword()) {
                 fen += "";
             } else {

@@ -56,12 +56,10 @@
                         android:text="百世快递"/>
                 </LinearLayout>
 
-
                 <TextView
                     android:id="@+id/item_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
                     android:textColor="@color/colorhei"
                     android:text="123456"/>
 
@@ -81,15 +79,6 @@
                     android:layout_weight="1"
                     android:textColor="@color/colorhei"
                     android:text="200万"/>
-
-                <TextView
-                    android:id="@+id/item_jiu2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:textColor="@color/colorhei"
-                    android:text="无"/>
             </LinearLayout>
 
             <LinearLayout
@@ -132,12 +121,7 @@
                     android:textColor="@color/colorhei"
                     android:textSize="12dp"/>
 
-                <ImageView
-                    android:id="@+id/item_iv_open"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@mipmap/item_down"
-                    android:visibility="gone"/>
+
 
                 <ImageView
                     android:id="@+id/item_game_ivCheck"
@@ -272,13 +256,6 @@
                         android:textColor="@color/colorhei"
                         android:textSize="12dp"/>
 
-                    <ImageView
-                        android:id="@+id/item_iv_opens"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:src="@mipmap/item_up"
-                        android:visibility="gone"/>
                 </LinearLayout>
 
             </LinearLayout>

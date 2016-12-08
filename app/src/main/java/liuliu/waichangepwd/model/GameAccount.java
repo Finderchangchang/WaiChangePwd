@@ -25,7 +25,7 @@ public class GameAccount extends BmobObject implements Serializable {
     private Integer Locking;//锁定
     private Integer Platinum;//白金
     private Integer Rage;//狂暴
-    private String ReliefFund;//救济金
+    private Integer ReliefFund;//救济金
     private Integer Silver;//白银
     private String remark;//备注
     private String renew;//到期时间
@@ -153,11 +153,11 @@ public class GameAccount extends BmobObject implements Serializable {
         Rage = rage;
     }
 
-    public String getReliefFund() {
+    public Integer getReliefFund() {
         return ReliefFund;
     }
 
-    public void setReliefFund(String reliefFund) {
+    public void setReliefFund(Integer reliefFund) {
         ReliefFund = reliefFund;
     }
 
